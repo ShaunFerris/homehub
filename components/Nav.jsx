@@ -15,6 +15,9 @@ const Nav = () => {
                     size={40}
                     className="object-contain"
                 />
+                <p className="logo_text">
+                    homeHub
+                </p>
             </Link>
         </nav>
     );
