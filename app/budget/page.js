@@ -1,3 +1,5 @@
+"use client";
+
 import BudgetAmount from "@/components/budget/BudgetAmount";
 import BudgetExpTotal from "@/components/budget/BudgetExpTotal";
 import BudgetRemaining from "@/components/budget/BudgetRemaining";
