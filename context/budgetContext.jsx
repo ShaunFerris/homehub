@@ -23,3 +23,26 @@ const BudgetReducer = (state, action) => {
             return state;
     }
 };
+
+const initialState = {
+    budget: 0,
+    expenses: []
+};
+
+export const BudgetContext = createContext();
+
+export const BudgetProvider = (props) => {
+    const [state, dispatch] = useReducer(BudgetReducer, initialState);
+
+    return (
+        <BudgetContext.Provider
+            value={{
+                budget: state.budget,
+                expenses: state.expenses,
+                dispatch
+            }}
+        >
+            {props.children}
+        </BudgetContext.Provider>
+    );
+};
