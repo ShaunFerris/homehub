@@ -1,8 +1,22 @@
-import React from 'react';
+import { useContext } from "react";
+import { BudgetContext } from "@/context/budgetContext";
 
 const BudgetRemaining = () => {
+    const { budget, expenses } = useContext(BudgetContext);
+
+    const totalExpenses = expenses.reduce((total, expense) => {
+        return (total + expense.cost);
+    }, 0);
+
+    const alertColor = totalExpenses > budget ?
+        "bg-red-500" :
+        "bg-blue-500";
+
     return (
-        <div>BudgetRemaining</div>
+        <div className={`flex justify-between p-3.5 items-center
+            ${alertColor} rounded-md`}>
+            <span>Remaining: ${budget - totalExpenses}</span>
+        </div>
     );
 };
 
