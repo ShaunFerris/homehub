@@ -13,7 +13,7 @@ const Budget = () => {
             <section className='flex flex-center flex-col w-full 
                 items-center justify-center'>
                 <h1>Budget Tracking</h1>
-                <div>
+                <div className="w-full row grid grid-cols-3 gap-4">
                     <div>
                         <BudgetAmount />
                     </div>

@@ -20,7 +20,8 @@ const BudgetAmount = () => {
     };
 
     return (
-        <div>
+        <div className="flex justify-between p-3 items-center
+        bg-gray-300">
             {editMode ?
                 <EditBudget
                     budget={budget}
