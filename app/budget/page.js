@@ -10,17 +10,20 @@ import { BudgetProvider } from "@/context/budgetContext";
 const Budget = () => {
     return (
         <BudgetProvider>
-            <section className='flex flex-center flex-col w-full 
-                items-center justify-center'>
-                <h1>Budget Tracking</h1>
-                <div className="w-full row grid grid-cols-3 gap-4">
-                    <div>
+            <section className="flex flex-col items-center w-full
+                justify-between">
+                <h1 className="text-center">Budget Tracking</h1>
+                <div className="w-full flex flex-wrap justify-between">
+                    <div className="w-full sm:w-auto mb-4 sm:mb-0
+                        sm:mr-4 lg:flex-1 md:flex-1">
                         <BudgetAmount />
                     </div>
-                    <div>
+                    <div className="w-full sm:w-auto mb-4 sm:mb-0
+                        sm:mr-4 lg:flex-1 md:flex-1">
                         <BudgetRemaining />
                     </div>
-                    <div>
+                    <div className="w-full sm:w-auto mb-4 sm:mb-0
+                        sm:mr-4 lg:flex-1 md:flex-1">
                         <BudgetExpTotal />
                     </div>
                 </div>
