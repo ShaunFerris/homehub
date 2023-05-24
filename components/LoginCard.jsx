@@ -1,28 +1,49 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { SlLogin } from "react-icons/sl";
+import { AuthContext } from "@/context/AuthContext";
+import { useContext } from "react";
 
 const LoginCard = () => {
+    const { isLoggedIn, dispatch } = useContext(AuthContext);
+
+    const toggleLoginStatus = () => {
+        dispatch({
+            type: "LOGIN",
+        });
+    };
+
     return (
-        <div class="card_container">
-            <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight
-                    text-gray-900">
-                        Login to access your homes planning tools
-                </h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700">
-                    We currently only support the home of the sites
-                    creator, so unfortunately if you do not live
-                    with me, you cannot use this service.
-            </p>
-            <a href="#" className="black_btn">
-                Login
-                <SlLogin
-                    size={20}
-                    className="object-contain"
-                />
-            </a>
+        <div className="card_container">
+            {isLoggedIn ? (
+                <h1 className="text-2xl font-bold text-gray-900">
+                    Welcome back!
+                </h1>
+            ) : (
+                <>
+                    <a href="#">
+                        <h5 className="mb-2 text-2xl font-bold
+                            tracking-tight text-gray-900">
+                            Login to access your home planning tools
+                        </h5>
+                    </a>
+                    <p className="mb-3 font-normal text-gray-700">
+                        We currently only support the home of the site's
+                        creator, so unfortunately, if you do not live 
+                        with me, you cannot use this service.
+                    </p>
+                    <button
+                        href="#"
+                        className="black_btn w-full"
+                        onClick={toggleLoginStatus}
+                    >
+                        Login
+                        <SlLogin size={20} className="object-contain
+                            ml-3" />
+                    </button>
+                </>
+            )}
         </div>
     );
 };
