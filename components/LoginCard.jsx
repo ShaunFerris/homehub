@@ -16,7 +16,7 @@ const LoginCard = () => {
                     creator, so unfortunately if you do not live
                     with me, you cannot use this service.
             </p>
-            <a href="#" class="black_btn">
+            <a href="#" className="black_btn">
                 Login
                 <SlLogin
                     size={20}
