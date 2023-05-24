@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
+import CardMenu from "./CardMenu";
 import { SlLogin } from "react-icons/sl";
 import { AuthContext } from "@/context/AuthContext";
+// Below imports are for future implementation of NextAuth
 import { useState, useEffect, useContext } from "react";
 import { signIn, signOut, useSession,
     getProviders } from "next-auth/react";
@@ -19,9 +21,7 @@ const LoginCard = () => {
     return (
         <div className="card_container">
             {isLoggedIn ? (
-                <h1 className="text-2xl font-bold text-gray-900">
-                    Welcome back!
-                </h1>
+                <CardMenu />
             ) : (
                 <>
                     <a href="#">
