@@ -29,7 +29,7 @@ const Budget = () => {
                         <BudgetExpTotal />
                     </div>
                 </div>
-                <h1 className="head_text text-center mb-5">
+                <h1 className="subhead_text text-center mb-5">
                     Expenses
                 </h1>
                 <div className="w-full flex flex-wrap justify-between">
@@ -38,7 +38,9 @@ const Budget = () => {
                         <ExpenseList />
                     </div>
                 </div>
-                <h1>Add Expense</h1>
+                <h1 className="subhead_text text-center mb-5">
+                    Add Expense
+                </h1>
                 <div>
                     <div>
                         <AddExpenseForm />

@@ -15,12 +15,12 @@ const AddExpenseForm = () => {
             name: name,
             cost: parseInte(cost)
         };
-    };
 
-    dispatch({
-        type: "ADD_EXPENSE",
-        payload: expense
-    });
+        dispatch({
+            type: "ADD_EXPENSE",
+            payload: expense
+        });
+    };
 
     return (
         <form onSubmit={onSubmit}>
@@ -35,6 +35,22 @@ const AddExpenseForm = () => {
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     ></input>
+                </div>
+                <div>
+                    <label htmlFor="cost">Cost</label>
+                    <input
+                        className="form_input"
+                        required="required"
+                        type="text"
+                        id="cost"
+                        value={cost}
+                        onChange={(event) => setCost(event.target.value)}
+                    ></input>
+                </div>
+                <div>
+                    <button className="black_btn mt-3" type="submit">
+                        Save
+                    </button>
                 </div>
             </div>
         </form>
