@@ -12,7 +12,9 @@ const Budget = () => {
         <BudgetProvider>
             <section className="flex flex-col items-center w-full
                 justify-between">
-                <h1 className="text-center">Budget Tracking</h1>
+                <h1 className="head_text text-center mb-5">
+                    Budget Tracking
+                </h1>
                 <div className="w-full flex flex-wrap justify-between">
                     <div className="w-full sm:w-auto mb-4 sm:mb-0
                         sm:mr-4 lg:flex-1 md:flex-1">
@@ -27,9 +29,12 @@ const Budget = () => {
                         <BudgetExpTotal />
                     </div>
                 </div>
-                <h1>Expenses</h1>
-                <div>
-                    <div>
+                <h1 className="head_text text-center mb-5">
+                    Expenses
+                </h1>
+                <div className="w-full flex flex-wrap justify-between">
+                    <div className="w-full sm:w-auto mb-4 sm:mb-0
+                        sm:mr-4 lg:flex-1 md:flex-1">
                         <ExpenseList />
                     </div>
                 </div>

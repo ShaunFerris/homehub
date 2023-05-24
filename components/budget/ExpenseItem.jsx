@@ -13,7 +13,15 @@ const ExpenseItem = (props) => {
     };
 
     return (
-        <div>ExpenseItem</div>
+        <li className="flex justify-between align-middle items-center">
+            {props.name}
+            <div className="flex flex-row">
+                <span>
+                    {props.cost}
+                </span>
+                <TiDelete size="1.5em" onClick={handleDelete} />
+            </div>
+        </li>
     );
 };
 
