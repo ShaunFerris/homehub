@@ -10,7 +10,6 @@ const EditBudget = (props) => {
                 required="required"
                 type="number"
                 id="budgetAmount"
-                value={value}
                 onChange={(event) => setValue(event.target.value)}
             />
 

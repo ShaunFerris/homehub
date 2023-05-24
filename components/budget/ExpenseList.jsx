@@ -28,7 +28,8 @@ const ExpenseList = () => {
                 onChange={handleChange}
                 placeholder={"Type to search..."}
             />
-            <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
+            <ul className="w-full text-lg font-medium text-gray-900 
+                bg-gray-200 border border-black rounded-lg">
                 {filteredExpenses.map((expense) => (
                     <ExpenseItem
                         key={expense.id}
