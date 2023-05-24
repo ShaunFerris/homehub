@@ -3,7 +3,9 @@
 
 import { SlLogin } from "react-icons/sl";
 import { AuthContext } from "@/context/AuthContext";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+import { signIn, signOut, useSession,
+    getProviders } from "next-auth/react";
 
 const LoginCard = () => {
     const { isLoggedIn, dispatch } = useContext(AuthContext);
