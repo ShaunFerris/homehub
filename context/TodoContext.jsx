@@ -14,3 +14,24 @@ const initialState = {
     user: "Admin",
     timeStamp: new Date()
 };
+
+export const TodoContext = createContext();
+
+export const TodoProvider = (props) => {
+    const [state, dispatch] = useReducer(TodoReducer, initialState);
+
+    return (
+        <TodoContext.Provider
+            value={{
+                id: state.id,
+                name: state.name,
+                pending: state.pending,
+                user: state.user,
+                timeStamp: state.timeStamp,
+                dispatch
+            }}
+        >
+            {props.children}
+        </TodoContext.Provider>
+    )
+}
