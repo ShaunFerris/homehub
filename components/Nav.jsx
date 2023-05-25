@@ -6,7 +6,13 @@ import { useContext } from "react";
 import { AuthContext } from "@/context/AuthContext";
 
 const Nav = () => {
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn, dispatch } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        dispatch({
+            type: "LOGOUT"
+        });
+    };
 
     return (
         <nav className="flex justify-between items-center w-full
@@ -17,7 +23,10 @@ const Nav = () => {
             </Link>
             <div className="flex items-center">
                 {isLoggedIn ? (
-                    <button className="black_btn">Sign Out</button>
+                    <button
+                        className="black_btn"
+                        onClick={handleLogout}
+                    >Sign Out</button>
                 ) : (
                     <div></div>
                 )}
