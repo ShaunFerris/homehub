@@ -1,4 +1,5 @@
-import React from 'react';
+import PendingList from "@/components/todo/PendingList";
+import CompleteList from "@/components/todo/CompleteList";
 
 const Todo = () => {
     return (
