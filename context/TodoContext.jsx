@@ -8,11 +8,8 @@ const TodoReducer = (state, action) => {
 };
 
 const initialState = {
-    id: 10,
-    name: "placeholder task name",
-    pending: true,
-    user: "Admin",
-    timeStamp: new Date()
+    pendingTasks: [],
+    completedTasks: []
 };
 
 export const TodoContext = createContext();
@@ -23,11 +20,8 @@ export const TodoProvider = (props) => {
     return (
         <TodoContext.Provider
             value={{
-                id: state.id,
-                name: state.name,
-                pending: state.pending,
-                user: state.user,
-                timeStamp: state.timeStamp,
+                pendingTasks: state.pendingTasks,
+                completedTasks: state.completedTasks,
                 dispatch
             }}
         >

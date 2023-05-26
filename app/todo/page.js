@@ -10,7 +10,7 @@ const Todo = () => {
         <TodoProvider>
             <section className="flex flex-col items-center w-full
             justify-between">
-                <h1 className="head_text text-center mb-5">
+                <h1 className="head_text text-center">
                     TODO List
                 </h1>
                 <TodoAddForm />
