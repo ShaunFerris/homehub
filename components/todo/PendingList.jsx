@@ -2,7 +2,11 @@ import React from 'react';
 
 const PendingList = () => {
     return (
-        <div>PendingList</div>
+        <div className='card_container_vert'>
+            <h1 className='subhead_text text-center'>
+                Pending Tasks
+            </h1>
+        </div>
     );
 };
 
