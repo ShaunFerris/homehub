@@ -13,7 +13,8 @@ const ExpenseItem = (props) => {
     };
 
     return (
-        <li className="flex justify-between align-middle items-center px-5">
+        <li className="flex justify-between items-center px-5 p-2
+        border-b border-gray-500">
             {props.name}
             <div className="flex flex-row">
                 <span>

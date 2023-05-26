@@ -1,4 +1,4 @@
-import React from 'react';
+import TaskList from "./TaskList";
 
 const CompleteList = () => {
     const completedTasks = [];
@@ -13,7 +13,7 @@ const CompleteList = () => {
                     No Tasks have been completed
                 </p>
             ) : (
-                <div>Completed Tasks</div>
+                <TaskList />
             )
 
             }

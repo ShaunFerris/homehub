@@ -21,15 +21,15 @@ const ExpenseList = () => {
     };
 
     return (
-        <>
+        <div className="card_container_long">
             <input
-                className="mb-2 mr-2"
+                className="mb-2 mr-2 border border-black p-2 rounded"
                 type="text"
                 onChange={handleChange}
                 placeholder={"Type to search..."}
             />
-            <ul className="w-full text-lg font-medium text-gray-900 
-                bg-gray-200 border border-black rounded-lg">
+            <ul className="w-full text-lg font-medium text-gray-900
+            border border-black rounded-lg">
                 {filteredExpenses.map((expense) => (
                     <ExpenseItem
                         key={expense.id}
@@ -39,7 +39,7 @@ const ExpenseList = () => {
                     />
                 ))}
             </ul>
-        </>
+        </div>
     );
 };
 

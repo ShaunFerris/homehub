@@ -1,4 +1,5 @@
 import React from 'react';
+import TaskList from './TaskList';
 
 const PendingList = () => {
     const pendingTasks = [];
@@ -13,7 +14,7 @@ const PendingList = () => {
                     No tasks are pending right now
                 </p>
             ) : (
-                <div>Pending Tasks</div>
+                <TaskList />
             )
 
             }
