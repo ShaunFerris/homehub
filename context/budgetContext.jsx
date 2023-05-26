@@ -24,7 +24,10 @@ const BudgetReducer = (state, action) => {
     }
 };
 
-const initialState = {};
+const initialState = {
+    budget: 0,
+    expenses: []
+};
 
 export const BudgetContext = createContext();
 

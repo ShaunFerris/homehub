@@ -21,8 +21,8 @@ const LoginCard = () => {
     return (
         <div className="card_container">
             {isLoggedIn ? (
-                <CardMenu />
-            ) : (
+                <CardMenu />/*The card menu overflowing the card*/ 
+            ) : (           /*is a purposeful design choice*/ 
                 <>
                     <a href="#">
                         <h5 className="mb-2 text-2xl font-bold
