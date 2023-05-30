@@ -3,26 +3,29 @@
 
 import CardMenu from "./CardMenu";
 import { SlLogin } from "react-icons/sl";
-import { AuthContext } from "@/context/AuthContext";
-// Below imports are for future implementation of NextAuth
-import { useState, useEffect, useContext } from "react";
-import { signIn, signOut, useSession,
-    getProviders } from "next-auth/react";
+import { useState, useEffect } from "react";
+import {
+    signIn, signOut, useSession,
+    getProviders
+} from "next-auth/react";
 
 const LoginCard = () => {
-    const { isLoggedIn, dispatch } = useContext(AuthContext);
+    const { data: session } = useSession();
 
-    const toggleLoginStatus = () => {
-        dispatch({
-            type: "LOGIN",
-        });
-    };
+    const [providers, setProviders] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            const res = await getProviders();
+            setProviders(res);
+        })();
+    }, []);
 
     return (
         <div className="card_container">
-            {isLoggedIn ? (
-                <CardMenu />/*The card menu overflowing the card*/ 
-            ) : (           /*is a purposeful design choice*/ 
+            {session?.user ? (
+                <CardMenu />/*The card menu overflowing the card*/
+            ) : (           /*is a purposeful design choice*/
                 <>
                     <a href="#">
                         <h5 className="mb-2 text-2xl font-bold
@@ -32,18 +35,26 @@ const LoginCard = () => {
                     </a>
                     <p className="mb-3 font-normal text-gray-700">
                         We currently only support the home of the site's
-                        creator, so unfortunately, if you do not live 
+                        creator, so unfortunately, if you do not live
                         with me, you cannot use this service.
                     </p>
-                    <button
-                        href="#"
-                        className="black_btn w-full"
-                        onClick={toggleLoginStatus}
-                    >
-                        Login
-                        <SlLogin size={20} className="object-contain
+                    {providers &&
+                        Object.values(providers).map((provider) => (
+                            <button
+                                type="button"
+                                key={provider.name}
+                                className="black_btn w-full"
+                                onClick={() => {
+                                    signIn(provider.id);
+                                }}
+                            >
+                                Login
+                                <SlLogin size={20} className="object-contain
                             ml-3" />
-                    </button>
+                            </button>
+                        ))
+                    }
+
                 </>
             )}
         </div>
