@@ -1,18 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { SiHomeassistant } from "react-icons/si";
-import { useContext } from "react";
-import { AuthContext } from "@/context/AuthContext";
+import { signOut, useSession } from 'next-auth/react';
 
 const Nav = () => {
-    const { isLoggedIn, dispatch } = useContext(AuthContext);
-
-    const handleLogout = () => {
-        dispatch({
-            type: "LOGOUT"
-        });
-    };
+    const { data: session } = useSession();
 
     return (
         <nav className="flex justify-between items-center w-full
@@ -21,12 +15,24 @@ const Nav = () => {
                 <SiHomeassistant size={40} className="object-contain" />
                 <p className="logo_text">homeHub</p>
             </Link>
-            <div className="flex items-center">
-                {isLoggedIn ? (
-                    <button
-                        className="black_btn"
-                        onClick={handleLogout}
-                    >Sign Out</button>
+            <div className="flex items-center justify-between gap-4">
+                {session?.user ? (
+                    <>
+                        <Link href='/profile'>
+                            <Image
+                                alt="user avatar"
+                                src={session?.user.image}
+                                width={37}
+                                height={37}
+                                className="rounded-full"
+                            />
+                        </Link>
+                        <button
+                            type="button"
+                            className="black_btn"
+                            onClick={signOut}
+                        >Sign Out</button>
+                    </>
                 ) : (
                     <div></div>
                 )}

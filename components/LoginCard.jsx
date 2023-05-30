@@ -4,10 +4,7 @@
 import CardMenu from "./CardMenu";
 import { SlLogin } from "react-icons/sl";
 import { useState, useEffect } from "react";
-import {
-    signIn, signOut, useSession,
-    getProviders
-} from "next-auth/react";
+import { signIn, useSession, getProviders } from "next-auth/react";
 
 const LoginCard = () => {
     const { data: session } = useSession();
