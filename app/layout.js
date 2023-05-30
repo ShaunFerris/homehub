@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import Nav from '@/components/Nav';
 import { AuthProvider } from '@/context/AuthContext';
+import NextAuthProvider from '@/components/NextAuthProvider';
 
 export const metadata = {
     title: "homeHub - Get Your Shit Together",
@@ -12,13 +13,15 @@ const RootLayout = ({ children }) => {
         <AuthProvider>
             <html lang='en'>
                 <body>
-                    <div className='main'>
-                        <div className='gradient' />
-                    </div>
-                    <main className='app'>
-                        <Nav />
-                        {children}
-                    </main>
+                    <NextAuthProvider>
+                        <div className='main'>
+                            <div className='gradient' />
+                        </div>
+                        <main className='app'>
+                            <Nav />
+                            {children}
+                        </main>
+                    </NextAuthProvider>
                 </body>
             </html>
         </AuthProvider>
