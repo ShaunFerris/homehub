@@ -14,7 +14,7 @@ const handler = NextAuth({
         async session({ session }) {
             const sessionUser = await User.findOne({
                 email: session.user.email
-            }).exec();
+            });
 
             session.user.id = sessionUser._id.toString();
 
@@ -25,9 +25,10 @@ const handler = NextAuth({
                 await connectToDB();
 
                 //check if the user already exists
+                //Missing await statement here caused the JWT error
                 const userExists = await User.findOne({
                     email: profile.email
-                }).exec();
+                });
 
                 //if not, add new user to the db
                 if (!userExists) {
