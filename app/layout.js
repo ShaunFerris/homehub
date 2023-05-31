@@ -1,6 +1,5 @@
 import '@/styles/globals.css';
 import Nav from '@/components/Nav';
-import { AuthProvider } from '@/context/AuthContext';
 import NextAuthProvider from '@/components/NextAuthProvider';
 
 export const metadata = {
@@ -10,7 +9,6 @@ export const metadata = {
 
 const RootLayout = ({ children }) => {
     return (
-        <AuthProvider>
             <html lang='en'>
                 <body>
                     <NextAuthProvider>
@@ -24,7 +22,6 @@ const RootLayout = ({ children }) => {
                     </NextAuthProvider>
                 </body>
             </html>
-        </AuthProvider>
     );
 };
 
