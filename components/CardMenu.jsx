@@ -3,7 +3,8 @@ import HoverAnimateImage from "./HoverAnimateImage";
 
 const CardMenu = () => {
     return (
-        <div className="flex justify-center items-center space-x-4">
+        <div className="flex sm:flex-row flex-col justify-center
+        items-center gap-4">
             <div className="w-48 h-48 bg-blue-100 shadow-lg rounded-lg
                 p-4">
                 <Link href="/budget">
