@@ -96,7 +96,7 @@
 
 .subhead_text {
     @apply text-2xl font-extrabold leading-[1.15] text-black
-    sm:text-3xl;
+    sm:text-3xl mt-4;
 }
 
 .orange_gradient {
@@ -174,7 +174,7 @@
 }
 
 .card_container_long {
-    @apply mt-8 w-full p-6 bg-white border border-gray-200 rounded-lg
+    @apply my-4 w-full p-6 bg-white border border-gray-200 rounded-lg
     shadow-lg;
 }
 

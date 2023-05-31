@@ -22,23 +22,31 @@ const ExpenseList = () => {
 
     return (
         <div className="card_container_long">
-            <input
-                className="mb-2 mr-2 border border-black p-2 rounded"
-                type="text"
-                onChange={handleChange}
-                placeholder={"Type to search..."}
-            />
-            <ul className="w-full text-lg font-medium text-gray-900
-            border border-black rounded-lg">
-                {filteredExpenses.map((expense) => (
-                    <ExpenseItem
-                        key={expense.id}
-                        id={expense.id}
-                        name={expense.name}
-                        cost={expense.cost}
+            {filteredExpenses.length === 0 ? (
+                <div>
+                    No expenses have been added yet
+                </div>) : (
+                <>
+                    <input
+                        className="mb-2 mr-2 border border-black p-2 rounded"
+                        type="text"
+                        onChange={handleChange}
+                        placeholder={"Type to search..."}
                     />
-                ))}
-            </ul>
+                    <ul className="w-full text-lg font-medium text-gray-900
+            border border-black rounded-lg">
+                        {filteredExpenses.map((expense) => (
+                            <ExpenseItem
+                                key={expense.id}
+                                id={expense.id}
+                                name={expense.name}
+                                cost={expense.cost}
+                            />
+                        ))}
+                    </ul>
+                </>
+            )}
+
         </div>
     );
 };

@@ -15,7 +15,8 @@ const Budget = () => {
                 <h1 className="head_text text-center mb-5">
                     Budget Tracking
                 </h1>
-                <div className="w-full flex flex-wrap justify-between">
+                <div className="w-full flex flex-wrap justify-between
+                card_container_long">
                     <div className="w-full sm:w-auto mb-4 sm:mb-0
                         sm:mr-4 lg:flex-1 md:flex-1">
                         <BudgetAmount />
@@ -29,15 +30,10 @@ const Budget = () => {
                         <BudgetExpTotal />
                     </div>
                 </div>
-                <h1 className="subhead_text text-center mb-5">
+                <h1 className="subhead_text text-center">
                     Expenses
                 </h1>
-                <div className="w-full flex flex-wrap justify-between">
-                    <div className="w-full sm:w-auto mb-4 sm:mb-0
-                        sm:mr-4 lg:flex-1 md:flex-1">
-                        <ExpenseList />
-                    </div>
-                </div>
+                <ExpenseList />
                 <h1 className="subhead_text text-center mb-5">
                     Add Expense
                 </h1>
