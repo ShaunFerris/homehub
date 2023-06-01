@@ -1,7 +1,7 @@
 import { Schema, model, models } from 'mongoose';
 
 const ExpenseSchema = new Schema({
-    id: {
+    expenseid: {
         type: Number,
         required: true,
     },
@@ -19,9 +19,20 @@ const BudgetSchema = new Schema({
     budget: {
         type: Number
     },
-    expenses: [
-        ExpenseSchema
-    ]
+    expenses: {
+        type: [ExpenseSchema],
+        default: [],
+        validate: {
+            validator: function (expenses) {
+                // Allow empty array or array with expense objects
+                return (
+                    Array.isArray(expenses) && expenses.every(
+                            expense => expense.name && expense.cost)
+                );
+            },
+            message: 'Expenses array must contain valid expense object'
+        }
+    }
 });
 
 const Budget = models.Budget || model("Budget", BudgetSchema);
