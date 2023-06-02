@@ -9,7 +9,7 @@ const CompleteList = () => {
                 Completed Tasks
             </h1>
             {completedTasks.length === 0 ? (
-                <p className='desc text-center'>
+                <p className='desc_2 text-center'>
                     No Tasks have been completed
                 </p>
             ) : (

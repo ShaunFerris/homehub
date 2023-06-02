@@ -14,7 +14,7 @@ const Todo = () => {
                     TODO List
                 </h1>
                 <TodoAddForm />
-                <div className="flex flex-row items-center w-full
+                <div className="flex flex-col items-center w-full
                 justify-between gap-4">
                     <div id="pending_list" className="w-full">
                         <PendingList />

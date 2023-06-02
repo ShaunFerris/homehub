@@ -23,6 +23,7 @@ const TodoAddForm = () => {
 
             if (response.ok) {
                 console.log("Todo task created!")
+                setTodo({ name: "", complete: false })
             }
 
         } catch (error) {

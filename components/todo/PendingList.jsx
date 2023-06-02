@@ -10,7 +10,7 @@ const PendingList = () => {
                 Pending Tasks
             </h1>
             {pendingTasks.length === 0 ? (
-                <p className='desc text-center'>
+                <p className='desc_2 text-center'>
                     No tasks are pending right now
                 </p>
             ) : (

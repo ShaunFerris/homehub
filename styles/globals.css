@@ -118,6 +118,10 @@
     @apply mt-5 text-lg text-gray-600 sm:text-xl max-w-2xl;
 }
 
+.desc_2 {
+    @apply mt-5 text-lg text-gray-600 sm:text-xl;
+}
+
 .search_input {
     @apply block w-full rounded-md border border-gray-200 bg-white
     py-2.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium
@@ -179,6 +183,6 @@
 }
 
 .card_container_vert {
-    @apply mt-8 h-full p-6 bg-white border border-gray-200 rounded-lg
+    @apply h-full p-4 bg-white border border-gray-200 rounded-lg
     shadow-lg;
 }
