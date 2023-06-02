@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 
 const TodoAddForm = () => {
-    const router = useRouter();
     const { data: session } = useSession();
 
     const [todo, setTodo] = useState({ name: "", complete: false });
@@ -24,7 +22,7 @@ const TodoAddForm = () => {
             });
 
             if (response.ok) {
-                router.push("/");
+                console.log("Todo task created!")
             }
 
         } catch (error) {
