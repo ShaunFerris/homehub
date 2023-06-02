@@ -12,8 +12,8 @@ const TodoAddForm = () => {
         setIsSubmitting(true);
 
         try {
-            const response = await fetch("/api/todo/newItem", {
-                method: POST,
+            const response = await fetch("/api/todo/newItem/", {
+                method: "POST",
                 body: JSON.stringify({
                     task: todo.name,
                     complete: todo.complete,
