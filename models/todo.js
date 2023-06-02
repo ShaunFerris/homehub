@@ -5,7 +5,7 @@ const TodoSchema = new Schema({
         type: String,
         required: true
     },
-    status: Boolean
+    complete: Boolean
 });
 
 const Todo = models.Todo || model("Todo", TodoSchema);
