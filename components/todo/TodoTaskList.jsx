@@ -6,16 +6,17 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
 
     console.log(todoTasks);
 
-    const tasksToDisplay = todoTasks.filter((task) => {
-        return task.complete === renderCondition;
-    });
+    const tasksToDisplay = todoTasks.data === null ?
+        null : todoTasks.data.filter((task) => {
+            return task.complete === renderCondition;
+        });
 
     return (
         <div className='card_container_vert'>
             <h1 className='subhead_text text-center'>
                 {title}
             </h1>
-            {todoTasks.length === 0 ? (
+            {!tasksToDisplay ? (
                 <p className='desc_2 text-center'>
                     {emptyMsg}
                 </p>
