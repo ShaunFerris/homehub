@@ -8,11 +8,19 @@ const TodoReducer = (state, action) => {
 };
 
 const fetchTasks = async () => {
-    const response = await fetch("/api/todo");
-    return response;
-}
+    try {
+        const response = await fetch("/api/todo");
+        const data = await response.json();
+        console.log("Successfully fetched: ", data);
+        return data;
+    } catch (error) {
+        console.log("Failed to fetch todotasks: ", error);
+    }
+};
 
-const initialState = fetchTasks();
+const initialState = fetchTasks().then(result => {
+    result;
+});
 
 export const TodoContext = createContext();
 
@@ -22,11 +30,11 @@ export const TodoProvider = (props) => {
     return (
         <TodoContext.Provider
             value={{
-                tasks: state,
+                todoTasks: state,
                 dispatch
             }}
         >
             {props.children}
         </TodoContext.Provider>
-    )
-}
+    );
+};

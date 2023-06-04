@@ -1,12 +1,10 @@
-import React from 'react';
+import { useContext } from "react";
+import { TodoContext } from "@/context/TodoContext";
 
 const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
-    const todoTasks_1 = [
-        { name: "placeholder task 1", complete: false },
-        { name: "Placeholder task 2", complete: true }
-    ];
+    const { todoTasks, dispatch } = useContext(TodoContext);
 
-    const todoTasks = [];
+    console.log(todoTasks);
 
     const tasksToDisplay = todoTasks.filter((task) => {
         return task.complete === renderCondition;
