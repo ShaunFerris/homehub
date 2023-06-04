@@ -1,8 +1,7 @@
 "use client";
 
 import TodoAddForm from "@/components/todo/TodoAddForm";
-import PendingList from "@/components/todo/PendingList";
-import CompleteList from "@/components/todo/CompleteList";
+import TodoTaskList from "@/components/todo/TodoTaskList";
 import { TodoProvider } from "@/context/TodoContext";
 
 const Todo = () => {
@@ -17,10 +16,18 @@ const Todo = () => {
                 <div className="flex flex-col items-center w-full
                 justify-between gap-4">
                     <div id="pending_list" className="w-full">
-                        <PendingList />
+                        <TodoTaskList
+                            title="Pending Tasks"
+                            emptyMsg="There are no pending tasks"
+                            renderCondition={false}
+                        />
                     </div>
                     <div id="complete-list" className="w-full">
-                        <CompleteList />
+                        <TodoTaskList
+                            title="Completed Tasks"
+                            emptyMsg="There are no completed tasks"
+                            renderCondition={true}
+                        />
                     </div>
                 </div>
             </section>
