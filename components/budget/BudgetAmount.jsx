@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { BudgetContext } from "@/context/budgetContext";
+import { BudgetContext } from "@/context/BudgetContext";
 import ViewBudget from "./ViewBudget";
 import EditBudget from "./EditBudget";
 

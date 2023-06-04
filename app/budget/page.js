@@ -5,7 +5,7 @@ import BudgetExpTotal from "@/components/budget/BudgetExpTotal";
 import BudgetRemaining from "@/components/budget/BudgetRemaining";
 import AddExpenseForm from "@/components/budget/AddExpenseForm";
 import ExpenseList from "@/components/budget/ExpenseList";
-import { BudgetProvider } from "@/context/budgetContext";
+import { BudgetProvider } from "@/context/BudgetContext";
 
 const Budget = () => {
     return (

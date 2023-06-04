@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import ExpenseItem from "./ExpenseItem";
-import { BudgetContext } from "@/context/budgetContext";
+import { BudgetContext } from "@/context/BudgetContext";
 
 const ExpenseList = () => {
     const { expenses } = useContext(BudgetContext);

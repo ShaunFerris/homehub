@@ -1,12 +1,14 @@
 import React from 'react';
 
 const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
-    const todoTasks = [
+    const todoTasks_1 = [
         { name: "placeholder task 1", complete: false },
         { name: "Placeholder task 2", complete: true }
     ];
 
-    const tasksToDisplay = todoTasks.map((task) => {
+    const todoTasks = [];
+
+    const tasksToDisplay = todoTasks.filter((task) => {
         return task.complete === renderCondition;
     });
 

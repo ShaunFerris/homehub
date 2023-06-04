@@ -1,4 +1,4 @@
-import LoginCard from "@/components/LoginCard";
+import LoginCard from "@/components/homepage/LoginCard";
 
 const Home = () => {
     return (
