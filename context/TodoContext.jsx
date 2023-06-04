@@ -7,10 +7,12 @@ const TodoReducer = (state, action) => {
     }
 };
 
-const initialState = {
-    pendingTasks: [],
-    completedTasks: []
-};
+const fetchTasks = async () => {
+    const response = await fetch("/api/todo");
+    return response;
+}
+
+const initialState = fetchTasks();
 
 export const TodoContext = createContext();
 
@@ -20,8 +22,7 @@ export const TodoProvider = (props) => {
     return (
         <TodoContext.Provider
             value={{
-                pendingTasks: state.pendingTasks,
-                completedTasks: state.completedTasks,
+                tasks: state,
                 dispatch
             }}
         >
