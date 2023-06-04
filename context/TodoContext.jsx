@@ -33,7 +33,9 @@ export const TodoProvider = ({ children }) => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await fetch("/api/todo");
+                const response = await fetch("/api/todo", {
+                    method: "GET"
+                });
                 const data = await response.json();
 
                 dispatch({ type: "FETCH_SUCCESS", payload: data });
@@ -42,7 +44,7 @@ export const TodoProvider = ({ children }) => {
             }
         };
         fetchTasks();
-    }, []);
+    }, [state]);
 
     return (
         <TodoContext.Provider

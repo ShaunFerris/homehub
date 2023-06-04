@@ -1,15 +1,30 @@
 import { useContext } from "react";
 import { TodoContext } from "@/context/TodoContext";
+import TodoTaskItem from "./TodoTaskItem";
 
 const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
-    const { todoTasks, dispatch } = useContext(TodoContext);
-
-    console.log(todoTasks);
+    const { todoTasks } = useContext(TodoContext);
 
     const tasksToDisplay = todoTasks.data === null ?
         null : todoTasks.data.filter((task) => {
             return task.complete === renderCondition;
         });
+
+    const handleStatusToggle = async (task) => {
+        try {
+            const response = await fetch("/api/todo", {
+                method: "PATCH",
+                body: JSON.stringify({
+                    ...task
+                })
+            });
+            if (response.ok) {
+                console.log("Updated one tasks status!");
+            }
+        } catch (error) {
+            console.log("Failed to toggle task status: ", error);
+        }
+    };
 
     return (
         <div className='card_container_vert'>
@@ -23,7 +38,11 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
             ) : (
                 <ul>
                     {tasksToDisplay.map((task) => (
-                        <li key={task.name}>{task.name}</li>
+                        <TodoTaskItem
+                            key={task.name}
+                            task={task}
+                            toggleStatus={handleStatusToggle}
+                        />
                     ))}
                 </ul>
             )
