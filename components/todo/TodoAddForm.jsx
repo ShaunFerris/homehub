@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TodoContext } from "@/context/TodoContext";
 import { useSession } from "next-auth/react";
 
 const TodoAddForm = () => {
     const { data: session } = useSession();
-
+    const { setStateChange } = useContext(TodoContext);
     const [todo, setTodo] = useState({ name: "", complete: false });
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -20,10 +21,10 @@ const TodoAddForm = () => {
                     userID: session?.user.id
                 })
             });
-
+            setStateChange(true);
             if (response.ok) {
-                console.log("Todo task created!")
-                setTodo({ name: "", complete: false })
+                console.log("Todo task created!");
+                setTodo({ name: "", complete: false });
             }
 
         } catch (error) {
@@ -35,27 +36,27 @@ const TodoAddForm = () => {
 
     return (
         <form className='card_container_long flex flex-row gap-4'
-        onSubmit={createTodo}>
-                <div id='todo_input' className='w-4/5'>
-                    <input
-                        className='form_input border border-black'
-                        placeholder='Add a todo...'
-                        value={todo.name}
-                        onChange={(event) => setTodo({
-                            ...todo,
-                            name: event.target.value
-                        })}
-                    />
-                </div>
-                <div id='todo_buttons' className='w-1/5 flex flex-row
+            onSubmit={createTodo}>
+            <div id='todo_input' className='w-4/5'>
+                <input
+                    className='form_input border border-black'
+                    placeholder='Add a todo...'
+                    value={todo.name}
+                    onChange={(event) => setTodo({
+                        ...todo,
+                        name: event.target.value
+                    })}
+                />
+            </div>
+            <div id='todo_buttons' className='w-1/5 flex flex-row
                 justify-center'>
-                    <button
-                        className='black_btn w-full'
-                        disabled={isSubmitting}
-                    >
-                        Submit
-                    </button>
-                </div>
+                <button
+                    className='black_btn w-full'
+                    disabled={isSubmitting}
+                >
+                    Submit
+                </button>
+            </div>
         </form>
     );
 };

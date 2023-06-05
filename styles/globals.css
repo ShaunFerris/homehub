@@ -89,6 +89,18 @@
     text-sm font-inter flex items-center justify-center;
 }
 
+.delete_btn {
+    @apply rounded-full border border-black bg-transparent py-1.5 px-5
+    text-black transition-all hover:bg-red-600 hover:text-white text-center
+    text-sm font-inter flex items-center justify-center;
+}
+
+.confirm_btn {
+    @apply rounded-full border border-black bg-transparent py-1.5 px-5
+    text-black transition-all hover:bg-green-600 hover:text-white text-center
+    text-sm font-inter flex items-center justify-center;
+}
+
 .head_text {
     @apply text-5xl font-extrabold leading-[1.15] text-black
     sm:text-6xl;
@@ -136,12 +148,6 @@
 .glassmorphism {
     @apply rounded-xl border border-gray-200 bg-white/20 shadow-lg
     backdrop-blur p-5;
-}
-
-/* Feed Component */
-.feed {
-    @apply mt-16 mx-auto w-full max-w-xl flex justify-center items-center
-    flex-col gap-2;
 }
 
 /* Form Component */
