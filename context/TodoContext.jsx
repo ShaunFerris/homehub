@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect, useState } from "react";
 
 const TodoReducer = (state, action) => {
     switch (action.type) {
@@ -29,6 +29,7 @@ export const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
     const [state, dispatch] = useReducer(TodoReducer, initialState);
+    const [stateChange, setStateChange] = useState(true);
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -43,14 +44,18 @@ export const TodoProvider = ({ children }) => {
                 dispatch({ type: "FETCH_FAILURE", payload: error.message });
             }
         };
-        fetchTasks();
-    }, [state]);
+        if (stateChange) {
+            fetchTasks();
+            setStateChange(false);
+        }
+    }, [stateChange]);
 
     return (
         <TodoContext.Provider
             value={{
                 todoTasks: state,
-                dispatch
+                dispatch: dispatch,
+                setStateChange: setStateChange
             }}
         >
             {children}

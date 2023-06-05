@@ -3,6 +3,7 @@ import Todo from "@/models/todo";
 
 export const GET = async (req) => {
     try {
+        console.log("GET req");
         await connectToDB();
 
         const tasks = await Todo.find({});
@@ -17,6 +18,7 @@ export const PATCH = async (req) => {
     const { _id, complete } = await req.json();
 
     try {
+        console.log("PATCH req");
         await connectToDB();
 
         const currentTask = await Todo.findById(_id);

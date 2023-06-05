@@ -3,7 +3,7 @@ import { TodoContext } from "@/context/TodoContext";
 import TodoTaskItem from "./TodoTaskItem";
 
 const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
-    const { todoTasks } = useContext(TodoContext);
+    const { todoTasks, setStateChange } = useContext(TodoContext);
 
     const tasksToDisplay = todoTasks.data === null ?
         null : todoTasks.data.filter((task) => {
@@ -18,6 +18,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
                     ...task
                 })
             });
+            setStateChange(true);
             if (response.ok) {
                 console.log("Updated one tasks status!");
             }
