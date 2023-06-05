@@ -27,6 +27,23 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
         }
     };
 
+    const handleDelete = async () => {
+        const hasConfirmed = confirm(
+            "Are you sure you wish to delete this task?"
+        );
+
+        if (hasConfirmed) {
+            try {
+                await fetch("api/todo", {
+                    method: "DELETE"
+                });
+                setStateChange(true);
+            } catch (error) {
+                console.log("Failed to delete task: ", error);
+            }
+        }
+    };
+
     return (
         <div className='card_container_vert'>
             <h1 className='subhead_text text-center'>
@@ -43,6 +60,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
                             key={task.name}
                             task={task}
                             toggleStatus={handleStatusToggle}
+                            handleDelete={handleDelete}
                         />
                     ))}
                 </ul>

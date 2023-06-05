@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoTaskItem = ({ task, toggleStatus }) => {
+const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
     return (
         <li className='flex flex-row justify-between items-center px-5
         p-2 border-b border-gray-500'>
@@ -12,7 +12,10 @@ const TodoTaskItem = ({ task, toggleStatus }) => {
                 }}>
                     Toggle Complete
                 </button>
-                <button className='delete_btn'>
+                <button className='delete_btn' onClick={(e) => {
+                    e.preventDefault();
+                    handleDelete(task);
+                }}>
                     Delete Task
                 </button>
             </div>
