@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import Nav from '@/components/Nav';
-import NextAuthProvider from '@/components/NextAuthProvider';
+import NextAuthProvider from '@/context/NextAuthProvider';
 
 export const metadata = {
     title: "homeHub - Get Your Shit Together",

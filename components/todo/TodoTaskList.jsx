@@ -68,7 +68,6 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
                     ))}
                 </ul>
             )
-
             }
         </div>
     );
