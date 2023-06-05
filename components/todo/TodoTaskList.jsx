@@ -27,17 +27,20 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
         }
     };
 
-    const handleDelete = async () => {
+    const handleDelete = async (task) => {
         const hasConfirmed = confirm(
             "Are you sure you wish to delete this task?"
         );
 
         if (hasConfirmed) {
             try {
-                await fetch("api/todo", {
+                const response = await fetch(`/api/todo/${task._id.toString()}`, {
                     method: "DELETE"
                 });
                 setStateChange(true);
+                if (response.ok) {
+                    console.log("Delted one task!");
+                }
             } catch (error) {
                 console.log("Failed to delete task: ", error);
             }

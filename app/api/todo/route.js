@@ -34,18 +34,3 @@ export const PATCH = async (req) => {
 
     }
 };
-
-export const DELETE = async (req) => {
-    const { _id } = await req.json();
-
-    try {
-        console.log("DELETE req");
-        await connectToDB();
-
-        await Todo.findByIdAndRemove(_id);
-
-        return new Response("Prompt deleted", { status: 200 });
-    } catch (error) {
-        return new Response("Task delete failed: ", {status: 500})
-    }
-};
