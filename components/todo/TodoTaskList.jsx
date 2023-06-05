@@ -52,7 +52,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
             <h1 className='subhead_text text-center'>
                 {title}
             </h1>
-            {!tasksToDisplay ? (
+            {tasksToDisplay.length === 0 ? (
                 <p className='desc_2 text-center'>
                     {emptyMsg}
                 </p>
