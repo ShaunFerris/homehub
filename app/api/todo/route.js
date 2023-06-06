@@ -6,7 +6,7 @@ export const GET = async (req) => {
         console.log("GET req");
         await connectToDB();
 
-        const tasks = await Todo.find({});
+        const tasks = await Todo.find({}).populate('creator');
 
         return new Response(JSON.stringify(tasks), { status: 200 });
     } catch (error) {

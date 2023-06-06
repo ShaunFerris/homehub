@@ -4,7 +4,7 @@ const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
     return (
         <li className='flex flex-row justify-between items-center px-5
         p-2 border-b border-gray-500'>
-            {task.name}
+            <div>{task.name} <span className='text-gray-500'> | {task.creator.username}</span></div>
             <div id='buttons' className='flex flex-row gap-4'>
                 <button className='confirm_btn' onClick={(e) => {
                     e.preventDefault();
