@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useSession } from "next-auth/react";
+import { ShoplistContext } from "@/context/ShoplistContext";
 
 const ShopAddItem = () => {
     const { data: session } = useSession();
     const [item, setItem] = useState({ name: "", complete: false });
+    const { setHasUpdated } = useContext(ShoplistContext);
 
     const createShopItem = async (event) => {
         event.preventDefault();
@@ -20,6 +22,7 @@ const ShopAddItem = () => {
             if (response.ok) {
                 console.log("Created a shopping list item");
                 setItem({ name: "", complete: false });
+                setHasUpdated(true);
             }
         } catch (error) {
             console.log(error);

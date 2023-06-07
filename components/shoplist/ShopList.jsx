@@ -1,26 +1,32 @@
 import ShopItem from "./ShopItem";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ShoplistContext } from "@/context/ShoplistContext";
 
 const ShopList = () => {
-    const testItemsToDisplay = [
-        { name: "placeholder item", complete: false, creator: "Shaun" }
-    ];
-
     const [items, setItems] = useState([]);
+    const { hasUpdated, setHasUpdated } = useContext(ShoplistContext);
 
-    const fetchListItems = async () => {
-        try {
-            const response = await fetch("api/shoplist");
-            const data = await response.json();
-            setItems(data);
-        } catch (error) {
+    useEffect(() => {
+        const fetchListItems = async () => {
+            try {
+                const response = await fetch("api/shoplist");
+                const data = await response.json();
+                setItems(data);
+            } catch (error) {
 
+            }
+        };
+
+        if (hasUpdated) {
+            fetchListItems();
+            setHasUpdated(false);
         }
-    };
+
+    }, [hasUpdated, setHasUpdated]);
 
     return (
         <ul>
-            {testItemsToDisplay.map((item) => (
+            {items.map((item) => (
                 <ShopItem
                     key={item.name}
                     item={item}

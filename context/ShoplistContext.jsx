@@ -1,9 +1,9 @@
 import { createContext, useState } from "react";
 
-export const ShoplistContext = createContext({ hasUpdated: false });
+export const ShoplistContext = createContext({ hasUpdated: true });
 
 export const ShoplistProvider = ({ children }) => {
-    const [hasUpdated, setHasUpdated] = useState(false);
+    const [hasUpdated, setHasUpdated] = useState(true);
 
     return (
         <ShoplistContext.Provider
