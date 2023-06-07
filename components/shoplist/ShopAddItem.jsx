@@ -27,23 +27,21 @@ const ShopAddItem = () => {
     };
 
     return (
-        <div className='card_container w-full'>
-            <form className="w-full flex flex-row gap-4"
-                onSubmit={createShopItem}>
-                <input
-                    className='form_input border border-black'
-                    placeholder='Add an item to your shopping list...'
-                    value={item.name}
-                    onChange={(event) => setItem({
-                        ...item,
-                        name: event.target.value
-                    })}
-                />
-                <button className='black_btn'>
-                    Add
-                </button>
-            </form>
-        </div>
+        <form className="w-full flex flex-row gap-4"
+            onSubmit={createShopItem}>
+            <input
+                className='form_input border border-black'
+                placeholder='Add an item to your shopping list...'
+                value={item.name}
+                onChange={(event) => setItem({
+                    ...item,
+                    name: event.target.value
+                })}
+            />
+            <button className='black_btn'>
+                Add
+            </button>
+        </form>
     );
 };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import ShopAddItem from "@/components/shoplist/ShopAddItem";
+import ShopList from "@/components/shoplist/ShopList";
 
 const Shoplist = () => {
     return (
@@ -9,7 +10,10 @@ const Shoplist = () => {
             <h1 className='head_text text-center blue_gradient py-3'>
                 Shopping List
             </h1>
-            <ShopAddItem />
+            <div className="card_container w-full">
+                <ShopAddItem />
+                <ShopList />
+            </div>
         </section>
     );
 };
