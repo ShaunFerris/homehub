@@ -1,6 +1,4 @@
-import React from 'react';
-
-const ShopItem = ({item}) => {
+const ShopItem = ({ item }) => {
     return (
         <li className='flex flex-row justify-between items-center px-5
         p-2 border-b border-gray-500'>

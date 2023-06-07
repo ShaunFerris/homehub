@@ -2,6 +2,7 @@
 
 import ShopAddItem from "@/components/shoplist/ShopAddItem";
 import ShopList from "@/components/shoplist/ShopList";
+import { ShoplistProvider } from "@/context/ShoplistContext";
 
 const Shoplist = () => {
     return (
@@ -11,8 +12,10 @@ const Shoplist = () => {
                 Shopping List
             </h1>
             <div className="card_container w-full">
-                <ShopAddItem />
-                <ShopList />
+                <ShoplistProvider>
+                    <ShopAddItem />
+                    <ShopList />
+                </ShoplistProvider>
             </div>
         </section>
     );
