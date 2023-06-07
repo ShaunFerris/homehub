@@ -1,13 +1,16 @@
-const ShopItem = ({ item }) => {
+import { TiDelete } from "react-icons/ti";
+
+const ShopItem = ({ item, handleDelete }) => {
     return (
         <li className='flex flex-row justify-between items-center px-5
         p-2 border-b border-gray-500'>
             <div>
                 {item.name}
-                <span className='text-gray-500'>
-
-                </span>
             </div>
+            <TiDelete size="1.5em" onClick={(e) => {
+                e.preventDefault();
+                handleDelete(item);
+            }} />
         </li>
     );
 };
