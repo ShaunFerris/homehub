@@ -30,13 +30,9 @@ export const authOptions = {
                     email: profile.email
                 });
 
-                //if not, add new user to the db
+                //if not, return false to deny them access
                 if (!userExists) {
-                    await User.create({
-                        email: profile.email,
-                        username: profile.name.replace(" ", "").toLowerCase(),
-                        image: profile.picture
-                    });
+                    return false;
                 }
 
                 return true;
