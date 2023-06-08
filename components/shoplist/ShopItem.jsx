@@ -1,4 +1,4 @@
-import { TiDelete } from "react-icons/ti";
+import { TiDelete, TiTick } from "react-icons/ti";
 
 const ShopItem = ({ item, handleDelete }) => {
     const repComplete = item.complete ?
@@ -6,14 +6,18 @@ const ShopItem = ({ item, handleDelete }) => {
 
     return (
         <li className={`flex flex-row justify-between items-center px-5
-        p-2 border-b border-gray-500 ${repComplete}`}>
+        p-2 border border-gray-500 rounded-lg mt-2 ${repComplete}`}>
             <div>
                 {item.name}
             </div>
-            <TiDelete size="1.5em" onClick={(e) => {
-                e.preventDefault();
-                handleDelete(item);
-            }} />
+            <div className="flex flex-row justify-between items-center
+            gap-4">
+                {!item.complete ? <TiTick size="1.5em" /> : <></>}
+                <TiDelete size="1.5em" onClick={(e) => {
+                    e.preventDefault();
+                    handleDelete(item);
+                }} />
+            </div>
         </li>
     );
 };
