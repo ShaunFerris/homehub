@@ -13,15 +13,13 @@ const ShopList = () => {
                 const data = await response.json();
                 setItems(data);
             } catch (error) {
-
+                console.log("Failed to fetch shoppinglist: ", error)
             }
         };
-
         if (hasUpdated) {
             fetchListItems();
             setHasUpdated(false);
         }
-
     }, [hasUpdated, setHasUpdated]);
 
     const handleDelete = async (item) => {
