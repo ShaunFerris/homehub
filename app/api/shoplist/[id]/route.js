@@ -12,3 +12,19 @@ export const DELETE = async (req, { params }) => {
         return new Response("Item delete failed", { status: 500 });
     }
 };
+
+export const PATCH = async (req, { params }) => {
+    const { complete } = await req.json();
+
+    try {
+        await connectToDB();
+
+        await ShoplistItem.findByIdAndUpdate(
+            params.id,
+            { complete: !complete }
+        );
+        return new Response("Item marked complete", { status: 200 });
+    } catch (error) {
+        return new Response("Mark complete failed", { status: 500 });
+    }
+};

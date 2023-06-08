@@ -13,7 +13,7 @@ const ShopList = () => {
                 const data = await response.json();
                 setItems(data);
             } catch (error) {
-                console.log("Failed to fetch shoppinglist: ", error)
+                console.log("Failed to fetch shoppinglist: ", error);
             }
         };
         if (hasUpdated) {
@@ -35,11 +35,27 @@ const ShopList = () => {
                 });
                 setHasUpdated(true);
                 if (response.ok) {
-                    console.log("Deleted one item!")
+                    console.log("Deleted one item!");
                 }
             } catch (error) {
                 console.log("Failed to delete item: ", error);
             }
+        }
+    };
+
+    const handleStatusChange = async (item) => {
+        try {
+            const response = await fetch(
+                `api/shoplist/${item._id.toString()}`, {
+                method: "PATCH",
+                body: JSON.stringify({ ...item })
+            });
+            setHasUpdated(true);
+            if (response.ok) {
+                console.log("Marked one item as complete!");
+            }
+        } catch (error) {
+            console.log("Failed to mark item complete: ", error);
         }
     };
 
@@ -50,6 +66,7 @@ const ShopList = () => {
                     key={item.name}
                     item={item}
                     handleDelete={handleDelete}
+                    handleStatusChange={handleStatusChange}
                 />
             ))}
         </ul>
