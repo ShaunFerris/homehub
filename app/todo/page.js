@@ -3,8 +3,19 @@
 import TodoAddForm from "@/components/todo/TodoAddForm";
 import TodoTaskList from "@/components/todo/TodoTaskList";
 import { TodoProvider } from "@/context/TodoContext";
+import { useSession } from "next-auth/react";
 
 const Todo = () => {
+    const { status } = useSession();
+
+    if (status === "loading") {
+        return <p>Loading</p>
+    }
+
+    if (status === "unauthenticated") {
+        return <p>Access Denied</p>;
+    }
+
     return (
         <TodoProvider>
             <section className="flex flex-col items-center w-full

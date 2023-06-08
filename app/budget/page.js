@@ -6,8 +6,19 @@ import BudgetRemaining from "@/components/budget/BudgetRemaining";
 import AddExpenseForm from "@/components/budget/AddExpenseForm";
 import ExpenseList from "@/components/budget/ExpenseList";
 import { BudgetProvider } from "@/context/BudgetContext";
+import { useSession } from "next-auth/react";
 
 const Budget = () => {
+    const { status } = useSession();
+
+    if (status === "loading") {
+        return <p>Loading</p>
+    }
+
+    if (status === "unauthenticated") {
+        return <p>Access Denied</p>;
+    }
+
     return (
         <BudgetProvider>
             <section className="flex flex-col items-center w-full

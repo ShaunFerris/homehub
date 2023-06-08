@@ -3,8 +3,19 @@
 import ShopAddItem from "@/components/shoplist/ShopAddItem";
 import ShopList from "@/components/shoplist/ShopList";
 import { ShoplistProvider } from "@/context/ShoplistContext";
+import { useSession } from "next-auth/react";
 
 const Shoplist = () => {
+    const { status } = useSession();
+
+    if (status === "loading") {
+        return <p>Loading</p>;
+    }
+
+    if (status === "unauthenticated") {
+        return <p>Access Denied</p>;
+    }
+
     return (
         <section className='flex flex-col items-center justify-center
         w-full'>
