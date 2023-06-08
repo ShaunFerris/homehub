@@ -24,8 +24,7 @@ const HoverAnimateImage = ({
                 src={isHovered ? animatedSrc : staticSrc}
                 alt={alt}
                 className={className}
-                width={width}
-                height={height}
+                fill={true}
             />
         </div>
     );
