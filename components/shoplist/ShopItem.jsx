@@ -12,7 +12,7 @@ const ShopItem = ({ item, handleDelete, handleStatusChange }) => {
             </div>
             <div className="flex flex-row justify-between items-center
             gap-4">
-                {!item.complete ? 
+                {!item.complete ?
                     <TiTick size="1.5em" onClick={() => {
                         handleStatusChange(item);
                     }} /> : <></>}

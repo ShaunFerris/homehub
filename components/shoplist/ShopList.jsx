@@ -59,17 +59,47 @@ const ShopList = () => {
         }
     };
 
+    const handleClear = async () => {
+        const hasConfirmed = confirm(
+            "Are you sure that you wish to clear all list items?"
+        );
+
+        if (hasConfirmed) {
+            try {
+                const response = await fetch(
+                    "api/shoplist", {
+                    method: "DELETE"
+                }
+                );
+                setHasUpdated(true);
+                if (response.ok) {
+                    console.log("Successfully cleared list!");
+                }
+            } catch (error) {
+                console.log("Failed to clear list: ", error);
+            }
+        }
+    };
+
     return (
-        <ul>
-            {items.map((item) => (
-                <ShopItem
-                    key={item.name}
-                    item={item}
-                    handleDelete={handleDelete}
-                    handleStatusChange={handleStatusChange}
-                />
-            ))}
-        </ul>
+        <>
+            <ul>
+                {items.map((item) => (
+                    <ShopItem
+                        key={item.name}
+                        item={item}
+                        handleDelete={handleDelete}
+                        handleStatusChange={handleStatusChange}
+                    />
+                ))}
+            </ul>
+            <button
+                className="delete_btn w-full mt-4"
+                onClick={handleClear}
+            >
+                Clear shopping list
+            </button>
+        </>
     );
 };
 

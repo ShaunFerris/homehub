@@ -13,3 +13,15 @@ export const GET = async () => {
         return new Response("Failed to fetch shoplist", { status: 500 });
     }
 };
+
+export const DELETE = async () => {
+    try {
+        await connectToDB();
+
+        await ShoplistItem.deleteMany({});
+
+        return new Response("Deleted all items", { status: 200 });
+    } catch (error) {
+        return new Response("Failed to delete all items", { status: 500 });
+    }
+};
