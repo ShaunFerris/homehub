@@ -1,4 +1,5 @@
-import React from 'react';
+import { TbSwitchVertical } from 'react-icons/tb';
+import { TiDelete } from 'react-icons/ti';
 
 const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
     return (
@@ -10,7 +11,8 @@ const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
                     | {task.creator.username}
                 </span>
             </div>
-            <div id='buttons' className='flex flex-row gap-4'>
+            {/*Desktop displays get action buttons*/}
+            <div id='buttons' className='sm:flex flex-row gap-4 hidden'>
                 <button className='confirm_btn' onClick={(e) => {
                     e.preventDefault();
                     toggleStatus(task);
@@ -24,7 +26,23 @@ const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
                     Delete Task
                 </button>
             </div>
-
+            {/*Mobile displays get action icons*/}
+            <div id='icons' className='sm:hidden flex flex-row gap-4'>
+                <TbSwitchVertical
+                    size="1.5em"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        toggleStatus(task);
+                    }}
+                />
+                <TiDelete
+                    size="1.5em"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        handleDelete(task);
+                    }}
+                />
+            </div>
         </li>
     );
 };
