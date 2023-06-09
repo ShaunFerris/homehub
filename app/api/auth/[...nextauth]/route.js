@@ -11,15 +11,23 @@ export const authOptions = {
         })
     ],
     callbacks: {
-        async session({ session }) {
-            const sessionUser = await User.findOne({
-                email: session.user.email
-            });
+        async jwt({ token, profile }) {
+            if (profile) {
+                const sessionUser = await User.findOne({
+                    email: profile.email
+                });
 
-            session.user.id = sessionUser._id.toString();
+                token.id = sessionUser._id.toString();
+            }
+            return token;
+        },
+
+        async session({ session, token }) {
+            session.user.id = token.id;
 
             return session;
         },
+
         async signIn({ profile }) {
             try {
                 await connectToDB();
