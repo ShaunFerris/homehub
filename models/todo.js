@@ -3,7 +3,8 @@ import { Schema, model, models } from 'mongoose';
 const TodoSchema = new Schema({
     creator: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required: true
     },
     name: {
         type: String,
