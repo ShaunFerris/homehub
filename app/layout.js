@@ -1,5 +1,5 @@
 import '@/styles/globals.css';
-import Nav from '@/components/Nav';
+import Nav from '@/components/layout/Nav';
 import NextAuthProvider from '@/context/NextAuthProvider';
 
 export const metadata = {
