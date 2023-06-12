@@ -1,7 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="sm:fixed sm:bottom-0 sm:width-full
-        sm:text-gray-400 text-gray-900">
+        <footer className="text-gray-600">
             <div className="site_footer_1">
                 <div className="site_footer_2">
                     <p className="text-center text-sm leading-loose

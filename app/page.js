@@ -1,4 +1,5 @@
 import LoginCard from "@/components/homepage/LoginCard";
+import Footer from "@/components/layout/Footer";
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
                 to be done to keep your house in order.
             </p>
             <LoginCard />
+            <Footer />
         </section>
     );
 };

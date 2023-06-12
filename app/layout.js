@@ -1,6 +1,5 @@
 import '@/styles/globals.css';
 import Nav from '@/components/layout/Nav';
-import Footer from '@/components/layout/Footer';
 import NextAuthProvider from '@/context/NextAuthProvider';
 
 export const metadata = {
@@ -20,7 +19,6 @@ const RootLayout = ({ children }) => {
                         <Nav />
                         {children}
                     </main>
-                    <Footer />
                 </NextAuthProvider>
             </body>
         </html>

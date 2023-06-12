@@ -33,7 +33,7 @@ const Todo = () => {
                             renderCondition={false}
                         />
                     </div>
-                    <div id="complete-list" className="w-full">
+                    <div id="complete-list" className="w-full mb-8">
                         <TodoTaskList
                             title="Completed Tasks"
                             emptyMsg="There are no completed tasks"
