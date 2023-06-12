@@ -1,4 +1,5 @@
 import ShopItem from "./ShopItem";
+import Loader from "../Loader";
 import { useState, useEffect, useContext } from "react";
 import { ShoplistContext } from "@/context/ShoplistContext";
 
@@ -84,7 +85,8 @@ const ShopList = () => {
     return (
         <>
             <ul>
-                {items.map((item) => (
+                {items.length === 0 ? <Loader /> :
+                    items.map((item) => (
                     <ShopItem
                         key={item.name}
                         item={item}

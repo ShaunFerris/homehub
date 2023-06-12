@@ -2,6 +2,7 @@
 
 import ShopAddItem from "@/components/shoplist/ShopAddItem";
 import ShopList from "@/components/shoplist/ShopList";
+import Loader from "@/components/Loader";
 import { ShoplistProvider } from "@/context/ShoplistContext";
 import { useSession } from "next-auth/react";
 
@@ -9,7 +10,7 @@ const Shoplist = () => {
     const { status } = useSession();
 
     if (status === "loading") {
-        return <p>Loading</p>;
+        return <Loader />;
     }
 
     if (status === "unauthenticated") {
