@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import Nav from '@/components/layout/Nav';
+import Footer from '@/components/layout/Footer';
 import NextAuthProvider from '@/context/NextAuthProvider';
 
 export const metadata = {
@@ -9,19 +10,20 @@ export const metadata = {
 
 const RootLayout = ({ children }) => {
     return (
-            <html lang='en'>
-                <body>
-                    <NextAuthProvider>
-                        <div className='main'>
-                            <div className='gradient' />
-                        </div>
-                        <main className='app'>
-                            <Nav />
-                            {children}
-                        </main>
-                    </NextAuthProvider>
-                </body>
-            </html>
+        <html lang='en'>
+            <body>
+                <NextAuthProvider>
+                    <div className='main'>
+                        <div className='gradient' />
+                    </div>
+                    <main className='app'>
+                        <Nav />
+                        {children}
+                    </main>
+                    <Footer />
+                </NextAuthProvider>
+            </body>
+        </html>
     );
 };
 
