@@ -2,8 +2,8 @@
 "use client";
 
 import CardMenu from "./CardMenu";
+import Loader from "../Loader";
 import { SlLogin } from "react-icons/sl";
-import { ImSpinner2 } from "react-icons/im";
 import { useState, useEffect } from "react";
 import { signIn, useSession, getProviders } from "next-auth/react";
 
@@ -22,15 +22,7 @@ const LoginCard = () => {
     return (
         <div className="card_container">
             {status === "loading" ? (
-                <div className="flex flex-col items-center 
-                justify-between gap-4">
-                    <ImSpinner2
-                        size={50}
-                        className="object-contain animate-spin
-                        fill-blue-300"
-                    />
-                    <p>Loading</p>
-                </div>
+                <Loader />
             ) : session?.user ? (
                 <CardMenu />/*The card menu overflowing the card*/
             ) : (           /*is a purposeful design choice*/
