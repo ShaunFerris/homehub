@@ -23,12 +23,16 @@ const AddExpenseForm = () => {
     };
 
     return (
-        <form onSubmit={onSubmit}>
-            <div>
+        <div className="card_container_vert w-full mb-4">
+            <h1 className="subhead_text text-center">
+                Add Expense
+            </h1>
+            <form onSubmit={onSubmit} className="flex flex-row gap-4
+            items-center justify-between">
                 <div>
                     <label htmlFor="name">Name</label>
                     <input
-                        className="form_input"
+                        className="form_input border border-black"
                         required="required"
                         type="text"
                         id="name"
@@ -39,7 +43,7 @@ const AddExpenseForm = () => {
                 <div>
                     <label htmlFor="cost">Cost</label>
                     <input
-                        className="form_input"
+                        className="form_input border border-black"
                         required="required"
                         type="text"
                         id="cost"
@@ -48,12 +52,12 @@ const AddExpenseForm = () => {
                     ></input>
                 </div>
                 <div>
-                    <button className="black_btn mt-3" type="submit">
+                    <button className="black_btn mt-6" type="submit">
                         Save
                     </button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     );
 };
 

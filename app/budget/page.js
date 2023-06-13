@@ -43,9 +43,6 @@ const Budget = () => {
                     </div>
                 </div>
                 <ExpenseList />
-                <h1 className="subhead_text text-center mb-5">
-                    Add Expense
-                </h1>
                 <div>
                     <div>
                         <AddExpenseForm />
