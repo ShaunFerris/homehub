@@ -42,9 +42,6 @@ const Budget = () => {
                         <BudgetExpTotal />
                     </div>
                 </div>
-                <h1 className="subhead_text text-center">
-                    Expenses
-                </h1>
                 <ExpenseList />
                 <h1 className="subhead_text text-center mb-5">
                     Add Expense

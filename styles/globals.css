@@ -108,7 +108,7 @@
 
 .subhead_text {
     @apply text-2xl font-extrabold leading-[1.15] text-black
-    sm:text-3xl mt-4;
+    sm:text-3xl mt-1;
 }
 
 .orange_gradient {

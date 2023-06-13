@@ -21,11 +21,14 @@ const ExpenseList = () => {
     };
 
     return (
-        <div className="card_container_long">
+        <div className="card_container_vert w-full mb-4">
+            <h1 className="subhead_text text-center">
+                Expenses
+            </h1>
             {filteredExpenses.length === 0 ? (
-                <div>
+                <p className="desc_2 text-center">
                     No expenses have been added yet
-                </div>) : (
+                </p>) : (
                 <>
                     <input
                         className="mb-2 mr-2 border border-black p-2 rounded"
