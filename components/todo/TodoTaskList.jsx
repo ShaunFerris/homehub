@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import { TodoContext } from "@/context/TodoContext";
 import TodoTaskItem from "./TodoTaskItem";
+import Loader from "../Loader";
 
 const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
     const { todoTasks, setStateChange } = useContext(TodoContext);
 
     const tasksToDisplay = todoTasks.data === null ?
-        null : todoTasks.data.filter((task) => {
+        "" : todoTasks.data.filter((task) => {
             return task.complete === renderCondition;
         });
 
@@ -52,7 +53,8 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
             <h1 className='subhead_text text-center'>
                 {title}
             </h1>
-            {!tasksToDisplay || tasksToDisplay.length === 0 ? (
+            {tasksToDisplay === "" ? <Loader /> :
+                tasksToDisplay.length === 0 ? (
                 <p className='desc_2 text-center'>
                     {emptyMsg}
                 </p>
