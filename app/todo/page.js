@@ -2,6 +2,7 @@
 
 import TodoAddForm from "@/components/todo/TodoAddForm";
 import TodoTaskList from "@/components/todo/TodoTaskList";
+import Loader from "@/components/Loader";
 import { TodoProvider } from "@/context/TodoContext";
 import { useSession } from "next-auth/react";
 
@@ -9,7 +10,7 @@ const Todo = () => {
     const { status } = useSession();
 
     if (status === "loading") {
-        return <p>Loading</p>
+        return <Loader />;
     }
 
     if (status === "unauthenticated") {

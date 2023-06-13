@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from "react";
 import { ShoplistContext } from "@/context/ShoplistContext";
 
 const ShopList = () => {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState("");
     const { hasUpdated, setHasUpdated } = useContext(ShoplistContext);
 
     useEffect(() => {
@@ -85,7 +85,7 @@ const ShopList = () => {
     return (
         <>
             <ul>
-                {items.length === 0 ? <Loader /> :
+                {items === "" ? <Loader /> :
                     items.map((item) => (
                     <ShopItem
                         key={item.name}

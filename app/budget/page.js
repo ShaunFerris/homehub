@@ -5,6 +5,7 @@ import BudgetExpTotal from "@/components/budget/BudgetExpTotal";
 import BudgetRemaining from "@/components/budget/BudgetRemaining";
 import AddExpenseForm from "@/components/budget/AddExpenseForm";
 import ExpenseList from "@/components/budget/ExpenseList";
+import Loader from "@/components/Loader";
 import { BudgetProvider } from "@/context/BudgetContext";
 import { useSession } from "next-auth/react";
 
@@ -12,7 +13,7 @@ const Budget = () => {
     const { status } = useSession();
 
     if (status === "loading") {
-        return <p>Loading</p>
+        return <Loader />;
     }
 
     if (status === "unauthenticated") {
