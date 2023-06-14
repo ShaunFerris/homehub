@@ -84,7 +84,7 @@ const ShopList = () => {
 
     return (
         <>
-            <ul>
+            <ul className="mt-4">
                 {items === "" ? <Loader /> :
                     items.map((item) => (
                     <ShopItem
