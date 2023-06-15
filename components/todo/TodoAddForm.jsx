@@ -6,11 +6,9 @@ const TodoAddForm = () => {
     const { data: session } = useSession();
     const { setStateChange } = useContext(TodoContext);
     const [todo, setTodo] = useState({ name: "", complete: false });
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const createTodo = async (event) => {
         event.preventDefault();
-        setIsSubmitting(true);
 
         try {
             const response = await fetch("/api/todo/newItem/", {
@@ -29,8 +27,6 @@ const TodoAddForm = () => {
 
         } catch (error) {
             console.log(error);
-        } finally {
-            setIsSubmitting(false);
         }
     };
 
@@ -52,7 +48,6 @@ const TodoAddForm = () => {
                 justify-center'>
                 <button
                     className='black_btn w-full'
-                    disabled={isSubmitting}
                 >
                     Submit
                 </button>
