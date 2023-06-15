@@ -27,7 +27,7 @@ const Budget = ({ params }) => {
                 <h1 className="head_text text-center mb-5">
                     Budget Tracking
                 </h1>
-                <h1 className="sub_head_text text-center">{params.name}</h1>
+                <h1 className="sub_head_text text-center">Budget: {params.name}</h1>
                 <div className="w-full flex flex-wrap justify-between
                 card_container_long">
                     <div className="w-full sm:w-auto mb-4 sm:mb-0

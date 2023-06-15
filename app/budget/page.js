@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const BudgetList = () => {
     const [budget, setBudget] = useState({
         name: "", budgetAmount: 0, expenseList: []
     });
+    const [budgetList, setBudgetList] = useState("");
 
     const addBudget = async (event) => {
         event.preventDefault();
@@ -30,15 +32,35 @@ const BudgetList = () => {
         }
     };
 
-    const getBudgets = async () => {
-
-    };
+    useEffect(() => {
+        const getBudgets = async () => {
+            try {
+                const response = await fetch("api/budget");
+                const data = await response.json();
+                setBudgetList(data);
+            } catch (error) {
+                console.log("Failed to fetch budgets: ", error);
+            }
+    
+        };
+        getBudgets();
+    }, [])
 
     return (
         <section>
             <div className='card_container_long'>
                 <ul>
-
+                    {budgetList === "" ? <p>No budgets available</p> :
+                        budgetList.map((b) => (
+                            <li key={b.name}>
+                                <Link
+                                    href={`/budget/${b._id}`}
+                                >
+                                    {b.name}
+                                </Link>
+                            </li>
+                        ))
+                    }
                 </ul>
                 <form className='mt-4' onSubmit={addBudget}>
                     <input
