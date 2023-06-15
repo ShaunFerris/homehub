@@ -6,8 +6,8 @@ import Loader from "../Loader";
 const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
     const { todoTasks, setStateChange } = useContext(TodoContext);
 
-    const tasksToDisplay = todoTasks.data === null ?
-        "" : todoTasks.data.filter((task) => {
+    const tasksToDisplay = todoTasks === null ?
+        "" : todoTasks.filter((task) => {
             return task.complete === renderCondition;
         });
 
@@ -40,7 +40,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
                 });
                 setStateChange(true);
                 if (response.ok) {
-                    console.log("Delted one task!");
+                    console.log("Deleted one task!");
                 }
             } catch (error) {
                 console.log("Failed to delete task: ", error);

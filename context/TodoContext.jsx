@@ -1,47 +1,19 @@
-import { createContext, useReducer, useEffect, useState } from "react";
-
-const TodoReducer = (state, action) => {
-    switch (action.type) {
-        case "FETCH_SUCCESS":
-            return {
-                loading: false,
-                data: action.payload,
-                error: null
-            };
-        case "FETCH_FAILURE":
-            return {
-                loading: false,
-                data: null,
-                error: action.payload
-            };
-        default:
-            return state;
-    }
-};
-
-const initialState = {
-    loading: true,
-    data: null,
-    error: null
-};
+import { createContext, useEffect, useState } from "react";
 
 export const TodoContext = createContext();
 
 export const TodoProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(TodoReducer, initialState);
+    const [tasks, setTasks] = useState(null);
     const [stateChange, setStateChange] = useState(true);
 
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await fetch("/api/todo", {
-                    method: "GET"
-                });
+                const response = await fetch("/api/todo");
                 const data = await response.json();
-
-                dispatch({ type: "FETCH_SUCCESS", payload: data });
+                setTasks(data);
             } catch (error) {
-                dispatch({ type: "FETCH_FAILURE", payload: error.message });
+                console.log("Failed to fetch todos: ", error);
             }
         };
         if (stateChange) {
@@ -53,8 +25,8 @@ export const TodoProvider = ({ children }) => {
     return (
         <TodoContext.Provider
             value={{
-                todoTasks: state,
-                dispatch: dispatch,
+                todoTasks: tasks,
+                stateChange: stateChange,
                 setStateChange: setStateChange
             }}
         >
