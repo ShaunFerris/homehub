@@ -18,6 +18,7 @@ export const POST = async (req) => {
 
     } catch (error) {
         return new Response(
-            "Failed to add shoplist item", { status: 500 });
+            "Failed to add shoplist item", { status: 500 }
+        );
     }
 };
