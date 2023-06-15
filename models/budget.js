@@ -16,6 +16,10 @@ const ExpenseSchema = new Schema({
 });
 
 const BudgetSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
     budget: {
         type: Number
     },

@@ -2,12 +2,13 @@ import { connectToDB } from "@/utils/database";
 import Budget from "@/models/budget";
 
 export const POST = async (req) => {
-    const { budgetAmount, expenseList } = await req.json();
+    const { name, budgetAmount, expenseList } = await req.json();
 
     try {
         await connectToDB();
 
         const newBudget = new Budget({
+            name: name,
             budget: budgetAmount,
             expenses: expenseList
         });
