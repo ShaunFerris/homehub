@@ -5,20 +5,29 @@ import BudgetExpTotal from "@/components/budget/BudgetExpTotal";
 import BudgetRemaining from "@/components/budget/BudgetRemaining";
 import AddExpenseForm from "@/components/budget/AddExpenseForm";
 import ExpenseList from "@/components/budget/ExpenseList";
-import Loader from "@/components/Loader";
 import { BudgetProvider } from "@/context/BudgetContext";
-import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 const Budget = ({ params }) => {
-    const { status } = useSession();
+    const [budgetData, setBudgetData] = useState({
+        name: "", budgetAmount: 0, expenseList: []
+    });
 
-    if (status === "loading") {
-        return <Loader />;
-    }
-
-    if (status === "unauthenticated") {
-        return <p>Access Denied</p>;
-    }
+    useEffect(() => {
+        const getCurrentBudget = async () => {
+            try {
+                const response = await fetch(
+                    `/api/budget/${params.id.toString()}`);
+                const budget = await response.json();
+                setBudgetData(budget);
+            } catch (error) {
+                console.log(
+                    "Failed to fetch budget data: ", error
+                );
+            }
+        };
+        getCurrentBudget();
+    }, [params]);
 
     return (
         <BudgetProvider>
@@ -27,7 +36,11 @@ const Budget = ({ params }) => {
                 <h1 className="head_text text-center mb-5">
                     Budget Tracking
                 </h1>
-                <h1 className="sub_head_text text-center">Budget: {params.name}</h1>
+                <h1 className="sub_head_text text-center">
+                    Budget: {
+                        budgetData === null ? "" :
+                            budgetData.name}
+                </h1>
                 <div className="w-full flex flex-wrap justify-between
                 card_container_long">
                     <div className="w-full sm:w-auto mb-4 sm:mb-0

@@ -67,7 +67,7 @@ const BudgetList = () => {
                         budgetList.map((b) => (
                             <li key={b.name}>
                                 <Link
-                                    href={`/budget/${b._id}`}
+                                    href={`/budget/${b._id.toString()}`}
                                 >
                                     {b.name}
                                 </Link>
