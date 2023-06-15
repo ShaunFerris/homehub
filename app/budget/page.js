@@ -1,9 +1,14 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Loader from "@/components/Loader";
+
 
 const BudgetList = () => {
+    const { status } = useSession();
+
     const [budget, setBudget] = useState({
         name: "", budgetAmount: 0, expenseList: []
     });
@@ -41,10 +46,18 @@ const BudgetList = () => {
             } catch (error) {
                 console.log("Failed to fetch budgets: ", error);
             }
-    
+
         };
         getBudgets();
-    }, [])
+    }, []);
+
+    if (status === "loading") {
+        return <Loader />;
+    }
+
+    if (status === "unauthenticated") {
+        return <p>Access Denied</p>;
+    }
 
     return (
         <section>
