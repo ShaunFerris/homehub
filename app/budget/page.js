@@ -16,8 +16,6 @@ const BudgetList = () => {
         name: "", budgetAmount: "", expenseList: []
     });
 
-    const [routeTarget, setRouteTarget] = useState("");
-
     const [budgetList, setBudgetList] = useState("");
 
     const addBudget = async (event) => {
@@ -37,7 +35,8 @@ const BudgetList = () => {
                 setBudget({
                     name: "", budgetAmount: 0, expenseList: []
                 });
-                setRouteTarget(response._id);
+                const data = await response.json();
+                router.push(`/budget/${data._id.toString()}`)
             }
         } catch (error) {
 
@@ -106,10 +105,6 @@ const BudgetList = () => {
                     />
                     <button
                         className='black_btn'
-                        onClick={() => {
-                            routeTarget &&
-                                router.push(`/budget/${routeTarget.toString()}`);
-                        }}
                     >
                         Add a new budget tracker
                     </button>
