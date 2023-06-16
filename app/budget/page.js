@@ -77,16 +77,19 @@ const BudgetList = () => {
             </h1>
             <div className='card_container_long'>
                 <ul>
-                    {budgetList === "" ? <p>No budgets available</p> :
-                        budgetList.map((b) => (
-                            <li key={b.name}>
-                                <Link
-                                    href={`/budget/${b._id.toString()}`}
-                                >
-                                    {b.name}
-                                </Link>
-                            </li>
-                        ))
+                    {budgetList === "" ? <Loader /> :
+                        budgetList.length === 0 ?
+                            <p>No budgets available</p> :
+                            budgetList.map((b) => (
+                                <li key={b.name}>
+                                    <Link
+                                        href={
+                                            `/budget/${b._id.toString()}`}
+                                    >
+                                        {b.name}
+                                    </Link>
+                                </li>
+                            ))
                     }
                 </ul>
                 <form className='mt-4 flex flex-col space-y-2'
