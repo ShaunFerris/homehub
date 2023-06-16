@@ -6,15 +6,14 @@ export const POST = async (req) => {
 
     try {
         await connectToDB();
-
         const newBudget = new Budget({
             name: name,
             budget: budgetAmount,
             expenses: expenseList
         });
-
         await newBudget.save();
-        return newResponse(JSON.stringify(newBudget), { status: 201 });
+        return new Response(JSON.stringify(newBudget), { status: 201 });
+
     } catch (error) {
         return new Response(
             "Failed to create a new budget", { status: 500 }

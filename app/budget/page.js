@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Loader from "@/components/Loader";
 
@@ -9,9 +10,14 @@ import Loader from "@/components/Loader";
 const BudgetList = () => {
     const { status } = useSession();
 
+    const router = useRouter();
+
     const [budget, setBudget] = useState({
-        name: "", budgetAmount: 0, expenseList: []
+        name: "", budgetAmount: "", expenseList: []
     });
+
+    const [routeTarget, setRouteTarget] = useState("");
+
     const [budgetList, setBudgetList] = useState("");
 
     const addBudget = async (event) => {
@@ -31,6 +37,7 @@ const BudgetList = () => {
                 setBudget({
                     name: "", budgetAmount: 0, expenseList: []
                 });
+                setRouteTarget(response._id);
             }
         } catch (error) {
 
@@ -75,9 +82,11 @@ const BudgetList = () => {
                         ))
                     }
                 </ul>
-                <form className='mt-4' onSubmit={addBudget}>
+                <form className='mt-4 flex flex-col space-y-2'
+                    onSubmit={addBudget}>
                     <input
-                        className='border border-black'
+                        className='form_input border border-black
+                        focus:placeholder-transparent'
                         placeholder='budget amount'
                         value={budget.budgetAmount}
                         onChange={(event) => setBudget({
@@ -86,7 +95,8 @@ const BudgetList = () => {
                         })}
                     />
                     <input
-                        className='border border-black'
+                        className='form_input border border-black
+                        focus:placeholder-transparent'
                         placeholder='budget name'
                         value={budget.name}
                         onChange={(event) => setBudget({
@@ -96,6 +106,10 @@ const BudgetList = () => {
                     />
                     <button
                         className='black_btn'
+                        onClick={() => {
+                            routeTarget &&
+                                router.push(`/budget/${routeTarget.toString()}`);
+                        }}
                     >
                         Add a new budget tracker
                     </button>
