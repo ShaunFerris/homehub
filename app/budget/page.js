@@ -28,7 +28,8 @@ const BudgetList = () => {
                     name: budget.name,
                     budgetAmount: budget.budgetAmount,
                     expenseList: budget.expenseList
-                })
+                }),
+                cache: "no-store"
             });
             if (response.ok) {
                 console.log("Created a new budget");
@@ -36,7 +37,7 @@ const BudgetList = () => {
                     name: "", budgetAmount: 0, expenseList: []
                 });
                 const data = await response.json();
-                router.push(`/budget/${data._id.toString()}`)
+                router.push(`/budget/${data._id.toString()}`);
             }
         } catch (error) {
 
@@ -66,7 +67,15 @@ const BudgetList = () => {
     }
 
     return (
-        <section>
+        <section className="flex flex-col items-center w-full
+        justify-between">
+            <h1 className="head_text text-center mb-5 blue_gradient
+            py-2">
+                Budget Tracking
+            </h1>
+            <h1 className="subhead_text text-center">
+                Choose an existing budget or make a new one.
+            </h1>
             <div className='card_container_long'>
                 <ul>
                     {budgetList === "" ? <p>No budgets available</p> :

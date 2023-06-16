@@ -33,10 +33,11 @@ const Budget = ({ params }) => {
         <BudgetProvider>
             <section className="flex flex-col items-center w-full
                 justify-between">
-                <h1 className="head_text text-center mb-5">
+                <h1 className="head_text text-center mb-5 blue_gradient
+                py-2">
                     Budget Tracking
                 </h1>
-                <h1 className="sub_head_text text-center">
+                <h1 className="subhead_text text-center">
                     Budget: {
                         budgetData === null ? "" :
                             budgetData.name}
