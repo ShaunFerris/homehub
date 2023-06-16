@@ -28,8 +28,7 @@ const BudgetList = () => {
                     name: budget.name,
                     budgetAmount: budget.budgetAmount,
                     expenseList: budget.expenseList
-                }),
-                cache: "no-store"
+                })
             });
             if (response.ok) {
                 console.log("Created a new budget");
@@ -47,7 +46,9 @@ const BudgetList = () => {
     useEffect(() => {
         const getBudgets = async () => {
             try {
-                const response = await fetch("api/budget");
+                const response = await fetch("api/budget",{
+                    cache: "no-store"
+                });
                 const data = await response.json();
                 setBudgetList(data);
             } catch (error) {
