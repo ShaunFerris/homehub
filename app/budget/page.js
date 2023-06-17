@@ -55,7 +55,7 @@ const BudgetList = () => {
 
         };
         getBudgets();
-    }, [budget]);
+    }, [budget, budgetList]);
 
     if (status === "loading") {
         return <Loader />;
