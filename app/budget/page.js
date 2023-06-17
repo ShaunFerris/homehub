@@ -92,32 +92,38 @@ const BudgetList = () => {
                             ))
                     }
                 </ul>
+                <hr className="bg-black my-4" />
+                <h1 className="subhead_text">
+                    Add a new budget tracker
+                </h1>
                 <form className='mt-4 flex flex-col space-y-2'
                     onSubmit={addBudget}>
-                    <input
-                        className='form_input border border-black
+                    <div className="flex flex-row space-x-4">
+                        <input
+                            className='form_input border border-black
                         focus:placeholder-transparent'
-                        placeholder='budget amount'
-                        value={budget.budgetAmount}
-                        onChange={(event) => setBudget({
-                            ...budget,
-                            budgetAmount: event.target.value
-                        })}
-                    />
-                    <input
-                        className='form_input border border-black
+                            placeholder='budget amount'
+                            value={budget.budgetAmount}
+                            onChange={(event) => setBudget({
+                                ...budget,
+                                budgetAmount: event.target.value
+                            })}
+                        />
+                        <input
+                            className='form_input border border-black
                         focus:placeholder-transparent'
-                        placeholder='budget name'
-                        value={budget.name}
-                        onChange={(event) => setBudget({
-                            ...budget,
-                            name: event.target.value
-                        })}
-                    />
+                            placeholder='budget name'
+                            value={budget.name}
+                            onChange={(event) => setBudget({
+                                ...budget,
+                                name: event.target.value
+                            })}
+                        />
+                    </div>
                     <button
                         className='black_btn'
                     >
-                        Add a new budget tracker
+                        Submit
                     </button>
                 </form>
             </div>
