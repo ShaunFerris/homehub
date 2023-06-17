@@ -81,7 +81,12 @@ const BudgetList = () => {
                         budgetList.length === 0 ?
                             <p>No budgets available</p> :
                             budgetList.map((b) => (
-                                <li key={b.name}>
+                                <li
+                                    className="flex flex-row
+                                    justify-between items-center px-5
+                                    p-2 border-b border-gray-500"
+                                    key={b.name}
+                                >
                                     <Link
                                         href={
                                             `/budget/${b._id.toString()}`}
