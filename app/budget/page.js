@@ -46,7 +46,9 @@ const BudgetList = () => {
     useEffect(() => {
         const getBudgets = async () => {
             try {
-                const response = await fetch("api/budget");
+                const response = await fetch("api/budget", {
+                    cache: "no-store"
+                });
                 const data = await response.json();
                 setBudgetList(data);
             } catch (error) {
@@ -55,7 +57,7 @@ const BudgetList = () => {
 
         };
         getBudgets();
-    }, [budget, budgetList]);
+    }, [budget]);
 
     if (status === "loading") {
         return <Loader />;
