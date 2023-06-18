@@ -1,7 +1,7 @@
 import { connectToDB } from "@/utils/database";
 import Budget from "@/models/budget";
 
-export const GET = async () => {
+export const GET = async (req) => {
     try {
         await connectToDB();
         const budgets = await Budget.find({});
