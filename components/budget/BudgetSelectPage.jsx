@@ -61,6 +61,26 @@ const BudgetSelectPage = () => {
         }
     }, [hasUpdated]);
 
+    const handleClear = async () => {
+        const hasConfirmed = confirm(
+            "Are you sure you wish to clear all existing budgets?"
+        );
+
+        if (hasConfirmed) {
+            try {
+                const response = await fetch("api/budget", {
+                    method: "DELETE",
+                });
+                setHasUpdated(true);
+                if (response.ok) {
+                    console.log("Successfully cleared budget list!");
+                }
+            } catch (error) {
+                console.log("Failed to clear budget list: ", error);
+            }
+        }
+    };
+
     if (status === "loading") {
         return <Loader />;
     }
@@ -72,6 +92,9 @@ const BudgetSelectPage = () => {
     return (
         <div className='card_container_long'>
             <ul>
+                <h1 className="subhead_text">
+                    Existing Budgets:
+                </h1>
                 {budgetList === "" ? <Loader /> :
                     budgetList.length === 0 ?
                         <p>No budgets available</p> :
@@ -91,6 +114,12 @@ const BudgetSelectPage = () => {
                             </li>
                         ))
                 }
+                <button
+                className="delete_btn w-full mt-4"
+                onClick={handleClear}
+            >
+                Clear budgets list
+            </button>
             </ul>
             <hr className="bg-black my-4" />
             <h1 className="subhead_text">
