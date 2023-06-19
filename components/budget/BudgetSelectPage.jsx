@@ -47,7 +47,9 @@ const BudgetSelectPage = () => {
     useEffect(() => {
         const getBudgets = async () => {
             try {
-                const response = await fetch("api/budget");
+                const response = await fetch("api/budget", {
+                    next: {revalidate: 0}
+                });
                 const data = await response.json();
                 setBudgetList(data);
             } catch (error) {
