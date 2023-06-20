@@ -29,8 +29,11 @@ const Budget = ({ params }) => {
     }, [params]);
 
     const addExpense = () => {
-        
-    }
+        setBudgetData({
+            ...budgetData,
+            expenseList: [...budgetData.expenseList, newExpense]
+        });
+    };
 
     return (
         <BudgetProvider>

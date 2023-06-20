@@ -6,10 +6,12 @@ const EditBudget = (props) => {
     return (
         <>
             <input
-                className="mr-3 form_input"
+                className="mr-3 form_input border border-black
+                [appearance:textfield] focus:placeholder-transparent"
                 required="required"
                 type="number"
                 id="budgetAmount"
+                placeholder={value}
                 onChange={(event) => setValue(event.target.value)}
             />
 

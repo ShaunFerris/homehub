@@ -21,10 +21,7 @@ const BudgetValuesDisplay = ({ budgetData }) => {
     };
 
     const handleSaveEdit = (value) => {
-        dispatch({
-            type: "EDIT_BUDGET",
-            payload: value
-        });
+        budgetData.budget = value;
         toggleEditMode(false);
     };
 
