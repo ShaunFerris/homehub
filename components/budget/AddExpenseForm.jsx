@@ -4,14 +4,13 @@ import { useState, useContext } from "react";
 import { BudgetContext } from "@/context/BudgetContext";
 import { v4 as uuidv4 } from "uuid";
 
-const AddExpenseForm = ({ budgetData }) => {
+const AddExpenseForm = () => {
     const { dispatch } = useContext(BudgetContext);
 
-    const [budget, setBudgetData] = useState(budgetData);
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
 
-    const oldOnSubmit = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault();
         const expense = {
             id: uuidv4(),
@@ -23,21 +22,8 @@ const AddExpenseForm = ({ budgetData }) => {
             type: "ADD_EXPENSE",
             payload: expense
         });
-    };
-
-    const addExpense = (event) => {
-        event.preventDefault();
-
-        const newExpense = {
-            id: uuidv4(),
-            name: name,
-            cost: parseInt(cost)
-        };
-
-        setBudgetData({
-            ...budget,
-            expenseList: [...budget.expenseList, newExpense]
-        });
+        setName("");
+        setCost("");
     };
 
     return (
@@ -45,7 +31,7 @@ const AddExpenseForm = ({ budgetData }) => {
             <h1 className="subhead_text text-center">
                 Add Expense
             </h1>
-            <form onSubmit={addExpense} className="flex flex-row gap-4
+            <form onSubmit={onSubmit} className="flex flex-row gap-4
             items-center justify-between mt-4">
                 <div className="w-full">
                     <input
@@ -73,7 +59,7 @@ const AddExpenseForm = ({ budgetData }) => {
                 </div>
                 <div>
                     <button className="black_btn" type="submit">
-                        Save
+                        Add
                     </button>
                 </div>
             </form>
