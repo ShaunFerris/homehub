@@ -115,11 +115,11 @@ const BudgetSelectPage = () => {
                         ))
                 }
                 <button
-                className="delete_btn w-full mt-4"
-                onClick={handleClear}
-            >
-                Clear budgets list
-            </button>
+                    className="delete_btn w-full mt-4"
+                    onClick={handleClear}
+                >
+                    Clear budgets list
+                </button>
             </ul>
             <hr className="bg-black my-4" />
             <h1 className="subhead_text">
@@ -130,7 +130,7 @@ const BudgetSelectPage = () => {
                 <div className="flex flex-row space-x-4">
                     <input
                         className='form_input border border-black
-                focus:placeholder-transparent'
+                        focus:placeholder-transparent'
                         placeholder='budget amount'
                         value={budget.budgetAmount}
                         onChange={(event) => setBudget({
@@ -140,7 +140,7 @@ const BudgetSelectPage = () => {
                     />
                     <input
                         className='form_input border border-black
-                focus:placeholder-transparent'
+                        focus:placeholder-transparent'
                         placeholder='budget name'
                         value={budget.name}
                         onChange={(event) => setBudget({

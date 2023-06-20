@@ -28,6 +28,10 @@ const Budget = ({ params }) => {
         getCurrentBudget();
     }, [params]);
 
+    const addExpense = () => {
+        
+    }
+
     return (
         <BudgetProvider>
             <section className="flex flex-col items-center w-full
@@ -45,11 +49,7 @@ const Budget = ({ params }) => {
                     <Loader /> :
                     <BudgetValuesDisplay budgetData={budgetData} />}
                 <ExpenseList />
-                <div>
-                    <div>
-                        <AddExpenseForm />
-                    </div>
-                </div>
+                <AddExpenseForm />
             </section>
         </BudgetProvider>
     );

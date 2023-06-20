@@ -28,31 +28,33 @@ const AddExpenseForm = () => {
                 Add Expense
             </h1>
             <form onSubmit={onSubmit} className="flex flex-row gap-4
-            items-center justify-between">
-                <div>
-                    <label htmlFor="name">Name</label>
+            items-center justify-between mt-4">
+                <div className="w-full">
                     <input
-                        className="form_input border border-black"
+                        className="form_input border border-black
+                        focus:placeholder-transparent"
                         required="required"
                         type="text"
                         id="name"
+                        placeholder="Name"
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     ></input>
                 </div>
-                <div>
-                    <label htmlFor="cost">Cost</label>
+                <div className="w-full">
                     <input
-                        className="form_input border border-black"
+                        className="form_input border border-black
+                        focus:placeholder-transparent"
                         required="required"
                         type="text"
                         id="cost"
+                        placeholder="Cost"
                         value={cost}
                         onChange={(event) => setCost(event.target.value)}
                     ></input>
                 </div>
                 <div>
-                    <button className="black_btn mt-6" type="submit">
+                    <button className="black_btn" type="submit">
                         Save
                     </button>
                 </div>
