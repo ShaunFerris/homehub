@@ -1,7 +1,14 @@
-import { createContext, useReducer } from "react";
+"use client";
+
+import { createContext, useReducer, useEffect } from "react";
+import { useParams } from "next/navigation";
 
 const BudgetReducer = (state, action) => {
     switch (action.type) {
+        case "SET_DATA":
+            return {
+                ...action.payload
+            };
         case "ADD_EXPENSE":
             return {
                 ...state,
@@ -25,24 +32,42 @@ const BudgetReducer = (state, action) => {
 };
 
 const initialState = {
+    name: "",
     budget: 0,
     expenses: []
 };
 
 export const BudgetContext = createContext();
 
-export const BudgetProvider = (props) => {
+export const BudgetProvider = ({ children }) => {
+    const params = useParams();
+
     const [state, dispatch] = useReducer(BudgetReducer, initialState);
+
+    useEffect(() => {
+        const getCurrentBudget = async () => {
+            try {
+                const response = await fetch(
+                    `/api/budget/${params.id.toString()}`);
+                const budget = await response.json();
+                dispatch({ type: "SET_DATA", payload: budget });
+            } catch (error) {
+                console.log(
+                    "Failed to fetch budget data: ", error
+                );
+            }
+        };
+        getCurrentBudget();
+    }, [params]);
 
     return (
         <BudgetContext.Provider
             value={{
-                budget: state.budget,
-                expenses: state.expenses,
-                dispatch
+                budgetData: state,
+                dispatch: dispatch
             }}
         >
-            {props.children}
+            {children}
         </BudgetContext.Provider>
     );
 };

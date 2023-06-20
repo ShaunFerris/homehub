@@ -1,11 +1,14 @@
-"use-client";
+"use client";
 
-import { useState } from "react";
 import ViewBudget from "./ViewBudget";
 import EditBudget from "./EditBudget";
+import { useState, useContext } from "react";
+import { BudgetContext } from "@/context/BudgetContext";
 
-const BudgetValuesDisplay = ({ budgetData }) => {
+const BudgetValuesDisplay = () => {
     const [editMode, toggleEditMode] = useState(false);
+
+    const { budgetData, dispatch } = useContext(BudgetContext);
 
     const totalSpent = budgetData.expenses === [] ?
         0 : budgetData.expenses.reduce((total, expense) => {

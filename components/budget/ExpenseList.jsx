@@ -1,9 +1,13 @@
+"use client";
+
 import { useContext, useState, useEffect } from "react";
 import ExpenseItem from "./ExpenseItem";
 import { BudgetContext } from "@/context/BudgetContext";
 
 const ExpenseList = () => {
-    const { expenses } = useContext(BudgetContext);
+    const { budgetData } = useContext(BudgetContext);
+
+    const expenses = budgetData.expenses;
 
     const [filteredExpenses, setFileteredExpenses] = useState(
         expenses || []);
