@@ -40,7 +40,7 @@ const initialState = {
 export const BudgetContext = createContext();
 
 export const BudgetProvider = ({ children }) => {
-    const params = useParams();
+    const params = useParams();    
 
     const [state, dispatch] = useReducer(BudgetReducer, initialState);
 
@@ -58,7 +58,7 @@ export const BudgetProvider = ({ children }) => {
             }
         };
         getCurrentBudget();
-    }, [params]);
+    }, [params.id]);
 
     return (
         <BudgetContext.Provider
