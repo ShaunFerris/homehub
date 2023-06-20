@@ -7,6 +7,8 @@ import AddExpenseForm from "@/components/budget/AddExpenseForm";
 import ExpenseList from "@/components/budget/ExpenseList";
 import { BudgetProvider } from "@/context/BudgetContext";
 import { useEffect, useState } from "react";
+import BudgetValuesDisplay from "@/components/budget/BudgetValuesDisplay";
+import Loader from "@/components/Loader";
 
 const Budget = ({ params }) => {
     const [budgetData, setBudgetData] = useState({
@@ -42,6 +44,9 @@ const Budget = ({ params }) => {
                         budgetData === null ? "" :
                             budgetData.name}
                 </h1>
+                {budgetData.name === "" ?
+                    <Loader /> :
+                    <BudgetValuesDisplay budgetData={budgetData} />}
                 <div className="w-full flex flex-wrap justify-between
                 card_container_long">
                     <div className="w-full sm:w-auto mb-4 sm:mb-0
