@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const EditBudget = (props) => {
-    const [value, setValue] = useState(props.budget);
+const EditBudget = ({ budget, handleSaveEdit }) => {
+    const [value, setValue] = useState(budget);
 
     return (
         <>
@@ -18,7 +18,7 @@ const EditBudget = (props) => {
             <button
                 className="black_btn"
                 onClick={() => {
-                    return props.handleSaveEdit(value);
+                    return handleSaveEdit(value);
                 }}
             >
                 Save
