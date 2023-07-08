@@ -87,13 +87,13 @@ const ShopList = () => {
             <ul className="mt-4">
                 {items === "" ? <Loader /> :
                     items.map((item) => (
-                    <ShopItem
-                        key={item.name}
-                        item={item}
-                        handleDelete={handleDelete}
-                        handleStatusChange={handleStatusChange}
-                    />
-                ))}
+                        <ShopItem
+                            key={item.name}
+                            item={item}
+                            handleDelete={handleDelete}
+                            handleStatusChange={handleStatusChange}
+                        />
+                    ))}
             </ul>
             <button
                 className="delete_btn w-full mt-4"
