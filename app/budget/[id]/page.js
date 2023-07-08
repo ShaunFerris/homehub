@@ -2,6 +2,7 @@ import BudgetValuesDisplay from "@/components/budget/BudgetValuesDisplay";
 import AddExpenseForm from "@/components/budget/AddExpenseForm";
 import ExpenseList from "@/components/budget/ExpenseList";
 import { BudgetProvider } from "@/context/BudgetContext";
+import BudgetSave from "@/components/budget/BudgetSave";
 
 const Budget = ({ params }) => {
     return (
@@ -15,6 +16,7 @@ const Budget = ({ params }) => {
                 <BudgetValuesDisplay />
                 <ExpenseList />
                 <AddExpenseForm />
+                <BudgetSave />
             </section>
         </BudgetProvider>
     );
