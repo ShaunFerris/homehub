@@ -2,29 +2,28 @@ import { connectToDB } from "@/utils/database";
 import ShoplistItem from "@/models/shoplist";
 
 export const DELETE = async (req, { params }) => {
-    try {
-        await connectToDB();
+  try {
+    await connectToDB();
 
-        await ShoplistItem.findByIdAndRemove(params.id);
+    await ShoplistItem.findByIdAndRemove(params.id);
 
-        return new Response("Item deleted", { status: 200 });
-    } catch (error) {
-        return new Response("Item delete failed", { status: 500 });
-    }
+    return new Response("Item deleted", { status: 200 });
+  } catch (error) {
+    return new Response("Item delete failed", { status: 500 });
+  }
 };
 
 export const PATCH = async (req, { params }) => {
-    const { complete } = await req.json();
+  const { complete } = await req.json();
 
-    try {
-        await connectToDB();
+  try {
+    await connectToDB();
 
-        await ShoplistItem.findByIdAndUpdate(
-            params.id,
-            { complete: !complete }
-        );
-        return new Response("Item marked complete", { status: 200 });
-    } catch (error) {
-        return new Response("Mark complete failed", { status: 500 });
-    }
+    await ShoplistItem.findByIdAndUpdate(params.id, {
+      complete: !complete,
+    });
+    return new Response("Item marked complete", { status: 200 });
+  } catch (error) {
+    return new Response("Mark complete failed", { status: 500 });
+  }
 };
