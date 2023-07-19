@@ -1,15 +1,9 @@
-import { Schema, Document, Model, model, models } from "mongoose";
-
-interface IUserGroup {
-  name: string;
-  userList: Array<string>;
-}
-
-interface IUserGroupDocument extends IUserGroup, Document {}
-
-interface IUserGroupModel extends Model<IUserGroupDocument> {
-  buildUser(args: IUserGroup): IUserGroupDocument;
-}
+import { Schema, model, models } from "mongoose";
+import {
+  IUserGroup,
+  IUserGroupDocument,
+  IUserGroupModel
+} from "@/types";
 
 const UserGroupSchema: Schema<IUserGroup> = new Schema({
   name: {
@@ -24,15 +18,11 @@ const UserGroupSchema: Schema<IUserGroup> = new Schema({
   }
 });
 
-UserGroupSchema.statics.buildUser = (args: IUserGroup) => {
-  return new Usergroup(args);
-};
-
-const Usergroup =
+const UserGroup =
   models.UserGroup ||
   model<IUserGroupDocument, IUserGroupModel>(
     "UserGroup",
     UserGroupSchema
   );
 
-export default Usergroup;
+export default UserGroup;
