@@ -11,7 +11,7 @@ export const GET = async (req) => {
     return new Response(JSON.stringify(tasks), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch todo tasks", {
-      status: 500,
+      status: 500
     });
   }
 };

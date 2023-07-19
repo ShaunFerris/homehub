@@ -14,7 +14,7 @@ const BudgetSelectPage = () => {
   const [budget, setBudget] = useState({
     name: "",
     budgetAmount: "",
-    expenseList: [],
+    expenseList: []
   });
 
   const [hasUpdated, setHasUpdated] = useState(true);
@@ -30,15 +30,15 @@ const BudgetSelectPage = () => {
         body: JSON.stringify({
           name: budget.name,
           budgetAmount: budget.budgetAmount,
-          expenseList: budget.expenseList,
-        }),
+          expenseList: budget.expenseList
+        })
       });
       if (response.ok) {
         console.log("Created a new budget");
         setBudget({
           name: "",
           budgetAmount: 0,
-          expenseList: [],
+          expenseList: []
         });
         const data = await response.json();
         router.push(`/budget/${data._id.toString()}`);
@@ -64,13 +64,13 @@ const BudgetSelectPage = () => {
 
   const handleClear = async () => {
     const hasConfirmed = confirm(
-      "Are you sure you wish to clear all existing budgets?",
+      "Are you sure you wish to clear all existing budgets?"
     );
 
     if (hasConfirmed) {
       try {
         const response = await fetch("api/budget", {
-          method: "DELETE",
+          method: "DELETE"
         });
         setHasUpdated(true);
         if (response.ok) {
@@ -134,7 +134,7 @@ const BudgetSelectPage = () => {
             onChange={(event) =>
               setBudget({
                 ...budget,
-                budgetAmount: event.target.value,
+                budgetAmount: event.target.value
               })
             }
           />
@@ -146,7 +146,7 @@ const BudgetSelectPage = () => {
             onChange={(event) =>
               setBudget({
                 ...budget,
-                name: event.target.value,
+                name: event.target.value
               })
             }
           />

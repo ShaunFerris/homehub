@@ -10,14 +10,14 @@ export const POST = async (req) => {
     const newItem = new ShoplistItem({
       creator: userID,
       name: item,
-      complete: complete,
+      complete: complete
     });
 
     await newItem.save();
     return new Response(JSON.stringify(newItem), { status: 201 });
   } catch (error) {
     return new Response("Failed to add shoplist item", {
-      status: 500,
+      status: 500
     });
   }
 };

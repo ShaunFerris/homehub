@@ -16,8 +16,8 @@ const TodoAddForm = () => {
         body: JSON.stringify({
           task: todo.name,
           complete: todo.complete,
-          userID: session?.user.id,
-        }),
+          userID: session?.user.id
+        })
       });
       setStateChange(true);
       if (response.ok) {
@@ -42,7 +42,7 @@ const TodoAddForm = () => {
           onChange={(event) =>
             setTodo({
               ...todo,
-              name: event.target.value,
+              name: event.target.value
             })
           }
         />

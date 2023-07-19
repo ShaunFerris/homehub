@@ -19,7 +19,7 @@ export const PATCH = async (req, { params }) => {
     await Budget.findByIdAndUpdate(params.id, {
       name: name,
       budget: budget,
-      expenses: expenses,
+      expenses: expenses
     });
     return new Response("Budget data updated", { status: 200 });
   } catch (error) {

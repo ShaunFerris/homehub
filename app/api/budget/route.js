@@ -20,7 +20,7 @@ export const DELETE = async (req) => {
     return new Response("Deleted all budgets", { status: 200 });
   } catch (error) {
     return new Response("Failed to delete all budgets", {
-      status: 500,
+      status: 500
     });
   }
 };

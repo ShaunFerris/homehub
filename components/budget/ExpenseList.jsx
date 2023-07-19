@@ -10,7 +10,7 @@ const ExpenseList = () => {
   const expenses = budgetData.expenses;
 
   const [filteredExpenses, setFileteredExpenses] = useState(
-    expenses || [],
+    expenses || []
   );
 
   useEffect(() => {

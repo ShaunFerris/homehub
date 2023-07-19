@@ -10,14 +10,14 @@ export const POST = async (req) => {
     const newTodo = new Todo({
       creator: userID,
       name: task,
-      complete: complete,
+      complete: complete
     });
 
     await newTodo.save();
     return new Response(JSON.stringify(newTodo), { status: 201 });
   } catch (error) {
     return new Response("Failed to create a new prompt", {
-      status: 500,
+      status: 500
     });
   }
 };

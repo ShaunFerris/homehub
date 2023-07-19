@@ -3,16 +3,16 @@ import { Schema, model, models } from "mongoose";
 const ShoplistSchema = new Schema({
   creator: {
     type: Schema.Types.ObjectId,
-    ref: "User",
+    ref: "User"
   },
   name: {
     type: String,
-    required: true,
+    required: true
   },
   complete: {
     type: Boolean,
-    required: true,
-  },
+    required: true
+  }
 });
 
 const ShoplistItem =

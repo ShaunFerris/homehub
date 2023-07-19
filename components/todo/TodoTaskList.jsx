@@ -18,8 +18,8 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
       const response = await fetch("/api/todo", {
         method: "PATCH",
         body: JSON.stringify({
-          ...task,
-        }),
+          ...task
+        })
       });
       setStateChange(true);
       if (response.ok) {
@@ -32,7 +32,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
 
   const handleDelete = async (task) => {
     const hasConfirmed = confirm(
-      "Are you sure you wish to delete this task?",
+      "Are you sure you wish to delete this task?"
     );
 
     if (hasConfirmed) {
@@ -40,8 +40,8 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
         const response = await fetch(
           `/api/todo/${task._id.toString()}`,
           {
-            method: "DELETE",
-          },
+            method: "DELETE"
+          }
         );
         setStateChange(true);
         if (response.ok) {

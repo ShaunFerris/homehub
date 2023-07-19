@@ -4,7 +4,7 @@ import NextAuthProvider from "@/context/NextAuthProvider";
 
 export const metadata = {
   title: "homeHub - Get Your Shit Together",
-  description: "Home organization tools for busy households",
+  description: "Home organization tools for busy households"
 };
 
 const RootLayout = ({ children }) => {

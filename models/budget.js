@@ -3,25 +3,25 @@ import { Schema, model, models } from "mongoose";
 const ExpenseSchema = new Schema({
   expenseid: {
     type: Number,
-    required: true,
+    required: true
   },
   name: {
     type: String,
-    required: true,
+    required: true
   },
   cost: {
     type: Number,
-    required: true,
-  },
+    required: true
+  }
 });
 
 const BudgetSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   budget: {
-    type: Number,
+    type: Number
   },
   expenses: {
     type: [ExpenseSchema],
@@ -34,9 +34,9 @@ const BudgetSchema = new Schema({
           expenses.every((expense) => expense.name && expense.cost)
         );
       },
-      message: "Expenses array must contain valid expense object",
-    },
-  },
+      message: "Expenses array must contain valid expense object"
+    }
+  }
 });
 
 const Budget = models.Budget || model("Budget", BudgetSchema);

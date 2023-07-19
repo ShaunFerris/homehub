@@ -27,7 +27,7 @@ export const TodoProvider = ({ children }) => {
       value={{
         todoTasks: tasks,
         stateChange: stateChange,
-        setStateChange: setStateChange,
+        setStateChange: setStateChange
       }}
     >
       {children}

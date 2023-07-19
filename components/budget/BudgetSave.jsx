@@ -12,7 +12,7 @@ const BudgetSave = () => {
     try {
       const response = await fetch(`/api/budget/${params.id}`, {
         method: "PATCH",
-        body: JSON.stringify({ ...budgetData }),
+        body: JSON.stringify({ ...budgetData })
       });
       if (response.ok) {
         console.log("Budget saved");

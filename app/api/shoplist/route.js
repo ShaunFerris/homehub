@@ -23,7 +23,7 @@ export const DELETE = async () => {
     return new Response("Deleted all items", { status: 200 });
   } catch (error) {
     return new Response("Failed to delete all items", {
-      status: 500,
+      status: 500
     });
   }
 };

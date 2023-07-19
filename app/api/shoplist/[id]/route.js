@@ -20,7 +20,7 @@ export const PATCH = async (req, { params }) => {
     await connectToDB();
 
     await ShoplistItem.findByIdAndUpdate(params.id, {
-      complete: !complete,
+      complete: !complete
     });
     return new Response("Item marked complete", { status: 200 });
   } catch (error) {

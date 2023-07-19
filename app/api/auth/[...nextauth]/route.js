@@ -7,14 +7,14 @@ export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    })
   ],
   callbacks: {
     async jwt({ token, profile }) {
       if (profile) {
         const sessionUser = await User.findOne({
-          email: profile.email,
+          email: profile.email
         });
 
         token.id = sessionUser._id.toString();
@@ -35,7 +35,7 @@ export const authOptions = {
         //check if the user already exists
         //Missing await statement here caused the JWT error
         const userExists = await User.findOne({
-          email: profile.email,
+          email: profile.email
         });
 
         //if not, return false to deny them access
@@ -48,8 +48,8 @@ export const authOptions = {
         console.log("Error checking for user: ", error.message);
         return false;
       }
-    },
-  },
+    }
+  }
 };
 
 const handler = NextAuth(authOptions);

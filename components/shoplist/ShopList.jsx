@@ -25,7 +25,7 @@ const ShopList = () => {
 
   const handleDelete = async (item) => {
     const hasConfirmed = confirm(
-      "Are you sure you wish to delete this item?",
+      "Are you sure you wish to delete this item?"
     );
 
     if (hasConfirmed) {
@@ -33,8 +33,8 @@ const ShopList = () => {
         const response = await fetch(
           `api/shoplist/${item._id.toString()}`,
           {
-            method: "DELETE",
-          },
+            method: "DELETE"
+          }
         );
         setHasUpdated(true);
         if (response.ok) {
@@ -52,8 +52,8 @@ const ShopList = () => {
         `api/shoplist/${item._id.toString()}`,
         {
           method: "PATCH",
-          body: JSON.stringify({ ...item }),
-        },
+          body: JSON.stringify({ ...item })
+        }
       );
       setHasUpdated(true);
       if (response.ok) {
@@ -66,13 +66,13 @@ const ShopList = () => {
 
   const handleClear = async () => {
     const hasConfirmed = confirm(
-      "Are you sure that you wish to clear all list items?",
+      "Are you sure that you wish to clear all list items?"
     );
 
     if (hasConfirmed) {
       try {
         const response = await fetch("api/shoplist", {
-          method: "DELETE",
+          method: "DELETE"
         });
         setHasUpdated(true);
         if (response.ok) {

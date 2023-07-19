@@ -7,24 +7,24 @@ const BudgetReducer = (state, action) => {
   switch (action.type) {
     case "SET_DATA":
       return {
-        ...action.payload,
+        ...action.payload
       };
     case "ADD_EXPENSE":
       return {
         ...state,
-        expenses: [...state.expenses, action.payload],
+        expenses: [...state.expenses, action.payload]
       };
     case "DELETE_EXPENSE":
       return {
         ...state,
         expenses: state.expenses.filter((expense) => {
           return expense.id !== action.payload;
-        }),
+        })
       };
     case "EDIT_BUDGET":
       return {
         ...state,
-        budget: action.payload,
+        budget: action.payload
       };
     default:
       return state;
@@ -34,7 +34,7 @@ const BudgetReducer = (state, action) => {
 const initialState = {
   name: "",
   budget: 0,
-  expenses: [],
+  expenses: []
 };
 
 export const BudgetContext = createContext();
@@ -48,7 +48,7 @@ export const BudgetProvider = ({ children }) => {
     const getCurrentBudget = async () => {
       try {
         const response = await fetch(
-          `/api/budget/${params.id.toString()}`,
+          `/api/budget/${params.id.toString()}`
         );
         const budget = await response.json();
         dispatch({ type: "SET_DATA", payload: budget });
@@ -63,7 +63,7 @@ export const BudgetProvider = ({ children }) => {
     <BudgetContext.Provider
       value={{
         budgetData: state,
-        dispatch: dispatch,
+        dispatch: dispatch
       }}
     >
       {children}

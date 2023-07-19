@@ -9,13 +9,13 @@ export const POST = async (req) => {
     const newBudget = new Budget({
       name: name,
       budget: budgetAmount,
-      expenses: expenseList,
+      expenses: expenseList
     });
     await newBudget.save();
     return new Response(JSON.stringify(newBudget), { status: 201 });
   } catch (error) {
     return new Response("Failed to create a new budget", {
-      status: 500,
+      status: 500
     });
   }
 };

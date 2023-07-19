@@ -9,7 +9,7 @@ export const ShoplistProvider = ({ children }) => {
     <ShoplistContext.Provider
       value={{
         hasUpdated: hasUpdated,
-        setHasUpdated: setHasUpdated,
+        setHasUpdated: setHasUpdated
       }}
     >
       {children}

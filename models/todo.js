@@ -4,16 +4,16 @@ const TodoSchema = new Schema({
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    required: true
   },
   name: {
     type: String,
-    required: true,
+    required: true
   },
   complete: {
     type: Boolean,
-    required: true,
-  },
+    required: true
+  }
 });
 
 const Todo = models.Todo || model("Todo", TodoSchema);

@@ -16,8 +16,8 @@ const ShopAddItem = () => {
         body: JSON.stringify({
           item: item.name,
           complete: item.complete,
-          userId: session?.user.id,
-        }),
+          userId: session?.user.id
+        })
       });
       if (response.ok) {
         console.log("Created a shopping list item");
@@ -41,7 +41,7 @@ const ShopAddItem = () => {
         onChange={(event) =>
           setItem({
             ...item,
-            name: event.target.value,
+            name: event.target.value
           })
         }
       />

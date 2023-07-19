@@ -7,7 +7,7 @@ const HoverAnimateImage = ({
   alt,
   className,
   width,
-  height,
+  height
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
