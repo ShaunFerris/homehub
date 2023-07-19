@@ -1,10 +1,21 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, Document, Model, model, models } from "mongoose";
 
-const UserGroupSchema = new Schema({
+interface IUserGroup {
+  name: string;
+  userList: Array<string>;
+}
+
+interface IUserGroupDocument extends IUserGroup, Document {}
+
+interface IUserGroupModel extends Model<IUserGroupDocument> {
+  buildUser(args: IUserGroup): IUserGroupDocument;
+}
+
+const UserGroupSchema: Schema<IUserGroup> = new Schema({
   name: {
     type: String,
-    unique: [true, "Group name already in use"],
-    required: [true, "A group name is required"]
+    unique: true,
+    required: true
   },
   userList: {
     type: [String],
@@ -13,7 +24,15 @@ const UserGroupSchema = new Schema({
   }
 });
 
+UserGroupSchema.statics.buildUser = (args: IUserGroup) => {
+  return new Usergroup(args);
+};
+
 const Usergroup =
-  models.UserGroup || model("UserGroup", UserGroupSchema);
+  models.UserGroup ||
+  model<IUserGroupDocument, IUserGroupModel>(
+    "UserGroup",
+    UserGroupSchema
+  );
 
 export default Usergroup;
