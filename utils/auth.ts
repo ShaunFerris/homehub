@@ -1,7 +1,8 @@
 import { NextAuthOptions } from "next-auth";
 import { connectToDB } from "./database";
 import GoogleProvider from "next-auth/providers/google";
-import User from "@/models/user";
+import User from "@/models/experimental_user";
+import { IUser } from "@/types";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -13,7 +14,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, profile }) {
       if (profile) {
-        const sessionUser = await User.findOne({
+        const sessionUser: IUser = await User.findOne({
           email: profile.email
         });
 

@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
-import { IUser, IUserDocument, IUserModel } from "@/types";
+import { IUser } from "@/types";
 
-const ExpUserSchema: Schema<IUser> = new Schema({
+const UserSchema = new Schema<IUser>({
   email: {
     type: String,
     unique: true,
@@ -21,8 +21,6 @@ const ExpUserSchema: Schema<IUser> = new Schema({
   }
 });
 
-const ExpUser =
-  models.User ||
-  model<IUserDocument, IUserModel>("User", ExpUserSchema);
+const User = models.User || model<IUser>("User", UserSchema);
 
-export default ExpUser;
+export default User;
