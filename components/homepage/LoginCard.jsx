@@ -44,6 +44,7 @@ const LoginCard = () => {
           {providers &&
             Object.values(providers).map((provider) => (
               <button
+                data-test="login-button"
                 type="button"
                 key={provider.name}
                 className="black_btn w-full"
