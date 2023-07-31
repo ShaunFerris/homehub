@@ -20,7 +20,7 @@ const LoginCard = () => {
   }, []);
 
   return (
-    <div className="card_container">
+    <div data-test="login-card-container" className="card_container">
       {status === "loading" ? (
         <Loader />
       ) : session?.user ? (
