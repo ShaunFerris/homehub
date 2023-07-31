@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "autoprefixer": "10.4.14",
+    "cypress-dotenv-flow": "^1.2.2",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.3",
     "mongodb": "^5.5.0",

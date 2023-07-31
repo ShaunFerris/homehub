@@ -32,4 +32,14 @@ describe("The homepage", () => {
       )
       .and("contain", "Login");
   });
+
+  //tests for card menu content in mock authenticated state
+  it("displays the card nav menu when authenticated", () => {
+    cy.login(process.env.TEST_USER, process.env.TEST_PASS);
+    cy.visit("/");
+    cy.get("[data-test='login-card-container']")
+      .should("contain", "Budget Tracker")
+      .and("contain", "TODO List")
+      .and("contain", "Shopping List");
+  });
 });
