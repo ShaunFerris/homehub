@@ -7,11 +7,11 @@ export const metadata = {
   description: "Home organization tools for busy households"
 };
 
-const RootLayout = ({ children }) => {
+const RootLayout = ({ children, session }) => {
   return (
     <html lang="en">
       <body>
-        <NextAuthProvider>
+        <NextAuthProvider session={session}>
           <div className="main">
             <div className="gradient" />
           </div>
