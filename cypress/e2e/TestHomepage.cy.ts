@@ -28,22 +28,29 @@ describe("The homepage", () => {
   });
   it("displays login prompt when unauthenticated", () => {
     cy.logOut();
-    cy.get("[data-test='login-prompt']")
-      .should("contain", "Login to access your home planning tools")
-      .and(
-        "contain",
-        "We currently only support the home of the site's creator, so unfortunately, if you do not live with me, you cannot use this service."
-      )
-      .and("contain", "Login");
+    cy.visit("/");
+    cy.intercept("GET", "/api/auth/session").as("session");
+    cy.wait("@session").then(() => {
+      cy.get("[data-test='login-prompt']")
+        .should("contain", "Login to access your home planning tools")
+        .and(
+          "contain",
+          "We currently only support the home of the site's creator, so unfortunately, if you do not live with me, you cannot use this service."
+        )
+        .and("contain", "Login");
+    });
   });
 
   //tests for card menu content in mock authenticated state
   it("displays the card nav menu when authenticated", () => {
     cy.login(process.env.TEST_USER, process.env.TEST_PASS);
     cy.visit("/");
-    cy.get("[data-test='card-menu']")
-      .should("contain", "Budget Tracker")
-      .and("contain", "TODO List")
-      .and("contain", "Shopping List");
+    cy.intercept("GET", "/api/auth/session").as("session");
+    cy.wait("@session").then(() => {
+      cy.get("[data-test='card-menu']")
+        .should("contain", "Budget Tracker")
+        .and("contain", "TODO List")
+        .and("contain", "Shopping List");
+    });
   });
 });

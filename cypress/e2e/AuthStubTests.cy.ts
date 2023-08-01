@@ -5,6 +5,7 @@
 
 describe("Loads login prompt when unauthenticated", () => {
   it("Visits the page and stubs logout", () => {
+    cy.clearCookies();
     cy.logOut();
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
