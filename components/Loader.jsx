@@ -3,6 +3,7 @@ import { ImSpinner2 } from "react-icons/im";
 const Loader = () => {
   return (
     <div
+      data-test="loading-spinner"
       className="flex flex-col items-center 
         justify-between gap-4 mx-4 my-4"
     >

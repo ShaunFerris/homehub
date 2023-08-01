@@ -6,6 +6,7 @@ declare namespace Cypress {
   interface Chainable {
     login: Chainable;
     (username: string, password: string);
+    logOut;
   }
 }
 
@@ -25,4 +26,9 @@ Cypress.Commands.add("login", (username, password) => {
       Cypress.env("TEST_SESSION_COOKIE")
     );
   });
+});
+
+Cypress.Commands.add("logOut", () => {
+  //Currently stubbing a logged out state by just clearing the cookie
+  cy.clearCookies();
 });

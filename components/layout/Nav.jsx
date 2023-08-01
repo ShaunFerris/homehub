@@ -30,6 +30,7 @@ const Nav = () => {
               />
             </Link>
             <button
+              data-test="logout-button"
               type="button"
               className="black_btn"
               onClick={signOut}

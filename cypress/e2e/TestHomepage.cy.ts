@@ -1,3 +1,5 @@
+import "cypress-wait-until";
+
 describe("The homepage", () => {
   it("loads the page correctly", () => {
     cy.visit("/");
@@ -23,7 +25,13 @@ describe("The homepage", () => {
   it("displays the card menu", () => {
     cy.get("[data-test='login-card-container']");
   });
+  it("displays the loading spinner", () => {
+    cy.get("[data-test='loading-spinner']");
+  });
   it("displays login prompt when unauthenticated", () => {
+    cy.logOut().then(() => {
+      cy.visit("/");
+    });
     cy.get("[data-test='login-card-container']")
       .should("contain", "Login to access your home planning tools")
       .and(
@@ -36,7 +44,6 @@ describe("The homepage", () => {
   //tests for card menu content in mock authenticated state
   it("displays the card nav menu when authenticated", () => {
     cy.login(process.env.TEST_USER, process.env.TEST_PASS);
-    cy.visit("/");
     cy.get("[data-test='login-card-container']")
       .should("contain", "Budget Tracker")
       .and("contain", "TODO List")
