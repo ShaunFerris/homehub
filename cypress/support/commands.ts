@@ -30,5 +30,5 @@ Cypress.Commands.add("login", (username, password) => {
 
 Cypress.Commands.add("logOut", () => {
   //Currently stubbing a logged out state by just clearing the cookie
-  cy.intercept("api/auth/session", {});
+  cy.clearCookie("next-auth.session-token");
 });
