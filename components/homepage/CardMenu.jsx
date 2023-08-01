@@ -4,6 +4,7 @@ import HoverAnimateImage from "./HoverAnimateImage";
 const CardMenu = () => {
   return (
     <div
+      data-test="card-menu"
       className="flex sm:flex-row flex-col justify-center
         items-center gap-4"
     >

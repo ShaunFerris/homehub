@@ -29,10 +29,8 @@ describe("The homepage", () => {
     cy.get("[data-test='loading-spinner']");
   });
   it("displays login prompt when unauthenticated", () => {
-    cy.logOut().then(() => {
-      cy.visit("/");
-    });
-    cy.get("[data-test='login-card-container']")
+    cy.logOut();
+    cy.get("[data-test='login-prompt']")
       .should("contain", "Login to access your home planning tools")
       .and(
         "contain",
@@ -44,7 +42,8 @@ describe("The homepage", () => {
   //tests for card menu content in mock authenticated state
   it("displays the card nav menu when authenticated", () => {
     cy.login(process.env.TEST_USER, process.env.TEST_PASS);
-    cy.get("[data-test='login-card-container']")
+    cy.visit("/");
+    cy.get("[data-test='card-menu']")
       .should("contain", "Budget Tracker")
       .and("contain", "TODO List")
       .and("contain", "Shopping List");
