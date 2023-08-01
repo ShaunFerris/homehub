@@ -1,5 +1,3 @@
-import "cypress-wait-until";
-
 describe("The homepage", () => {
   it("loads the page correctly", () => {
     cy.visit("/");
