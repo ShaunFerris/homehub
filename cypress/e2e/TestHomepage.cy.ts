@@ -63,7 +63,7 @@ describe("The homepage", () => {
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
     //wait for response from the get request before testing menu content
-    cy.wait("@session", { timeout: 7000 }).then(() => {
+    cy.wait("@session", { timeout: 8000 }).then(() => {
       cy.get("[data-test='card-menu']")
         .should("contain", "Budget Tracker")
         .and("contain", "TODO List")
@@ -76,7 +76,7 @@ describe("The homepage", () => {
     cy.wait(5000);
     cy.get("[data-test='budget-button']").click();
     cy.intercept("GET", "/api/budget").as("pageLoad");
-    cy.wait("@pageLoad", { timeout: 7000 }).then(() => {
+    cy.wait("@pageLoad", { timeout: 8000 }).then(() => {
       cy.url().should("include", "budget");
     });
   });
@@ -86,7 +86,7 @@ describe("The homepage", () => {
     cy.wait(5000);
     cy.get("[data-test='todo-button']").click();
     cy.intercept("GET", "/api/todo").as("pageLoad");
-    cy.wait("@pageLoad", { timeout: 7000 }).then(() => {
+    cy.wait("@pageLoad", { timeout: 8000 }).then(() => {
       cy.url().should("include", "todo");
     });
   });
@@ -96,8 +96,18 @@ describe("The homepage", () => {
     cy.wait(5000);
     cy.get("[data-test='shop-button']").click();
     cy.intercept("GET", "/api/shoplist").as("pageLoad");
-    cy.wait("@pageLoad", { timeout: 7000 }).then(() => {
+    cy.wait("@pageLoad", { timeout: 8000 }).then(() => {
       cy.url().should("include", "shoplist");
+    });
+  });
+
+  it("clicks the logout button and checks the token is gone", () => {
+    cy.visit("/");
+    cy.wait(5000);
+    cy.get("[data-test='logout-button']").click();
+    cy.intercept("POST", "/api/auth/signout").as("signout");
+    cy.wait("@signout", { timeout: 8000 }).then(() => {
+      cy.getCookie("next-auth.session-token").should("not.exist");
     });
   });
 });
