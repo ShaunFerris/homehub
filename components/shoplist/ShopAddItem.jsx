@@ -31,6 +31,7 @@ const ShopAddItem = () => {
 
   return (
     <form
+      data-test="shoplist-addItem"
       className="w-full flex flex-row gap-4"
       onSubmit={createShopItem}
     >

@@ -14,7 +14,7 @@ const Shoplist = () => {
   }
 
   if (status === "unauthenticated") {
-    return <p>Access Denied</p>;
+    return <p data-test="access-msg">Access Denied</p>;
   }
 
   return (
@@ -22,10 +22,16 @@ const Shoplist = () => {
       className="flex flex-col items-center justify-center
         w-full"
     >
-      <h1 className="head_text text-center blue_gradient py-3">
+      <h1
+        data-test="shoplist-title"
+        className="head_text text-center blue_gradient py-3"
+      >
         Shopping List
       </h1>
-      <div className="card_container w-full mb-8">
+      <div
+        data-test="shoplist-container"
+        className="card_container w-full mb-8"
+      >
         <ShoplistProvider>
           <ShopAddItem />
           <ShopList />

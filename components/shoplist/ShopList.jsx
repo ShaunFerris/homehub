@@ -85,7 +85,7 @@ const ShopList = () => {
   };
 
   return (
-    <>
+    <div data-test="shoplist-List">
       <ul className="mt-4">
         {items === "" ? (
           <Loader />
@@ -106,7 +106,7 @@ const ShopList = () => {
       >
         Clear shopping list
       </button>
-    </>
+    </div>
   );
 };
 
