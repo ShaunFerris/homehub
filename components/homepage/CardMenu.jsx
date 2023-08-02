@@ -12,7 +12,7 @@ const CardMenu = () => {
         className="w-48 h-48 bg-blue-100 shadow-lg rounded-lg
                 p-4"
       >
-        <Link href="/budget">
+        <Link href="/budget" data-test="budget-button">
           <h3 className="text-xl font-bold mb-2">Budget Tracker</h3>
           <HoverAnimateImage
             staticSrc="/assets/images/piggybank_still.gif"
@@ -28,7 +28,7 @@ const CardMenu = () => {
         className="w-48 h-48 bg-blue-100 shadow-lg rounded-lg
                 p-4"
       >
-        <Link href="/todo">
+        <Link href="/todo" data-test="todo-button">
           <h3 className="text-xl font-bold mb-2">TODO List</h3>
           <HoverAnimateImage
             staticSrc="/assets/images/todolist_still.gif"
@@ -44,7 +44,7 @@ const CardMenu = () => {
         className="w-48 h-48 bg-blue-100 shadow-lg rounded-lg
                 p-4"
       >
-        <Link href="/shoplist">
+        <Link href="/shoplist" data-test="shop-button">
           <h3 className="text-xl font-bold mb-2">Shopping List</h3>
           <HoverAnimateImage
             staticSrc="/assets/images/shopping_still.gif"
