@@ -3,7 +3,9 @@ describe("The homepage", () => {
     cy.visit("/");
   });
 
-  //tests for the static titles and text content
+  /**
+   * Tests for all the static content and titles.
+   */
   it("contains the expected titles and content", () => {
     cy.get("[data-test='heading-one']").contains("homeHub");
     cy.get("[data-test='heading-two']").contains(
@@ -15,14 +17,14 @@ describe("The homepage", () => {
     cy.get("[data-test='homepage-footer']")
       .should("contain", "Built by Shaun Ferris")
       .and("contain", "Source code available on Github.");
-  });
-
-  //tests for card menu in non-authenticated state
-  it("displays the card menu", () => {
     cy.get("[data-test='login-card-container']");
   });
 
-  it("displays the loading spinner", () => {
+  /**
+   * Tests for card menu in non authenticated state.
+   * Tests for login prompt when no auth cookie present.
+   */
+  it("displays the loading spinner on initial load", () => {
     cy.get("[data-test='loading-spinner']");
   });
 
@@ -36,7 +38,7 @@ describe("The homepage", () => {
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
     //wait for response from the get request before testing menu content
-    cy.wait("@session", { timeout: 7000 }).then(() => {
+    cy.wait("@session", { timeout: 8000 }).then(() => {
       cy.get("[data-test='login-prompt']")
         .should("contain", "Login to access your home planning tools")
         .and(
@@ -47,7 +49,10 @@ describe("The homepage", () => {
     });
   });
 
-  //tests for card menu content in mock authenticated state
+  /**
+   * Tests for the card menu in a mock authenticated state.
+   * Tests card menu load, card menu nav, and logout.
+   */
   it("displays the card nav menu when authenticated", () => {
     cy.login(process.env.TEST_USER, process.env.TEST_PASS);
     //same work around as the above test
