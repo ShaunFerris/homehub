@@ -2,9 +2,10 @@ import ShopItem from "./ShopItem";
 import Loader from "../Loader";
 import { useState, useEffect, useContext } from "react";
 import { ShoplistContext } from "@/context/ShoplistContext";
+import { IShopListItem } from "@/types";
 
 const ShopList = () => {
-  const [items, setItems] = useState("");
+  const [items, setItems] = useState<IShopListItem[] | null>(null);
   const { hasUpdated, setHasUpdated } = useContext(ShoplistContext);
 
   useEffect(() => {
@@ -85,9 +86,9 @@ const ShopList = () => {
   };
 
   return (
-    <div data-test="shoplist-List">
+    <div data-test="shoplist-list">
       <ul className="mt-4">
-        {items === "" ? (
+        {items === null ? (
           <Loader />
         ) : (
           items.map((item) => (

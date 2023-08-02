@@ -3,7 +3,7 @@ import {
   IUserGroup,
   IUserGroupDocument,
   IUserGroupModel
-} from "@/types";
+} from "@/types/models";
 
 const UserGroupSchema: Schema<IUserGroup> = new Schema({
   name: {
