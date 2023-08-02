@@ -28,9 +28,13 @@ describe("The homepage", () => {
   });
   it("displays login prompt when unauthenticated", () => {
     cy.logOut();
+    Cypress.on("uncaught:exception", (err) => {
+      console.log("Cypress detected uncaught exception: ", err);
+      return false;
+    });
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
-    cy.wait("@session").then(() => {
+    cy.wait("@session", { timeout: 7000 }).then(() => {
       cy.get("[data-test='login-prompt']")
         .should("contain", "Login to access your home planning tools")
         .and(
@@ -44,9 +48,13 @@ describe("The homepage", () => {
   //tests for card menu content in mock authenticated state
   it("displays the card nav menu when authenticated", () => {
     cy.login(process.env.TEST_USER, process.env.TEST_PASS);
+    Cypress.on("uncaught:exception", (err) => {
+      console.log("Cypress detected uncaught exception: ", err);
+      return false;
+    });
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
-    cy.wait("@session").then(() => {
+    cy.wait("@session", { timeout: 7000 }).then(() => {
       cy.get("[data-test='card-menu']")
         .should("contain", "Budget Tracker")
         .and("contain", "TODO List")

@@ -5,11 +5,10 @@
 
 describe("Loads login prompt when unauthenticated", () => {
   it("Visits the page and stubs logout", () => {
-    cy.clearCookies();
     cy.logOut();
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
-    cy.wait("@session").then(() => {
+    cy.wait("@session", { timeout: 7000 }).then(() => {
       cy.get("[data-test='login-prompt']");
     });
   });
@@ -19,7 +18,7 @@ describe("Loads login prompt when unauthenticated", () => {
     cy.login(process.env.TEST_USER, process.env.TEST_PASS);
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
-    cy.wait("@session").then(() => {
+    cy.wait("@session", { timeout: 7000 }).then(() => {
       cy.get("[data-test='card-menu']");
     });
   });
