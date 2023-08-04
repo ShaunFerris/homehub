@@ -8,6 +8,7 @@ declare namespace Cypress {
     (username: string, password: string);
     logOut;
     logChunkError;
+    waitForData;
   }
 }
 
@@ -47,4 +48,15 @@ Cypress.Commands.add("logChunkError", () => {
     console.log("Cypress detected uncaught exception: ", err);
     return false;
   });
+});
+
+/**
+ * Command for waiting till a GET request to the backend has resolved
+ * before checking on the elements that rely on that data. Should be
+ * appended with .this() to execute commands after load. The timeout
+ * arg overwrites the default 5000ms wait.
+ */
+Cypress.Commands.add("waitForData", (time: number) => {
+  cy.intercept("GET", "/api/**").as("pageload");
+  cy.wait("@pageload", { timeout: time });
 });
