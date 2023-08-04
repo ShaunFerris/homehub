@@ -69,8 +69,7 @@ describe("The homepage", () => {
     cy.visit("/");
     cy.wait(5000);
     cy.get("[data-test='budget-button']").click();
-    cy.intercept("GET", "/api/budget").as("pageLoad");
-    cy.wait("@pageLoad", { timeout: 8000 }).then(() => {
+    cy.waitForData(8000).then(() => {
       cy.url().should("include", "budget");
     });
   });
@@ -80,7 +79,7 @@ describe("The homepage", () => {
     cy.wait(5000);
     cy.get("[data-test='todo-button']").click();
     cy.intercept("GET", "/api/todo").as("pageLoad");
-    cy.wait("@pageLoad", { timeout: 8000 }).then(() => {
+    cy.waitForData(8000).then(() => {
       cy.url().should("include", "todo");
     });
   });
@@ -90,7 +89,7 @@ describe("The homepage", () => {
     cy.wait(5000);
     cy.get("[data-test='shop-button']").click();
     cy.intercept("GET", "/api/shoplist").as("pageLoad");
-    cy.wait("@pageLoad", { timeout: 8000 }).then(() => {
+    cy.waitForData(8000).then(() => {
       cy.url().should("include", "shoplist");
     });
   });
