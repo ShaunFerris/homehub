@@ -31,10 +31,7 @@ describe("The homepage", () => {
   it("displays login prompt when unauthenticated", () => {
     cy.logOut();
     //next has chunk errors sometimes that don't affect ux, log and move on
-    Cypress.on("uncaught:exception", (err) => {
-      console.log("Cypress detected uncaught exception: ", err);
-      return false;
-    });
+    cy.logChunkError();
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
     //wait for response from the get request before testing menu content
@@ -56,10 +53,7 @@ describe("The homepage", () => {
   it("displays the card nav menu when authenticated", () => {
     cy.login(process.env.TEST_USER, process.env.TEST_PASS);
     //same work around as the above test
-    Cypress.on("uncaught:exception", (err) => {
-      console.log("Cypress detected uncaught exception: ", err);
-      return false;
-    });
+    cy.logChunkError();
     cy.visit("/");
     cy.intercept("GET", "/api/auth/session").as("session");
     //wait for response from the get request before testing menu content
