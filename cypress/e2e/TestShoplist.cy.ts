@@ -8,6 +8,7 @@ describe("The shopping list page", () => {
    */
   it("Shows access denied msg when not authenticated", () => {
     cy.logOut();
+    cy.visit("/shoplist");
     cy.get("[data-test='access-msg']").contains("Access Denied");
   });
 
@@ -24,4 +25,21 @@ describe("The shopping list page", () => {
   /**
    * Tests for loading spinner -> session -> rendered components
    */
+  it("shows the loading spinner on initial load", () => {
+    cy.visit("/shoplist");
+    cy.get("[data-test='loading-spinner']");
+  });
+
+  it("renders the input component post load", () => {
+    cy.visit("/shoplist");
+    cy.intercept("GET", "/api/shoplist").as("pageload");
+    cy.wait("@pageload", { timeout: 8000 }).then(() => {
+      cy.get("[data-test='shoplist-input']");
+    });
+  });
+
+  it("adds an item on submit", () => {
+    cy.get("[data-test='shoplist-input']").type("test item");
+    cy.get("[data-test='shoplist-submit']").click();
+  });
 });

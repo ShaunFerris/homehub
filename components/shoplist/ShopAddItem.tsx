@@ -36,6 +36,7 @@ const ShopAddItem = () => {
       onSubmit={createShopItem}
     >
       <input
+        data-test="shoplist-input"
         className="form_input border border-black"
         placeholder="Add an item to your shopping list..."
         value={item.name}
@@ -46,7 +47,9 @@ const ShopAddItem = () => {
           })
         }
       />
-      <button className="black_btn">Add</button>
+      <button data-test="shoplist-submit" className="black_btn">
+        Add
+      </button>
     </form>
   );
 };
