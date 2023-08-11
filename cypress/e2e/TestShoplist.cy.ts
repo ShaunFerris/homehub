@@ -34,7 +34,6 @@ describe("The shopping list page", () => {
   });
 
   it("renders the input component post load", () => {
-    cy.visit("/shoplist");
     cy.waitForData(8000).then(() => {
       cy.get("[data-test='shoplist-input']");
     });
@@ -43,5 +42,9 @@ describe("The shopping list page", () => {
   it("adds an item on submit", () => {
     cy.get("[data-test='shoplist-input']").type("test item");
     cy.get("[data-test='shoplist-submit']").click();
+    cy.get("[data-test='shoplist-list']").should(
+      "contain",
+      "test item"
+    );
   });
 });
