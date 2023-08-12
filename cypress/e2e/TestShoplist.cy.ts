@@ -47,4 +47,9 @@ describe("The shopping list page", () => {
       "test item"
     );
   });
+
+  it("clears the list and checks for empty", () => {
+    cy.get("[data-test='shoplist-clear']").click();
+    cy.get("[data-test='shoplist-list']").should("be.empty");
+  });
 });

@@ -86,8 +86,8 @@ const ShopList = () => {
   };
 
   return (
-    <div data-test="shoplist-list">
-      <ul className="mt-4">
+    <div>
+      <ul data-test="shoplist-list" className="mt-4">
         {items === null ? (
           <Loader />
         ) : (
@@ -102,6 +102,7 @@ const ShopList = () => {
         )}
       </ul>
       <button
+        data-test="shoplist-clear"
         className="delete_btn w-full mt-4"
         onClick={handleClear}
       >
