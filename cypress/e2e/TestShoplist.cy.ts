@@ -7,12 +7,7 @@ describe("The shopping list page", () => {
    * Test for access denial when logged out
    */
   it("Shows access denied msg when not authenticated", () => {
-    cy.logChunkError();
-    cy.logOut();
-    cy.visit("/shoplist");
-    cy.waitForData(8000).then(() => {
-      cy.get("[data-test='access-msg']").contains("Access Denied");
-    });
+    cy.accessCheck("/shoplist");
   });
 
   /**

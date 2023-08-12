@@ -9,6 +9,7 @@ declare namespace Cypress {
     logOut;
     logChunkError;
     waitForData;
+    accessCheck;
   }
 }
 
@@ -59,4 +60,17 @@ Cypress.Commands.add("logChunkError", () => {
 Cypress.Commands.add("waitForData", (time: number) => {
   cy.intercept("GET", "/api/**").as("pageload");
   cy.wait("@pageload", { timeout: time });
+});
+
+/**
+ * Command to check for access denial on a route when logged out.
+ * Takes the route URL segment to visit as an arg.
+ */
+Cypress.Commands.add("accessCheck", (route: string) => {
+  cy.logChunkError();
+  cy.logOut();
+  cy.visit(route);
+  cy.waitForData(8000).then(() => {
+    cy.get("[data-test='access-msg']").contains("Access Denied");
+  });
 });
