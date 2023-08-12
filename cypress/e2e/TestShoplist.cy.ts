@@ -89,7 +89,18 @@ describe("The shopping list page", () => {
     });
   });
 
-  it("clears the list and checks for empty", () => {
+  it("adds two items, clears the list and checks for empty", () => {
+    cy.get("[data-test='shoplist-clear']").click();
+    cy.get("[data-test='shoplist-list']").should("be.empty");
+    cy.get("[data-test='shoplist-input']").type("test item");
+    cy.get("[data-test='shoplist-submit']").click();
+    cy.wait(2000);
+    cy.get("[data-test='shoplist-input']").type("test item 2");
+    cy.get("[data-test='shoplist-submit']").click();
+    cy.get("[data-test='shoplist-list']")
+      .children()
+      .should("contain", "test item")
+      .and("contain", "test item 2");
     cy.get("[data-test='shoplist-clear']").click();
     cy.get("[data-test='shoplist-list']").should("be.empty");
   });
