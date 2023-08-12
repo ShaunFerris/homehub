@@ -28,6 +28,7 @@ const ShopItem = ({ item, handleDelete, handleStatusChange }) => {
           <></>
         )}
         <TiDelete
+          data-test="shoplist-delete"
           size="1.5em"
           onClick={(e) => {
             e.preventDefault();

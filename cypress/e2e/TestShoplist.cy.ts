@@ -64,11 +64,27 @@ describe("The shopping list page", () => {
     cy.intercept("GET", "/api/shoplist").as("listUpdate");
     cy.get("[data-test='shoplist-markComplete']").click();
     cy.wait("@itemUpdate").then(() => {
-      cy.wait("@listUpdate", { timeout: 10000 }).then(() => {
+      cy.wait("@listUpdate").then(() => {
+        cy.wait(5000);
         cy.get("[data-test='shoplist-item']")
           .invoke("attr", "class")
           .then((classList) => classList.split(" "))
           .should("contain", "bg-green-500");
+      });
+    });
+  });
+
+  it("deletes a single item", () => {
+    cy.intercept("DELETE", "/api/shoplist/**").as("itemUpdate");
+    cy.intercept("GET", "/api/shoplist").as("listUpdate");
+    cy.get("[data-test='shoplist-delete']").click();
+    cy.wait("@itemUpdate").then(() => {
+      cy.wait("@listUpdate").then(() => {
+        cy.wait(5000);
+        cy.get("[data-test='shoplist-list']").should(
+          "not.contain",
+          "test item"
+        );
       });
     });
   });
