@@ -7,6 +7,7 @@ const ShopItem = ({ item, handleDelete, handleStatusChange }) => {
 
   return (
     <li
+      data-test="shoplist-item"
       className={`flex flex-row justify-between items-center px-5
         p-2 border border-gray-500 rounded-lg mt-2 ${repComplete}`}
     >
@@ -17,6 +18,7 @@ const ShopItem = ({ item, handleDelete, handleStatusChange }) => {
       >
         {!item.complete ? (
           <TiTick
+            data-test="shoplist-markComplete"
             size="1.5em"
             onClick={() => {
               handleStatusChange(item);

@@ -39,6 +39,10 @@ describe("The shopping list page", () => {
     });
   });
 
+  /**
+   * Tests for the functionality of the list. Adding removing and
+   * marking items as complete.
+   */
   it("adds an item on submit", () => {
     cy.get("[data-test='shoplist-input']").type("test item");
     cy.get("[data-test='shoplist-submit']").click();
@@ -46,6 +50,27 @@ describe("The shopping list page", () => {
       "contain",
       "test item"
     );
+  });
+
+  it("checks the initial status of the item", () => {
+    cy.get("[data-test='shoplist-item']")
+      .invoke("attr", "class")
+      .then((classList) => classList.split(" "))
+      .should("contain", "bg-white");
+  });
+
+  it("checks item status change functionality", () => {
+    cy.intercept("PATCH", "/api/shoplist/**").as("itemUpdate");
+    cy.intercept("GET", "/api/shoplist").as("listUpdate");
+    cy.get("[data-test='shoplist-markComplete']").click();
+    cy.wait("@itemUpdate").then(() => {
+      cy.wait("@listUpdate", { timeout: 10000 }).then(() => {
+        cy.get("[data-test='shoplist-item']")
+          .invoke("attr", "class")
+          .then((classList) => classList.split(" "))
+          .should("contain", "bg-green-500");
+      });
+    });
   });
 
   it("clears the list and checks for empty", () => {
