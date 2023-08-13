@@ -4,7 +4,7 @@ describe("The TODO list page", () => {
   });
 
   /**
-   * Test for access denial when logged out
+   * Test for access denial when logged out.
    */
   it("shows access denied msg when not authenticated", () => {
     cy.accessCheck("/todo");
@@ -18,6 +18,7 @@ describe("The TODO list page", () => {
     cy.visit("/todo");
     cy.wait(3000);
     cy.get("[data-test='todo-title']").contains("TODO List");
+    cy.get("[data-test='todo-addItemForm']");
     cy.get("[data-test='todo-listContainer']");
     cy.get("[data-test='todo-pendingListContainer']");
     cy.get("[data-test='todo-completedListContainer']");
@@ -30,5 +31,15 @@ describe("The TODO list page", () => {
     cy.get("[data-test='todo-completedList']").contains(
       "Completed Tasks"
     );
+  });
+
+  /**
+   * Tests for the operation of the form input
+   */
+  it("displays the placeholder text and button label correctly", () => {
+    cy.get("[data-test='todo-input']")
+      .invoke("attr", "placeholder")
+      .should("eql", "Add a todo...");
+    cy.get("[data-test='todo-submitButton']").contains("Submit");
   });
 });

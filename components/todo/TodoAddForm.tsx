@@ -31,11 +31,13 @@ const TodoAddForm = () => {
 
   return (
     <form
+      data-test="todo-addItemForm"
       className="card_container_long flex flex-row gap-4"
       onSubmit={createTodo}
     >
       <div id="todo_input" className="w-4/5">
         <input
+          data-test="todo-input"
           className="form_input border border-black"
           placeholder="Add a todo..."
           value={todo.name}
@@ -52,7 +54,12 @@ const TodoAddForm = () => {
         className="w-1/5 flex flex-row
                 justify-center"
       >
-        <button className="black_btn w-full">Submit</button>
+        <button
+          data-test="todo-submitButton"
+          className="black_btn w-full"
+        >
+          Submit
+        </button>
       </div>
     </form>
   );
