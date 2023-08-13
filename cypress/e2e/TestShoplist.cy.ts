@@ -16,6 +16,7 @@ describe("The shopping list page", () => {
   it("contains the expected titles and content when logged in", () => {
     cy.login(process.env.TEST_USER, process.env.TEST_PASS);
     cy.visit("/shoplist");
+    cy.wait(3000);
     cy.get("[data-test='shoplist-title']").contains("Shopping List");
     cy.get("[data-test='shoplist-container']");
   });

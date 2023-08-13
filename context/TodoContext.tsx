@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
+import { ITodoContext } from "@/types";
 
-export const TodoContext = createContext();
+export const TodoContext = createContext<ITodoContext | null>(null);
 
 export const TodoProvider = ({ children }) => {
   const [tasks, setTasks] = useState(null);
