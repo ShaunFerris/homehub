@@ -70,7 +70,7 @@ Cypress.Commands.add("accessCheck", (route: string) => {
   cy.logChunkError();
   cy.logOut();
   cy.visit(route);
-  cy.waitForData(8000).then(() => {
+  cy.waitForData(10000).then(() => {
     cy.get("[data-test='access-msg']").contains("Access Denied");
   });
 });

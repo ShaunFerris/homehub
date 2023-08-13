@@ -6,6 +6,11 @@ import Loader from "../Loader";
 const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
   const { todoTasks, setStateChange } = useContext(TodoContext);
 
+  const test =
+    title === "Pending Tasks"
+      ? "todo-pendingList"
+      : "todo-completedList";
+
   const tasksToDisplay =
     todoTasks === null
       ? ""
@@ -54,7 +59,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
   };
 
   return (
-    <div className="card_container_vert">
+    <div data-test={test} className="card_container_vert">
       <h1 className="subhead_text text-center">{title}</h1>
       {tasksToDisplay === "" ? (
         <Loader />

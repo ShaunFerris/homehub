@@ -13,5 +13,22 @@ describe("The TODO list page", () => {
   /**
    * Tests for the static content and titles.
    */
-  it("contains the expected titles and content when logged in", () => {});
+  it("displays titles and content containers when logged in", () => {
+    cy.login(process.env.TEST_USER, process.env.TEST_PASS);
+    cy.visit("/todo");
+    cy.wait(3000);
+    cy.get("[data-test='todo-title']").contains("TODO List");
+    cy.get("[data-test='todo-listContainer']");
+    cy.get("[data-test='todo-pendingListContainer']");
+    cy.get("[data-test='todo-completedListContainer']");
+  });
+
+  it("displays the content subtitles when logged in", () => {
+    cy.get("[data-test='todo-pendingList']").contains(
+      "Pending Tasks"
+    );
+    cy.get("[data-test='todo-completedList']").contains(
+      "Completed Tasks"
+    );
+  });
 });

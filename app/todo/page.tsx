@@ -14,7 +14,7 @@ const Todo = () => {
   }
 
   if (status === "unauthenticated") {
-    return <p>Access Denied</p>;
+    return <p data-test="access-msg">Access Denied</p>;
   }
 
   return (
@@ -23,21 +23,34 @@ const Todo = () => {
         className="flex flex-col items-center w-full
             justify-between"
       >
-        <h1 className="head_text text-center">TODO List</h1>
+        <h1 data-test="todo-title" className="head_text text-center">
+          TODO List
+        </h1>
         <TodoAddForm />
         <div
+          data-test="todo-listContainer"
           className="flex flex-col items-center w-full
                 justify-between gap-4"
         >
-          <div id="pending_list" className="w-full">
+          <div
+            data-test="todo-pendingListContainer"
+            id="pending_list"
+            className="w-full"
+          >
             <TodoTaskList
+              data-test="todo-pendingList"
               title="Pending Tasks"
               emptyMsg="There are no pending tasks"
               renderCondition={false}
             />
           </div>
-          <div id="complete-list" className="w-full mb-8">
+          <div
+            data-test="todo-completedListContainer"
+            id="complete-list"
+            className="w-full mb-8"
+          >
             <TodoTaskList
+              data-test="todo-completedList"
               title="Completed Tasks"
               emptyMsg="There are no completed tasks"
               renderCondition={true}
