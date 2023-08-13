@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { ITodoContext } from "@/types";
+import { ITodoContext } from "@/types/models";
 
 export const TodoContext = createContext<ITodoContext | null>(null);
 

@@ -1,4 +1,4 @@
-import { Document, Model } from "mongoose";
+import { Schema, Document, Model } from "mongoose";
 
 export interface IUserGroup {
   name: string;
@@ -20,4 +20,16 @@ export interface IUser extends Document {
 
 export interface IUserModel extends Model<IUserDocument> {
   buildUser(args: IUser): IUserDocument;
+}
+
+export interface ITodo {
+  creator: Schema.Types.ObjectId;
+  name: string;
+  complete: boolean;
+}
+
+export interface ITodoContext {
+  todoTasks: ITodo[];
+  stateChange: boolean;
+  setStateChange: (state: boolean) => void;
 }
