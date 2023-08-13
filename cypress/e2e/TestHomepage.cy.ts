@@ -36,6 +36,7 @@ describe("The homepage", () => {
     cy.intercept("GET", "/api/auth/session").as("session");
     //wait for response from the get request before testing menu content
     cy.wait("@session", { timeout: 8000 }).then(() => {
+      cy.wait(5000);
       cy.get("[data-test='login-prompt']")
         .should("contain", "Login to access your home planning tools")
         .and(
@@ -58,6 +59,7 @@ describe("The homepage", () => {
     cy.intercept("GET", "/api/auth/session").as("session");
     //wait for response from the get request before testing menu content
     cy.wait("@session", { timeout: 8000 }).then(() => {
+      cy.wait(5000);
       cy.get("[data-test='card-menu']")
         .should("contain", "Budget Tracker")
         .and("contain", "TODO List")
@@ -78,7 +80,6 @@ describe("The homepage", () => {
     cy.visit("/");
     cy.wait(5000);
     cy.get("[data-test='todo-button']").click();
-    cy.intercept("GET", "/api/todo").as("pageLoad");
     cy.waitForData(8000).then(() => {
       cy.url().should("include", "todo");
     });
@@ -88,7 +89,6 @@ describe("The homepage", () => {
     cy.visit("/");
     cy.wait(5000);
     cy.get("[data-test='shop-button']").click();
-    cy.intercept("GET", "/api/shoplist").as("pageLoad");
     cy.waitForData(8000).then(() => {
       cy.url().should("include", "shoplist");
     });

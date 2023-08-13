@@ -6,7 +6,7 @@ describe("The shopping list page", () => {
   /**
    * Test for access denial when logged out
    */
-  it("Shows access denied msg when not authenticated", () => {
+  it("shows access denied msg when not authenticated", () => {
     cy.accessCheck("/shoplist");
   });
 
