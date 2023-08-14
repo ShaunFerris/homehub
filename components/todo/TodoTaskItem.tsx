@@ -27,6 +27,7 @@ const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
           Toggle Complete
         </button>
         <button
+          data-test="todo-deleteButton"
           className="delete_btn"
           onClick={(e) => {
             e.preventDefault();

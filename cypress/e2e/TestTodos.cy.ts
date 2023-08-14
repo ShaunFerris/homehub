@@ -76,4 +76,11 @@ describe("The TODO list page", () => {
       .find("ul")
       .should("contain", "test task 1");
   });
+
+  it("deletes the test task and confirms it is gone", () => {
+    cy.get("[data-test='todo-listItem']")
+      .find("[data-test='todo-deleteButton']")
+      .click();
+    cy.get("[data-test='todo-listItem']").should("not.exist");
+  });
 });
