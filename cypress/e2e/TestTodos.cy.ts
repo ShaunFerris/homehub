@@ -83,4 +83,8 @@ describe("The TODO list page", () => {
       .click();
     cy.get("[data-test='todo-listItem']").should("not.exist");
   });
+
+  /**
+   * Tests for clearing all items form both lists.
+   */
 });

@@ -99,7 +99,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
         </ul>
       )}
       <button
-        data-test="shoplist-clear"
+        data-test="todo-listClear"
         className="delete_btn w-full mt-4"
         onClick={handleClear}
       >
