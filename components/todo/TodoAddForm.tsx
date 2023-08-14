@@ -6,9 +6,15 @@ const TodoAddForm = () => {
   const { data: session } = useSession();
   const { setStateChange } = useContext(TodoContext);
   const [todo, setTodo] = useState({ name: "", complete: false });
+  const [invalidName, setInvalidName] = useState(false);
 
   const createTodo = async (event) => {
     event.preventDefault();
+
+    if (todo.name === "") {
+      setInvalidName(true);
+      return;
+    }
 
     try {
       const response = await fetch("/api/todo/newItem/", {
@@ -24,44 +30,54 @@ const TodoAddForm = () => {
         console.log("Todo task created!");
         setTodo({ name: "", complete: false });
       }
+      setInvalidName(false);
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <form
-      data-test="todo-addItemForm"
-      className="card_container_long flex flex-row gap-4"
-      onSubmit={createTodo}
-    >
-      <div id="todo_input" className="w-4/5">
-        <input
-          data-test="todo-input"
-          className="form_input border border-black"
-          placeholder="Add a todo..."
-          value={todo.name}
-          onChange={(event) =>
-            setTodo({
-              ...todo,
-              name: event.target.value
-            })
-          }
-        />
-      </div>
-      <div
-        id="todo_buttons"
-        className="w-1/5 flex flex-row
-                justify-center"
+    <div className="card_container_long flex flex-col">
+      <form
+        data-test="todo-addItemForm"
+        className="flex flex-row gap-4"
+        onSubmit={createTodo}
       >
-        <button
-          data-test="todo-submitButton"
-          className="black_btn w-full"
+        <div id="todo_input" className="w-4/5">
+          <input
+            data-test="todo-input"
+            className="form_input border border-black"
+            placeholder="Add a todo..."
+            value={todo.name}
+            onChange={(event) =>
+              setTodo({
+                ...todo,
+                name: event.target.value
+              })
+            }
+          />
+        </div>
+        <div
+          id="todo_buttons"
+          className="w-1/5 flex flex-row
+                justify-center"
         >
-          Submit
-        </button>
-      </div>
-    </form>
+          <button
+            data-test="todo-submitButton"
+            className="black_btn w-full"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+      {invalidName ? (
+        <p className="text-red-500 mt-2">
+          Please enter a vaild name for your task
+        </p>
+      ) : (
+        <></>
+      )}
+    </div>
   );
 };
 
