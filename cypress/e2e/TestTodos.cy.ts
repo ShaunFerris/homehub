@@ -85,6 +85,30 @@ describe("The TODO list page", () => {
   });
 
   /**
-   * Tests for clearing all items form both lists.
+   * Tests for clearing all items from a list.
    */
+  it("adds four items to the pending list", () => {
+    cy.get("[data-test='todo-input']").type("test task 1");
+    cy.get("[data-test='todo-submitButton']").click();
+    cy.wait(3000);
+    cy.get("[data-test='todo-input']").type("test task 2");
+    cy.get("[data-test='todo-submitButton']").click();
+    cy.wait(3000);
+    cy.get("[data-test='todo-input']").type("test task 3");
+    cy.get("[data-test='todo-submitButton']").click();
+    cy.wait(3000);
+    cy.get("[data-test='todo-input']").type("test task 4");
+    cy.get("[data-test='todo-submitButton']").click();
+    cy.wait(3000);
+  });
+
+  it("clears all items from the pending list with the clear button", () => {
+    cy.get("[data-test='todo-pendingList']")
+      .find("[data-test='todo-listClear']")
+      .click();
+    cy.wait(3000);
+    cy.get("[data-test='todo-pendingList']")
+      .children()
+      .should("not.contain", "ul");
+  });
 });
