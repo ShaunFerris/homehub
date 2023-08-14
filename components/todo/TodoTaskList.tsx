@@ -58,7 +58,26 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
     }
   };
 
-  const handleClear = async () => {};
+  const handleClear = async () => {
+    const hasConfirmed = confirm(
+      "Are you sure you wish to clear this list?"
+    );
+
+    if (hasConfirmed) {
+      try {
+        const response = await fetch("/api/todo", {
+          method: "DELETE",
+          body: JSON.stringify({ renderCondition })
+        });
+        setStateChange(true);
+        if (response.ok) {
+          console.log("List cleared!");
+        }
+      } catch (error) {
+        console.log("Failed to clear list: ", error);
+      }
+    }
+  };
 
   return (
     <div data-test={test} className="card_container_vert">

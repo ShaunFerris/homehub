@@ -34,3 +34,16 @@ export const PATCH = async (req) => {
     return new Response("Task status toggled", { status: 200 });
   } catch (error) {}
 };
+
+export const DELETE = async (req) => {
+  const { renderCondition } = await req.json();
+  try {
+    await connectToDB();
+
+    await Todo.deleteMany({ complete: renderCondition });
+
+    return new Response("List cleared!", { status: 200 });
+  } catch (error) {
+    return new Response("Failed to clear list!", { status: 500 });
+  }
+};
