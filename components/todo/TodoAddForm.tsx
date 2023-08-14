@@ -37,7 +37,10 @@ const TodoAddForm = () => {
   };
 
   return (
-    <div className="card_container_long flex flex-col">
+    <div
+      data-test="todo-formWrapper"
+      className="card_container_long flex flex-col"
+    >
       <form
         data-test="todo-addItemForm"
         className="flex flex-row gap-4"
@@ -71,8 +74,11 @@ const TodoAddForm = () => {
         </div>
       </form>
       {invalidName ? (
-        <p className="text-red-500 mt-2">
-          Please enter a vaild name for your task
+        <p
+          data-test="todo-invalidTaskMsg"
+          className="text-red-500 mt-2"
+        >
+          Please enter a valid name for your task
         </p>
       ) : (
         <></>

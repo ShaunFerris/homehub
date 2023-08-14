@@ -42,4 +42,19 @@ describe("The TODO list page", () => {
       .should("eql", "Add a todo...");
     cy.get("[data-test='todo-submitButton']").contains("Submit");
   });
+
+  it("displays an error msg when submit is clicked without entering a task name", () => {
+    cy.get("[data-test='todo-submitButton']").click();
+    cy.get("[data-test='todo-invalidTaskMsg']").contains(
+      "Please enter a valid name for your task"
+    );
+  });
+
+  it("adds a new task correctly and this removes the error msg", () => {
+    cy.get("[data-test='todo-input']").type("test task 1");
+    cy.get("[data-test='todo-submitButton']").click();
+    cy.get("[data-test='todo-formWrapper']")
+      .find("[data-test='todo-invalidTaskMsg']")
+      .should("not.exist");
+  });
 });
