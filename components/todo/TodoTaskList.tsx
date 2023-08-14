@@ -58,6 +58,8 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
     }
   };
 
+  const handleClear = async () => {};
+
   return (
     <div data-test={test} className="card_container_vert">
       <h1 className="subhead_text text-center">{title}</h1>
@@ -77,6 +79,13 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
           ))}
         </ul>
       )}
+      <button
+        data-test="shoplist-clear"
+        className="delete_btn w-full mt-4"
+        onClick={handleClear}
+      >
+        Clear list
+      </button>
     </div>
   );
 };
