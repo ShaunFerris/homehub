@@ -4,6 +4,7 @@ import { TiDelete } from "react-icons/ti";
 const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
   return (
     <li
+      data-test="todo-listItem"
       className="flex flex-row justify-between items-center px-5
         p-2 border-b border-gray-500"
     >
@@ -16,6 +17,7 @@ const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
       {/*Desktop displays get action buttons*/}
       <div id="buttons" className="sm:flex flex-row gap-4 hidden">
         <button
+          data-test="todo-statusToggle"
           className="confirm_btn"
           onClick={(e) => {
             e.preventDefault();

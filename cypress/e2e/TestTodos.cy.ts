@@ -57,4 +57,23 @@ describe("The TODO list page", () => {
       .find("[data-test='todo-invalidTaskMsg']")
       .should("not.exist");
   });
+
+  /**
+   * Tests for operations on individual tasks.
+   */
+  it("toggles the status of the previously created task", () => {
+    cy.get("[data-test='todo-listItem']")
+      .find("[data-test='todo-statusToggle']")
+      .click();
+  });
+
+  it("checks that toggling the task status made it move lists", () => {
+    cy.get("[data-test='todo-pendingList']")
+      .children()
+      .should("not.contain", "ul");
+    cy.wait(3000);
+    cy.get("[data-test='todo-completedList']")
+      .find("ul")
+      .should("contain", "test task 1");
+  });
 });
