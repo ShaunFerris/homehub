@@ -33,3 +33,14 @@ export interface ITodoContext {
   stateChange: boolean;
   setStateChange: (state: boolean) => void;
 }
+
+export interface IBudget {
+  name: string;
+  budget: number;
+  expenses: Array;
+}
+
+export interface IBudgetContext {
+  budgetData: IBudget;
+  dispatch: (action) => void;
+}

@@ -2,6 +2,7 @@
 
 import { createContext, useReducer, useEffect } from "react";
 import { useParams } from "next/navigation";
+import { IBudgetContext } from "@/types/models";
 
 const BudgetReducer = (state, action) => {
   switch (action.type) {
@@ -37,7 +38,9 @@ const initialState = {
   expenses: []
 };
 
-export const BudgetContext = createContext();
+export const BudgetContext = createContext<IBudgetContext | null>(
+  null
+);
 
 export const BudgetProvider = ({ children }) => {
   const params = useParams();
