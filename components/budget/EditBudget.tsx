@@ -8,7 +8,7 @@ const EditBudget = ({ budget, handleSaveEdit }) => {
       <input
         className="mr-3 form_input border border-black
                 [appearance:textfield] focus:placeholder-transparent"
-        required="required"
+        required={true}
         type="number"
         id="budgetAmount"
         placeholder={value}

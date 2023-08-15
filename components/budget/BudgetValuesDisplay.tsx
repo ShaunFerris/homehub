@@ -12,7 +12,7 @@ const BudgetValuesDisplay = () => {
   const { budgetData } = useContext(BudgetContext);
 
   const totalSpent =
-    budgetData.expenses === []
+    budgetData.expenses.length === 0
       ? 0
       : budgetData.expenses.reduce((total, expense) => {
           return total + expense.cost;
