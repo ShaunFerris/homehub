@@ -1,10 +1,6 @@
 import { Schema, model, models } from "mongoose";
 
 const ExpenseSchema = new Schema({
-  expenseid: {
-    type: Number,
-    required: true
-  },
   name: {
     type: String,
     required: true

@@ -2,7 +2,6 @@
 
 import { useState, useContext } from "react";
 import { BudgetContext } from "@/context/BudgetContext";
-import { v4 as uuidv4 } from "uuid";
 
 const AddExpenseForm = () => {
   const { dispatch } = useContext(BudgetContext);
@@ -13,7 +12,6 @@ const AddExpenseForm = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     const expense = {
-      id: uuidv4(),
       name: name,
       cost: parseInt(cost)
     };
@@ -38,7 +36,7 @@ const AddExpenseForm = () => {
           <input
             className="form_input border border-black
                         focus:placeholder-transparent"
-            required="required"
+            required={true}
             type="text"
             id="name"
             placeholder="Name"
@@ -50,7 +48,7 @@ const AddExpenseForm = () => {
           <input
             className="form_input border border-black
                         focus:placeholder-transparent"
-            required="required"
+            required={true}
             type="text"
             id="cost"
             placeholder="Cost"

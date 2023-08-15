@@ -19,7 +19,7 @@ const BudgetSelectPage = () => {
 
   const [hasUpdated, setHasUpdated] = useState(true);
 
-  const [budgetList, setBudgetList] = useState("");
+  const [budgetList, setBudgetList] = useState(null);
 
   const addBudget = async (event) => {
     event.preventDefault();
@@ -37,7 +37,7 @@ const BudgetSelectPage = () => {
         console.log("Created a new budget");
         setBudget({
           name: "",
-          budgetAmount: 0,
+          budgetAmount: "",
           expenseList: []
         });
         const data = await response.json();
@@ -94,7 +94,7 @@ const BudgetSelectPage = () => {
     <div className="card_container_long">
       <ul>
         <h1 className="subhead_text">Existing Budgets:</h1>
-        {budgetList === "" ? (
+        {budgetList === null ? (
           <Loader />
         ) : budgetList.length === 0 ? (
           <p>No budgets available</p>

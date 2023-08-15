@@ -23,6 +23,8 @@ export const PATCH = async (req, { params }) => {
     });
     return new Response("Budget data updated", { status: 200 });
   } catch (error) {
-    return new Response("Budget update failed", { status: 500 });
+    return new Response(`Budget update failed: ${error}`, {
+      status: 500
+    });
   }
 };

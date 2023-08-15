@@ -18,7 +18,7 @@ const BudgetReducer = (state, action) => {
       return {
         ...state,
         expenses: state.expenses.filter((expense) => {
-          return expense.id !== action.payload;
+          return expense.name !== action.payload;
         })
       };
     case "EDIT_BUDGET":
