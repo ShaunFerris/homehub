@@ -87,13 +87,21 @@ const BudgetSelectPage = () => {
   }
 
   if (status === "unauthenticated") {
-    return <p>Access Denied</p>;
+    return <p data-test="access-msg">Access Denied</p>;
   }
 
   return (
-    <div className="card_container_long">
+    <div
+      data-test="budget-selectPageWrapper"
+      className="card_container_long"
+    >
       <ul>
-        <h1 className="subhead_text">Existing Budgets:</h1>
+        <h1
+          data-test="budget-selectHeading1"
+          className="subhead_text"
+        >
+          Existing Budgets:
+        </h1>
         {budgetList === null ? (
           <Loader />
         ) : budgetList.length === 0 ? (
