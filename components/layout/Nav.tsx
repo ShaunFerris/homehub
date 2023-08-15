@@ -33,7 +33,7 @@ const Nav = () => {
               data-test="logout-button"
               type="button"
               className="black_btn"
-              onClick={signOut}
+              onClick={() => signOut()}
             >
               Sign Out
             </button>

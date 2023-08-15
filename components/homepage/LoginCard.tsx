@@ -6,6 +6,7 @@ import Loader from "../Loader";
 import { SlLogin } from "react-icons/sl";
 import { useState, useEffect } from "react";
 import { signIn, useSession, getProviders } from "next-auth/react";
+import { Provider } from "next-auth/providers";
 
 const LoginCard = () => {
   const { data: session, status } = useSession();
@@ -42,7 +43,7 @@ const LoginCard = () => {
             use this service.
           </p>
           {providers &&
-            Object.values(providers).map((provider) => (
+            Object.values(providers).map((provider: Provider) => (
               <button
                 data-test="login-button"
                 type="button"
