@@ -105,7 +105,7 @@ const BudgetSelectPage = () => {
         {budgetList === null ? (
           <Loader />
         ) : budgetList.length === 0 ? (
-          <p>No budgets available</p>
+          <p data-test="budget-emptyListMsg">No budgets available</p>
         ) : (
           budgetList.map((b) => (
             <li
@@ -121,6 +121,7 @@ const BudgetSelectPage = () => {
           ))
         )}
         <button
+          data-test="budget-clearBudgetsButton"
           className="delete_btn w-full mt-4"
           onClick={handleClear}
         >
@@ -128,7 +129,9 @@ const BudgetSelectPage = () => {
         </button>
       </ul>
       <hr className="bg-black my-4" />
-      <h1 className="subhead_text">Add a new budget tracker</h1>
+      <h1 data-test="budget-selectHeading2" className="subhead_text">
+        Add a new budget tracker
+      </h1>
       <form
         className="mt-4 flex flex-col space-y-2"
         onSubmit={addBudget}

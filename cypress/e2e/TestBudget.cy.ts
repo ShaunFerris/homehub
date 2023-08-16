@@ -1,7 +1,7 @@
 describe("The pages on the budgeting app route", () => {
   /**
    * BUDGET SELECT PAGE:
-   *    Tests for access control and static content.
+   * Tests for access control and static content.
    */
   it("loads the budget select page correctly", () => {
     cy.visit("/budget");
@@ -22,5 +22,20 @@ describe("The pages on the budgeting app route", () => {
     cy.get("[data-test='budget-selectPageWrapper']")
       .find("[data-test='budget-selectHeading1']")
       .contains("Existing Budgets");
+    cy.get("[data-test='budget-selectPageWrapper']")
+      .find("[data-test='budget-selectHeading2']")
+      .contains("Add a new budget tracker");
+  });
+
+  /**
+   * BUDGET SELECT PAGE:
+   * Tests for the operation of the form.
+   */
+  it("clicks the clear button and confirms the empty msg displays", () => {
+    cy.get("[data-test='budget-clearBudgetsButton']").click();
+    cy.wait(3000);
+    cy.get("[data-test='budget-emptyListMsg']").contains(
+      "No budgets available"
+    );
   });
 });
