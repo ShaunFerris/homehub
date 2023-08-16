@@ -138,10 +138,12 @@ const BudgetSelectPage = () => {
       >
         <div className="flex flex-row space-x-4">
           <input
+            data-test="budget-amountInput"
             className="form_input border border-black
                         focus:placeholder-transparent"
-            placeholder="budget amount"
+            placeholder="Enter budget amount..."
             value={budget.budgetAmount}
+            required={true}
             onChange={(event) =>
               setBudget({
                 ...budget,
@@ -150,10 +152,12 @@ const BudgetSelectPage = () => {
             }
           />
           <input
+            data-test="budget-nameInput"
             className="form_input border border-black
                         focus:placeholder-transparent"
-            placeholder="budget name"
+            placeholder="Enter budget name..."
             value={budget.name}
+            required={true}
             onChange={(event) =>
               setBudget({
                 ...budget,
@@ -162,7 +166,12 @@ const BudgetSelectPage = () => {
             }
           />
         </div>
-        <button className="black_btn">Submit</button>
+        <button
+          data-test="budget-submitNewBudgetButton"
+          className="black_btn"
+        >
+          Create your budget tracker
+        </button>
       </form>
     </div>
   );

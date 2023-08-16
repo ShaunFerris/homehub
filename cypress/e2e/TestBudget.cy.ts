@@ -38,4 +38,16 @@ describe("The pages on the budgeting app route", () => {
       "No budgets available"
     );
   });
+
+  it("confirms the form placeholders and submit button msg", () => {
+    cy.get("[data-test='budget-amountInput']")
+      .invoke("attr", "placeholder")
+      .should("eql", "Enter budget amount...");
+    cy.get("[data-test='budget-nameInput']")
+      .invoke("attr", "placeholder")
+      .should("eql", "Enter budget name...");
+    cy.get("[data-test='budget-submitNewBudgetButton").contains(
+      "Create your budget tracker"
+    );
+  });
 });
