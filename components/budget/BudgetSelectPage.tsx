@@ -95,7 +95,7 @@ const BudgetSelectPage = () => {
       data-test="budget-selectPageWrapper"
       className="card_container_long"
     >
-      <ul>
+      <ul data-test="budget-existingBudgetList">
         <h1
           data-test="budget-selectHeading1"
           className="subhead_text"

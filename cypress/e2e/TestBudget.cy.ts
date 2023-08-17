@@ -68,4 +68,25 @@ describe("The pages on the budgeting app route", () => {
       "Clear budgets list"
     );
   });
+
+  it("confirms the new budget is listed", () => {
+    cy.get("[data-test='budget-existingBudgetList']")
+      .find("li")
+      .contains("test budget");
+  });
+
+  /**
+   * CURRENT BUDGET PAGE:
+   * Tests for access control and static content on the dynamic page.
+   */
+  it("follows the link to test budget dynamic page", () => {
+    cy.get("[data-test='budget-existingBudgetList']")
+      .find("li")
+      .contains("test budget")
+      .click();
+    cy.wait(4000);
+    cy.get("[data-test='budget-currentBudgetTitle']").contains(
+      "Displaying data for: test budget"
+    );
+  });
 });
