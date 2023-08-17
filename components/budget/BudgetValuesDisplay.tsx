@@ -34,7 +34,7 @@ const BudgetValuesDisplay = () => {
     <>
       {budgetData.name != "" ? (
         <>
-          <h1 className="desc">
+          <h1 data-test="budget-currentBudgetTitle" className="desc">
             Displaying data for: {budgetData.name}
           </h1>
           <div

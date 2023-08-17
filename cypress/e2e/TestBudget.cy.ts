@@ -50,4 +50,22 @@ describe("The pages on the budgeting app route", () => {
       "Create your budget tracker"
     );
   });
+
+  it("adds a test budget and confirms that it navigates to the new page", () => {
+    cy.get("[data-test='budget-amountInput']").type("420");
+    cy.get("[data-test='budget-nameInput']").type("test budget");
+    cy.get("[data-test='budget-submitNewBudgetButton']").click();
+    cy.wait(4000);
+    cy.get("[data-test='budget-currentBudgetTitle']").contains(
+      "Displaying data for: test budget"
+    );
+  });
+
+  it("goes back to the budget select page and confirms the text on the clear button", () => {
+    cy.visit("/budget");
+    cy.wait(4000);
+    cy.get("[data-test='budget-clearBudgetsButton']").contains(
+      "Clear budgets list"
+    );
+  });
 });
