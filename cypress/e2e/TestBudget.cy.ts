@@ -77,7 +77,7 @@ describe("The pages on the budgeting app route", () => {
 
   /**
    * CURRENT BUDGET PAGE:
-   * Tests for access control and static content on the dynamic page.
+   * Tests for access control and initial content on the dynamic page.
    */
   it("follows the link to the test budget dynamic page", () => {
     cy.get("[data-test='budget-existingBudgetList']")
@@ -88,6 +88,14 @@ describe("The pages on the budgeting app route", () => {
     cy.get("[data-test='budget-currentBudgetTitle']").contains(
       "Displaying data for: test budget"
     );
+  });
+
+  it("verifies the layout of the values display component", () => {
+    cy.get("[data-test='budget-valuesDisplayWrapper']").within(() => {
+      cy.get("[data-test='budget-startingAmountDisplay']");
+      cy.get("[data-test='budget-remainingAmountDisplay']");
+      cy.get("[data-test='budget-spentAmountDisplay']");
+    });
   });
 
   it("verifies the correct budget amounts", () => {
@@ -101,4 +109,8 @@ describe("The pages on the budgeting app route", () => {
       "Spent so far: $0"
     );
   });
+
+  it("verifies the expense list module shows and is currently empty", () => {});
+
+  it("verifies the layout of the add expense form", () => {});
 });

@@ -38,6 +38,7 @@ const BudgetValuesDisplay = () => {
             Displaying data for: {budgetData.name}
           </h1>
           <div
+            data-test="budget-valuesDisplayWrapper"
             className="w-full flex flex-wrap
                     justify-between card_container_long"
           >
