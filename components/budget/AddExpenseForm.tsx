@@ -25,7 +25,10 @@ const AddExpenseForm = () => {
   };
 
   return (
-    <div className="card_container_vert w-full mb-4">
+    <div
+      data-test="budget-addExpenseFormWrapper"
+      className="card_container_vert w-full mb-4"
+    >
       <h1 className="subhead_text text-center">Add Expense</h1>
       <form
         onSubmit={onSubmit}

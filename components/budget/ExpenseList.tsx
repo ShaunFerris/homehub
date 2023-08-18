@@ -25,10 +25,16 @@ const ExpenseList = () => {
   };
 
   return (
-    <div className="card_container_vert w-full mb-4">
+    <div
+      data-test="budget-expenseListWrapper"
+      className="card_container_vert w-full mb-4"
+    >
       <h1 className="subhead_text text-center">Expenses</h1>
       {filteredExpenses.length === 0 ? (
-        <p className="desc_2 text-center">
+        <p
+          data-test="budget-noExpensesMsg"
+          className="desc_2 text-center"
+        >
           No expenses have been added yet
         </p>
       ) : (
