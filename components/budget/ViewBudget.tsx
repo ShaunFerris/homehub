@@ -1,7 +1,9 @@
 const ViewBudget = ({ budget, handleEdit }) => {
   return (
     <>
-      <span>Starting budget: ${budget}</span>
+      <span data-test="budget-startingAmountDisplay">
+        Starting budget: ${budget}
+      </span>
       <button className="black_btn" onClick={handleEdit}>
         Edit
       </button>

@@ -70,7 +70,7 @@ const BudgetValuesDisplay = () => {
                 className={`flex justify-between p-3.5
                             items-center ${alertColor} rounded-md`}
               >
-                <span>
+                <span data-test="budget-remainingAmountDisplay">
                   Remaining: ${budgetData.budget - totalSpent}
                 </span>
               </div>
@@ -83,7 +83,9 @@ const BudgetValuesDisplay = () => {
                 className="flex justify-between p-3.5
                             items-center bg-amber-600 rounded-md"
               >
-                <span>Spent so far: ${totalSpent}</span>
+                <span data-test="budget-spentAmountDisplay">
+                  Spent so far: ${totalSpent}
+                </span>
               </div>
             </div>
           </div>

@@ -79,7 +79,7 @@ describe("The pages on the budgeting app route", () => {
    * CURRENT BUDGET PAGE:
    * Tests for access control and static content on the dynamic page.
    */
-  it("follows the link to test budget dynamic page", () => {
+  it("follows the link to the test budget dynamic page", () => {
     cy.get("[data-test='budget-existingBudgetList']")
       .find("li")
       .contains("test budget")
@@ -87,6 +87,18 @@ describe("The pages on the budgeting app route", () => {
     cy.wait(4000);
     cy.get("[data-test='budget-currentBudgetTitle']").contains(
       "Displaying data for: test budget"
+    );
+  });
+
+  it("verifies the correct budget amounts", () => {
+    cy.get("[data-test='budget-startingAmountDisplay']").contains(
+      "Starting budget: $420"
+    );
+    cy.get("[data-test='budget-remainingAmountDisplay']").contains(
+      "Remaining: $420"
+    );
+    cy.get("[data-test='budget-spentAmountDisplay']").contains(
+      "Spent so far: $0"
     );
   });
 });
