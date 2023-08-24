@@ -126,5 +126,8 @@ describe("The pages on the budgeting app route", () => {
     cy.get("[data-test='budget-addExpenseFormWrapper']").should(
       "be.visible"
     );
+    cy.get("[data-test='budget-addExpenseFormWrapper']").contains(
+      "Add Expenses"
+    );
   });
 });
