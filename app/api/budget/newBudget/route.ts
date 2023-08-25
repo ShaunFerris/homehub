@@ -1,7 +1,8 @@
 import { connectToDB } from "@/utils/database";
 import Budget from "@/models/budget";
+import { NextResponse } from "next/server";
 
-export const POST = async (req) => {
+export const POST = async (req: Request) => {
   const { name, budgetAmount, expenseList } = await req.json();
 
   try {
@@ -12,9 +13,9 @@ export const POST = async (req) => {
       expenses: expenseList
     });
     await newBudget.save();
-    return new Response(JSON.stringify(newBudget), { status: 201 });
+    return NextResponse.json(newBudget, { status: 201 });
   } catch (error) {
-    return new Response("Failed to create a new budget", {
+    return NextResponse.json("Failed to create a new budget", {
       status: 500
     });
   }

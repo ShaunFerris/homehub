@@ -5,9 +5,7 @@ import Budget from "@/models/budget";
 export const GET = async (req: Request, { params }) => {
   try {
     await connectToDB();
-
     const data = await Budget.findById(params.id);
-
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     return NextResponse.json("Failed to fetch budget", {
@@ -21,13 +19,11 @@ export const PATCH = async (req: Request, { params }) => {
 
   try {
     await connectToDB();
-
     await Budget.findByIdAndUpdate(params.id, {
       name: name,
       budget: budget,
       expenses: expenses
     });
-
     return NextResponse.json("Budget data updated", { status: 200 });
   } catch (error) {
     return NextResponse.json(`Budget update failed: ${error}`, {
