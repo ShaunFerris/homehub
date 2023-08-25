@@ -1,18 +1,24 @@
 import { connectToDB } from "@/utils/database";
+import { NextResponse } from "next/server";
 import Budget from "@/models/budget";
 
-export const GET = async (req, { params }) => {
+export const GET = async (req: Request, { params }) => {
   try {
     await connectToDB();
+
     const data = await Budget.findById(params.id);
-    return new Response(JSON.stringify(data), { status: 200 });
+
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return new Response("Failed to fetch budget", { status: 500 });
+    return NextResponse.json("Failed to fetch budget", {
+      status: 500
+    });
   }
 };
 
-export const PATCH = async (req, { params }) => {
+export const PATCH = async (req: Request, { params }) => {
   const { name, budget, expenses } = await req.json();
+
   try {
     await connectToDB();
 
@@ -21,9 +27,10 @@ export const PATCH = async (req, { params }) => {
       budget: budget,
       expenses: expenses
     });
-    return new Response("Budget data updated", { status: 200 });
+
+    return NextResponse.json("Budget data updated", { status: 200 });
   } catch (error) {
-    return new Response(`Budget update failed: ${error}`, {
+    return NextResponse.json(`Budget update failed: ${error}`, {
       status: 500
     });
   }
