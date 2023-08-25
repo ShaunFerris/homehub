@@ -2,7 +2,7 @@ import ShopItem from "./ShopItem";
 import Loader from "../Loader";
 import { useState, useEffect, useContext } from "react";
 import { ShoplistContext } from "@/context/ShoplistContext";
-import { IShopListItem } from "@/types";
+import { IShopListItem } from "@/types/models";
 
 const ShopList = () => {
   const [items, setItems] = useState<IShopListItem[] | null>(null);

@@ -1,5 +1,9 @@
 import { Schema, Document, Model } from "mongoose";
 
+/**
+ * Interfaces for the User model and currently unreleased
+ * userGroups functionality
+ */
 export interface IUserGroup {
   name: string;
   userList: Array<string>;
@@ -22,6 +26,9 @@ export interface IUserModel extends Model<IUserDocument> {
   buildUser(args: IUser): IUserDocument;
 }
 
+/**
+ * Interfaces for the todo list data and db models
+ */
 export interface ITodo {
   creator: Schema.Types.ObjectId;
   name: string;
@@ -34,6 +41,9 @@ export interface ITodoContext {
   setStateChange: (state: boolean) => void;
 }
 
+/**
+ * Interfaces for the budget data and db models
+ */
 export interface IBudget {
   name: string;
   budget: number;
@@ -43,4 +53,12 @@ export interface IBudget {
 export interface IBudgetContext {
   budgetData: IBudget;
   dispatch: (action) => void;
+}
+
+/**
+ * Interfaces for the shoplist data and db models
+ */
+export interface IShopListItem {
+  name: string;
+  complete: boolean;
 }
