@@ -55,6 +55,8 @@ export interface IBudgetContext {
   dispatch: (action) => void;
 }
 
+export interface IBudgetDocument extends IBudget, Document {}
+
 /**
  * Interfaces for the shoplist data and db models
  */

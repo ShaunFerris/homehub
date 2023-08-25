@@ -1,14 +1,15 @@
 import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
 import Budget from "@/models/budget";
+import { IBudgetDocument } from "@/types/models";
 
 export const GET = async (req: Request, { params }) => {
   try {
     await connectToDB();
-    const data = await Budget.findById(params.id);
+    const data: IBudgetDocument = await Budget.findById(params.id);
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
-    return NextResponse.json("Failed to fetch budget", {
+    return NextResponse.json(`Failed to fetch budget: ${error}`, {
       status: 500
     });
   }
