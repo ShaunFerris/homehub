@@ -3,7 +3,6 @@ import Todo from "@/models/todo";
 
 export const DELETE = async (req, { params }) => {
   try {
-    console.log("DELETE req");
     await connectToDB();
 
     await Todo.findByIdAndRemove(params.id);
