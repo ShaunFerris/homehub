@@ -16,7 +16,7 @@ describe("The pages on the budgeting app route", () => {
     cy.visit("/budget");
     cy.wait(3000);
     cy.get("[data-test='budget-title']").contains("Budget Tracking");
-    cy.get("[data-test='budget-subtitle'").contains(
+    cy.get("[data-test='budget-subtitle']").contains(
       "Choose an existing budget or make a new one."
     );
     cy.get("[data-test='budget-selectPageWrapper']")
@@ -126,8 +126,8 @@ describe("The pages on the budgeting app route", () => {
     cy.get("[data-test='budget-addExpenseFormWrapper']").should(
       "be.visible"
     );
-    cy.get("[data-test='budget-addExpenseFormWrapper']").contains(
-      "Add Expenses"
-    );
+    cy.get("[data-test='budget-addExpenseFormTitle']")
+      .contains("Add Expense")
+      .should("be.visible");
   });
 });

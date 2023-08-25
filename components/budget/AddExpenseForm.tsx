@@ -29,7 +29,12 @@ const AddExpenseForm = () => {
       data-test="budget-addExpenseFormWrapper"
       className="card_container_vert w-full mb-4"
     >
-      <h1 className="subhead_text text-center">Add Expense</h1>
+      <h1
+        data-test="budget-addExpenseFormTitle"
+        className="subhead_text text-center"
+      >
+        Add Expense
+      </h1>
       <form
         onSubmit={onSubmit}
         className="flex flex-row gap-4
