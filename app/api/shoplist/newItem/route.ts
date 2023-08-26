@@ -1,7 +1,7 @@
 import { connectToDB } from "@/utils/database";
 import ShoplistItem from "@/models/shoplist";
 
-export const POST = async (req) => {
+export const POST = async (req: Request) => {
   const { item, complete, userID } = await req.json();
 
   try {

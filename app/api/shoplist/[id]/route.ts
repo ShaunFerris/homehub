@@ -1,7 +1,7 @@
 import { connectToDB } from "@/utils/database";
 import ShoplistItem from "@/models/shoplist";
 
-export const DELETE = async (req, { params }) => {
+export const DELETE = async (req: Request, { params }) => {
   try {
     await connectToDB();
 
@@ -13,7 +13,7 @@ export const DELETE = async (req, { params }) => {
   }
 };
 
-export const PATCH = async (req, { params }) => {
+export const PATCH = async (req: Request, { params }) => {
   const { complete } = await req.json();
 
   try {
