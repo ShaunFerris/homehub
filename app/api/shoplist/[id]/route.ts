@@ -1,5 +1,6 @@
 import { connectToDB } from "@/utils/database";
 import ShoplistItem from "@/models/shoplist";
+import { NextResponse } from "next/server";
 
 export const DELETE = async (req: Request, { params }) => {
   try {
@@ -7,9 +8,11 @@ export const DELETE = async (req: Request, { params }) => {
 
     await ShoplistItem.findByIdAndRemove(params.id);
 
-    return new Response("Item deleted", { status: 200 });
+    return NextResponse.json("Item deleted", { status: 200 });
   } catch (error) {
-    return new Response("Item delete failed", { status: 500 });
+    return NextResponse.json(`Item delete failed: ${error}`, {
+      status: 500
+    });
   }
 };
 
@@ -22,8 +25,10 @@ export const PATCH = async (req: Request, { params }) => {
     await ShoplistItem.findByIdAndUpdate(params.id, {
       complete: !complete
     });
-    return new Response("Item marked complete", { status: 200 });
+    return NextResponse.json("Item marked complete", { status: 200 });
   } catch (error) {
-    return new Response("Mark complete failed", { status: 500 });
+    return NextResponse.json(`Mark complete failed: ${error}`, {
+      status: 500
+    });
   }
 };
