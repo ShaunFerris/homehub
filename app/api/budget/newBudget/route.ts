@@ -16,11 +16,8 @@ export const POST = async (req: Request) => {
     await newBudget.save();
     return NextResponse.json(newBudget, { status: 201 });
   } catch (error) {
-    return NextResponse.json(
-      `Failed to create a new budget: ${error}`,
-      {
-        status: 500
-      }
-    );
+    return NextResponse.json(`Failed to create a new budget: ${error}`, {
+      status: 500
+    });
   }
 };

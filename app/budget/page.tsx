@@ -13,10 +13,7 @@ const BudgetList = () => {
       >
         Budget Tracking
       </h1>
-      <h1
-        data-test="budget-subtitle"
-        className="subhead_text text-center"
-      >
+      <h1 data-test="budget-subtitle" className="subhead_text text-center">
         Choose an existing budget or make a new one.
       </h1>
       <BudgetSelectPage />

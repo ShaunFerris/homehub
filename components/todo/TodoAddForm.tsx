@@ -65,19 +65,13 @@ const TodoAddForm = () => {
           className="w-1/5 flex flex-row
                 justify-center"
         >
-          <button
-            data-test="todo-submitButton"
-            className="black_btn w-full"
-          >
+          <button data-test="todo-submitButton" className="black_btn w-full">
             Submit
           </button>
         </div>
       </form>
       {invalidName ? (
-        <p
-          data-test="todo-invalidTaskMsg"
-          className="text-red-500 mt-2"
-        >
+        <p data-test="todo-invalidTaskMsg" className="text-red-500 mt-2">
           Please enter a valid name for your task
         </p>
       ) : (

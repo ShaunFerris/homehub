@@ -20,9 +20,6 @@ const UserGroupSchema: Schema<IUserGroup> = new Schema({
 
 const UserGroup =
   models.UserGroup ||
-  model<IUserGroupDocument, IUserGroupModel>(
-    "UserGroup",
-    UserGroupSchema
-  );
+  model<IUserGroupDocument, IUserGroupModel>("UserGroup", UserGroupSchema);
 
 export default UserGroup;

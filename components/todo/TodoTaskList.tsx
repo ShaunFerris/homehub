@@ -7,9 +7,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
   const { todoTasks, setStateChange } = useContext(TodoContext);
 
   const test =
-    title === "Pending Tasks"
-      ? "todo-pendingList"
-      : "todo-completedList";
+    title === "Pending Tasks" ? "todo-pendingList" : "todo-completedList";
 
   const tasksToDisplay =
     todoTasks === null
@@ -36,18 +34,13 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
   };
 
   const handleDelete = async (task) => {
-    const hasConfirmed = confirm(
-      "Are you sure you wish to delete this task?"
-    );
+    const hasConfirmed = confirm("Are you sure you wish to delete this task?");
 
     if (hasConfirmed) {
       try {
-        const response = await fetch(
-          `/api/todo/${task._id.toString()}`,
-          {
-            method: "DELETE"
-          }
-        );
+        const response = await fetch(`/api/todo/${task._id.toString()}`, {
+          method: "DELETE"
+        });
         setStateChange(true);
         if (response.ok) {
           console.log("Deleted one task!");
@@ -59,9 +52,7 @@ const TodoTaskList = ({ title, emptyMsg, renderCondition }) => {
   };
 
   const handleClear = async () => {
-    const hasConfirmed = confirm(
-      "Are you sure you wish to clear this list?"
-    );
+    const hasConfirmed = confirm("Are you sure you wish to clear this list?");
 
     if (hasConfirmed) {
       try {

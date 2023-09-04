@@ -9,9 +9,7 @@ const ExpenseList = () => {
 
   const expenses = budgetData.expenses;
 
-  const [filteredExpenses, setFileteredExpenses] = useState(
-    expenses || []
-  );
+  const [filteredExpenses, setFileteredExpenses] = useState(expenses || []);
 
   useEffect(() => {
     return setFileteredExpenses(expenses);
@@ -31,10 +29,7 @@ const ExpenseList = () => {
     >
       <h1 className="subhead_text text-center">Expenses</h1>
       {filteredExpenses.length === 0 ? (
-        <p
-          data-test="budget-noExpensesMsg"
-          className="desc_2 text-center"
-        >
+        <p data-test="budget-noExpensesMsg" className="desc_2 text-center">
           No expenses have been added yet
         </p>
       ) : (

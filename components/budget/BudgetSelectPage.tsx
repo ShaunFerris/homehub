@@ -91,15 +91,9 @@ const BudgetSelectPage = () => {
   }
 
   return (
-    <div
-      data-test="budget-selectPageWrapper"
-      className="card_container_long"
-    >
+    <div data-test="budget-selectPageWrapper" className="card_container_long">
       <ul data-test="budget-existingBudgetList">
-        <h1
-          data-test="budget-selectHeading1"
-          className="subhead_text"
-        >
+        <h1 data-test="budget-selectHeading1" className="subhead_text">
           Existing Budgets:
         </h1>
         {budgetList === null ? (
@@ -114,9 +108,7 @@ const BudgetSelectPage = () => {
                             p-2 border-b border-gray-500"
               key={b.name}
             >
-              <Link href={`/budget/${b._id.toString()}`}>
-                {b.name}
-              </Link>
+              <Link href={`/budget/${b._id.toString()}`}>{b.name}</Link>
             </li>
           ))
         )}
@@ -132,10 +124,7 @@ const BudgetSelectPage = () => {
       <h1 data-test="budget-selectHeading2" className="subhead_text">
         Add a new budget tracker
       </h1>
-      <form
-        className="mt-4 flex flex-col space-y-2"
-        onSubmit={addBudget}
-      >
+      <form className="mt-4 flex flex-col space-y-2" onSubmit={addBudget}>
         <div className="flex flex-row space-x-4">
           <input
             data-test="budget-amountInput"
@@ -166,10 +155,7 @@ const BudgetSelectPage = () => {
             }
           />
         </div>
-        <button
-          data-test="budget-submitNewBudgetButton"
-          className="black_btn"
-        >
+        <button data-test="budget-submitNewBudgetButton" className="black_btn">
           Create your budget tracker
         </button>
       </form>

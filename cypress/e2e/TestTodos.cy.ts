@@ -25,12 +25,8 @@ describe("The TODO list page", () => {
   });
 
   it("displays the content subtitles when logged in", () => {
-    cy.get("[data-test='todo-pendingList']").contains(
-      "Pending Tasks"
-    );
-    cy.get("[data-test='todo-completedList']").contains(
-      "Completed Tasks"
-    );
+    cy.get("[data-test='todo-pendingList']").contains("Pending Tasks");
+    cy.get("[data-test='todo-completedList']").contains("Completed Tasks");
   });
 
   /**

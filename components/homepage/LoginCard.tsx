@@ -38,9 +38,9 @@ const LoginCard = () => {
             </h5>
           </a>
           <p className="mb-3 font-normal text-gray-700">
-            We currently only support the home of the site's creator,
-            so unfortunately, if you do not live with me, you cannot
-            use this service.
+            We currently only support the home of the site's creator, so
+            unfortunately, if you do not live with me, you cannot use this
+            service.
           </p>
           {providers &&
             Object.values(providers).map((provider: Provider) => (

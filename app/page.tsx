@@ -10,19 +10,13 @@ const Home = () => {
       <h1 data-test="heading-one" className="head_text text-center">
         homeHub
         <br className="max-md:hidden" />
-        <span
-          data-test="heading-two"
-          className="text-center orange_gradient"
-        >
+        <span data-test="heading-two" className="text-center orange_gradient">
           Get Your Shit Together
         </span>
       </h1>
-      <p
-        data-test="homepage-description"
-        className="desc text-center"
-      >
-        Organize your life and keep track of tasks that need to be
-        done to keep your house in order.
+      <p data-test="homepage-description" className="desc text-center">
+        Organize your life and keep track of tasks that need to be done to keep
+        your house in order.
       </p>
       <LoginCard />
       <Footer />

@@ -26,12 +26,9 @@ const ShopList = () => {
 
   const handleDelete = async (item) => {
     try {
-      const response = await fetch(
-        `api/shoplist/${item._id.toString()}`,
-        {
-          method: "DELETE"
-        }
-      );
+      const response = await fetch(`api/shoplist/${item._id.toString()}`, {
+        method: "DELETE"
+      });
       setHasUpdated(true);
       if (response.ok) {
         console.log("Deleted one item!");
@@ -43,13 +40,10 @@ const ShopList = () => {
 
   const handleStatusChange = async (item) => {
     try {
-      const response = await fetch(
-        `api/shoplist/${item._id.toString()}`,
-        {
-          method: "PATCH",
-          body: JSON.stringify({ ...item })
-        }
-      );
+      const response = await fetch(`api/shoplist/${item._id.toString()}`, {
+        method: "PATCH",
+        body: JSON.stringify({ ...item })
+      });
       setHasUpdated(true);
       if (response.ok) {
         console.log("Marked one item as complete!");

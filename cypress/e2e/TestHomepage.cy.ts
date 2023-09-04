@@ -8,9 +8,7 @@ describe("The homepage", () => {
    */
   it("contains the expected titles and content", () => {
     cy.get("[data-test='heading-one']").contains("homeHub");
-    cy.get("[data-test='heading-two']").contains(
-      "Get Your Shit Together"
-    );
+    cy.get("[data-test='heading-two']").contains("Get Your Shit Together");
     cy.get("[data-test='homepage-description']").contains(
       "Organize your life and keep track of tasks that need to be done to keep your house in order."
     );

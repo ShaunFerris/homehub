@@ -24,10 +24,7 @@ Cypress.Commands.add("login", (username, password) => {
      * Cookie must be refreshed when it expires. Keep an eye out for
      * future fixes to this workaround.
      */
-    cy.setCookie(
-      "next-auth.session-token",
-      Cypress.env("TEST_SESSION_COOKIE")
-    );
+    cy.setCookie("next-auth.session-token", Cypress.env("TEST_SESSION_COOKIE"));
   });
 });
 

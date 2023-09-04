@@ -111,21 +111,15 @@ describe("The pages on the budgeting app route", () => {
   });
 
   it("verifies the expense list module shows and is currently empty", () => {
-    cy.get("[data-test='budget-expenseListWrapper']").should(
-      "be.visible"
-    );
-    cy.get("[data-test='budget-expenseListWrapper']").contains(
-      "Expenses"
-    );
+    cy.get("[data-test='budget-expenseListWrapper']").should("be.visible");
+    cy.get("[data-test='budget-expenseListWrapper']").contains("Expenses");
     cy.get("[data-test='budget-noExpensesMsg']").contains(
       "No expenses have been added yet"
     );
   });
 
   it("verifies the layout of the add expense form", () => {
-    cy.get("[data-test='budget-addExpenseFormWrapper']").should(
-      "be.visible"
-    );
+    cy.get("[data-test='budget-addExpenseFormWrapper']").should("be.visible");
     cy.get("[data-test='budget-addExpenseFormTitle']")
       .contains("Add Expense")
       .should("be.visible");

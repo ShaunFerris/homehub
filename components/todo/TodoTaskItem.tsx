@@ -10,9 +10,7 @@ const TodoTaskItem = ({ task, toggleStatus, handleDelete }) => {
     >
       <div>
         {task.name}{" "}
-        <span className="text-gray-500">
-          | {task?.creator?.username}
-        </span>
+        <span className="text-gray-500">| {task?.creator?.username}</span>
       </div>
       {/*Desktop displays get action buttons*/}
       <div id="buttons" className="sm:flex flex-row gap-4 hidden">

@@ -21,11 +21,8 @@ export const DELETE = async (req: Request) => {
     await Budget.deleteMany({});
     return NextResponse.json("Deleted all budgets", { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      `Failed to delete all budgets: ${error}`,
-      {
-        status: 500
-      }
-    );
+    return NextResponse.json(`Failed to delete all budgets: ${error}`, {
+      status: 500
+    });
   }
 };

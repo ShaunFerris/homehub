@@ -42,10 +42,7 @@ describe("The shopping list page", () => {
   it("adds an item on submit", () => {
     cy.get("[data-test='shoplist-input']").type("test item");
     cy.get("[data-test='shoplist-submit']").click();
-    cy.get("[data-test='shoplist-list']").should(
-      "contain",
-      "test item"
-    );
+    cy.get("[data-test='shoplist-list']").should("contain", "test item");
   });
 
   it("checks the initial status of the item", () => {

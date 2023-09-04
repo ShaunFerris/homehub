@@ -1,9 +1,7 @@
 import { TiDelete, TiTick } from "react-icons/ti";
 
 const ShopItem = ({ item, handleDelete, handleStatusChange }) => {
-  const repComplete = item.complete
-    ? "bg-green-500 line-through"
-    : "bg-white";
+  const repComplete = item.complete ? "bg-green-500 line-through" : "bg-white";
 
   return (
     <li

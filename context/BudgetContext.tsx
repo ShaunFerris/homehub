@@ -38,9 +38,7 @@ const initialState = {
   expenses: []
 };
 
-export const BudgetContext = createContext<IBudgetContext | null>(
-  null
-);
+export const BudgetContext = createContext<IBudgetContext | null>(null);
 
 export const BudgetProvider = ({ children }) => {
   const params = useParams();
@@ -50,9 +48,7 @@ export const BudgetProvider = ({ children }) => {
   useEffect(() => {
     const getCurrentBudget = async () => {
       try {
-        const response = await fetch(
-          `/api/budget/${params.id.toString()}`
-        );
+        const response = await fetch(`/api/budget/${params.id.toString()}`);
         const budget = await response.json();
         dispatch({ type: "SET_DATA", payload: budget });
       } catch (error) {
