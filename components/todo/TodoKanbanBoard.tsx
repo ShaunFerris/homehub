@@ -1,6 +1,8 @@
 "use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
+import { FaFire } from "react-icons/fa";
+import { FiTrash } from "react-icons/fi";
 
 type ColumnTypes = "backlog" | "todo" | "active" | "done";
 
@@ -90,6 +92,7 @@ const Column = ({
           );
         })}
         <DropIndicator beforeId="-1" column={column} />
+        <AddCard column={column} setCards={setCards} />
       </div>
     </div>
   );
@@ -144,8 +147,22 @@ const DeleteZone = ({
           ? "border-red-800 bg-red-800/50 text-red-500"
           : "border-neutral-500 bg-neutral-500/50 text-neutral-900"
       }`}
-    ></div>
+    >
+      {active ? <FaFire className="animate-bounce" /> : <FiTrash />}
+    </div>
   );
+};
+
+interface AddCardProps {
+  column: ColumnTypes;
+  setCards: Dispatch<SetStateAction<CardProps[]>>;
+}
+
+const AddCard = ({ column, setCards }: AddCardProps) => {
+  const [text, setText] = useState("");
+  const [adding, setAdding] = useState(false);
+
+  return <>{adding ? <></> : <button></button>}</>;
 };
 
 const TEST_CARDS: CardProps[] = [
