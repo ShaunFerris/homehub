@@ -89,7 +89,14 @@ const TestCards: TestCards[] = [
   //backlog cards
   { title: "Become imortal", id: "1", column: "backlog" },
   { title: "Kill god", id: "2", column: "backlog" },
-  { title: "Usurp Heaven", id: "3", column: "backlog" }
+  { title: "Usurp Heaven", id: "3", column: "backlog" },
+  //todo cards
+  { title: "Buy a toaster", id: "4", column: "todo" },
+  { title: "Sell a blender", id: "5", column: "todo" },
+  { title: "Beat a video game", id: "6", column: "todo" },
+  //active cards
+  { title: "Have a panic attack", id: "7", column: "active" },
+  { title: "Eat a live snake", id: "8", column: "active" }
 ];
 
 export default KanbanBoard;
