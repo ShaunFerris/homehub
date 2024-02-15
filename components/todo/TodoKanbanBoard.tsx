@@ -8,13 +8,13 @@ interface ColumnProps {
   title: string;
   headingColor: string;
   column: ColumnTypes;
-  cards: any[];
-  setCards: Dispatch<SetStateAction<any[]>>;
+  cards: CardProps[];
+  setCards: Dispatch<SetStateAction<CardProps[]>>;
 }
 
 const KanbanBoard = () => {
   return (
-    <div className="h-screen w-full bg-neutral-100/0 text-neutral-900">
+    <div className="h-screen w-full bg-neutral-100/0 text-neutral-900 overflow-scroll flex justify-items-center">
       <Board />
     </div>
   );
@@ -52,6 +52,7 @@ const Board = () => {
         cards={cards}
         setCards={setCards}
       />
+      <DeleteZone setCards={setCards} />
     </div>
   );
 };
@@ -126,6 +127,24 @@ const DropIndicator = ({ beforeId, column }: DropIndicatorProps) => {
       data-column={column}
       className="my-0.5 h-0.5 w-full bg-blue-400 opacity-100" //change the opacity value on hover later
     />
+  );
+};
+
+const DeleteZone = ({
+  setCards
+}: {
+  setCards: Dispatch<SetStateAction<CardProps[]>>;
+}) => {
+  const [active, setActive] = useState(false);
+
+  return (
+    <div
+      className={`mt-10 grid h-36 w-36 shrink-0 place-content-center rounded border text-3xl ${
+        active
+          ? "border-red-800 bg-red-800/50 text-red-500"
+          : "border-neutral-500 bg-neutral-500/50 text-neutral-900"
+      }`}
+    ></div>
   );
 };
 
