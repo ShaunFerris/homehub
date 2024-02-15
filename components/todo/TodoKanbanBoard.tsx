@@ -88,6 +88,7 @@ const Column = ({
             />
           );
         })}
+        <DropIndicator beforeId="-1" column={column} />
       </div>
     </div>
   );
@@ -102,8 +103,29 @@ interface CardProps {
 const Card = ({ title, id, column }: CardProps) => {
   return (
     <>
-      <div>{title}</div>
+      <DropIndicator beforeId={id} column={column} />
+      <div
+        draggable="true"
+        className="cursor-grab rounded border border-neutral-700 bg-neutral-400 p-3 active:cursor-grabbing"
+      >
+        <p className="text-sm text-neutral-900">{title}</p>
+      </div>
     </>
+  );
+};
+
+interface DropIndicatorProps {
+  beforeId: string;
+  column: ColumnTypes;
+}
+
+const DropIndicator = ({ beforeId, column }: DropIndicatorProps) => {
+  return (
+    <div
+      data-before={beforeId || "-1"}
+      data-column={column}
+      className="my-0.5 h-0.5 w-full bg-blue-400 opacity-100" //change the opacity value on hover later
+    />
   );
 };
 
