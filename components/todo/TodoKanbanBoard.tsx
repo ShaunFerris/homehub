@@ -21,7 +21,7 @@ const KanbanBoard = () => {
 };
 
 const Board = () => {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(TEST_CARDS);
   return (
     <div className="flex h-full w-full justify-center gap-3 overflow-scroll p-12">
       <Column
@@ -64,28 +64,50 @@ const Column = ({
   setCards
 }: ColumnProps) => {
   const [active, setActive] = useState(false);
+  const filtered_cards = cards.filter((item) => item.column === column);
   return (
     <div className="w-56 shrink-0">
       <div className="mb-3 flex items-center justify-between">
         <h3 className={`font-medium ${headingColor}`}>{title}</h3>
-        <span className="rounded text-sm text-neutral-800">{cards.length}</span>
+        <span className="rounded text-sm text-neutral-800">
+          {filtered_cards.length}
+        </span>
       </div>
       <div
         className={`h-full w-full transition-colors ${
           active ? "bg-neutral-500/50" : "bg-neutral-500/0"
         }`}
-      ></div>
+      >
+        {filtered_cards.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              title={item.title}
+              id={item.id}
+              column={item.column}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };
 
-interface TestCards {
+interface CardProps {
   title: string;
   id: string;
   column: ColumnTypes;
 }
 
-const TestCards: TestCards[] = [
+const Card = ({ title, id, column }: CardProps) => {
+  return (
+    <>
+      <div>{title}</div>
+    </>
+  );
+};
+
+const TEST_CARDS: CardProps[] = [
   //backlog cards
   { title: "Become imortal", id: "1", column: "backlog" },
   { title: "Kill god", id: "2", column: "backlog" },
