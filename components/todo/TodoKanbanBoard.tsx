@@ -23,7 +23,7 @@ const KanbanBoard = () => {
 };
 
 const Board = () => {
-  const [cards, setCards] = useState(TEST_CARDS);
+  const [cards, setCards] = useState<CardProps[]>(TEST_CARDS);
   return (
     <div className="flex h-full w-full justify-center gap-3 overflow-scroll p-12">
       <Column
@@ -66,7 +66,7 @@ const Column = ({
   cards,
   setCards
 }: ColumnProps) => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<boolean>(false);
   const filtered_cards = cards.filter((item) => item.column === column);
   return (
     <div className="w-56 shrink-0">
@@ -138,7 +138,7 @@ const DeleteZone = ({
 }: {
   setCards: Dispatch<SetStateAction<CardProps[]>>;
 }) => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState<boolean>(false);
 
   return (
     <div
@@ -159,8 +159,8 @@ interface AddCardProps {
 }
 
 const AddCard = ({ column, setCards }: AddCardProps) => {
-  const [text, setText] = useState("");
-  const [adding, setAdding] = useState(false);
+  const [text, setText] = useState<string>("");
+  const [adding, setAdding] = useState<boolean>(false);
 
   const handleAddCard = (event) => {
     event.preventDefault();
