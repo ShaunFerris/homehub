@@ -2,7 +2,7 @@
 
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaFire } from "react-icons/fa";
-import { FiTrash } from "react-icons/fi";
+import { FiTrash, FiPlus } from "react-icons/fi";
 
 type ColumnTypes = "backlog" | "todo" | "active" | "done";
 
@@ -162,7 +162,30 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
   const [text, setText] = useState("");
   const [adding, setAdding] = useState(false);
 
-  return <>{adding ? <></> : <button></button>}</>;
+  return (
+    <>
+      {adding ? (
+        <form>
+          <textarea
+            onChange={(e) => setText(e.target.value)}
+            autoFocus
+            placeholder="Enter a new task..."
+            className="w-full rounded border border-black bg-neutral-400/50 focus:outline-none placeholder-neutral-600 placeholder:text-sm text-sm p-3"
+          />
+          <button />
+          <button />
+        </form>
+      ) : (
+        <button
+          onClick={() => setAdding(true)}
+          className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-900 transition-colors hover:text-blue-400"
+        >
+          <span>Add Card</span>
+          <FiPlus />
+        </button>
+      )}
+    </>
+  );
 };
 
 const TEST_CARDS: CardProps[] = [
