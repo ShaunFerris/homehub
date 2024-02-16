@@ -77,6 +77,7 @@ const Column = ({
   const cardDragStart: CardDragStart = (event, card) => {
     //you can add any data you want into the data transfer object for a drag event
     //hitch the id of the card being dragged onto the event so other handlers can get it
+    //you can only modify dataTransfer on dragStart handlers specifically
     event.dataTransfer.setData("cardId", card.id);
   };
 
@@ -126,7 +127,7 @@ const Card = ({ title, id, column, handleDragStart }: CardProps) => {
       <DropIndicator beforeId={id} column={column} />
       <div
         draggable="true"
-        onDrag={(event) => handleDragStart(event, { title, id, column })}
+        onDragStart={(event) => handleDragStart(event, { title, id, column })}
         className="cursor-grab rounded border border-neutral-700 bg-neutral-400 p-3 active:cursor-grabbing"
       >
         <p className="text-sm text-neutral-900">{title}</p>
@@ -157,8 +158,19 @@ const DeleteZone = ({
 }) => {
   const [active, setActive] = useState<boolean>(false);
 
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setActive(true);
+  };
+
+  const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    setActive(false);
+  };
+
   return (
     <div
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
       className={`mt-10 grid h-36 w-36 shrink-0 place-content-center rounded border text-3xl ${
         active
           ? "border-red-800 bg-red-800/50 text-red-500"
