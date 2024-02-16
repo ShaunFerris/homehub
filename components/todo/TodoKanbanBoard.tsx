@@ -162,18 +162,34 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
   const [text, setText] = useState("");
   const [adding, setAdding] = useState(false);
 
+  const handleAddCard = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       {adding ? (
-        <form>
+        <form onSubmit={handleAddCard}>
           <textarea
-            onChange={(e) => setText(e.target.value)}
             autoFocus
             placeholder="Enter a new task..."
             className="w-full rounded border border-black bg-neutral-400/50 focus:outline-none placeholder-neutral-600 placeholder:text-sm text-sm p-3"
           />
-          <button />
-          <button />
+          <div className="mt-1.5 flex items-center justify-end gap-1.5">
+            <button
+              onClick={() => setAdding(false)}
+              className="px-3 py-1.5 text-xs text-neutral-900 transition-colors hover:text-red-500"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              className="flex items-center rounded gap-1.5 px-3 py-1.5 text-neutral-900 transition-colors hover:bg-green-400/50 text-xs"
+            >
+              <span>Add</span>
+              <FiPlus />
+            </button>
+          </div>
         </form>
       ) : (
         <button
