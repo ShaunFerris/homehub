@@ -5,16 +5,6 @@ import { FaFire } from "react-icons/fa";
 import { FiTrash, FiPlus } from "react-icons/fi";
 import { v4 as uuidv4 } from "uuid";
 
-type ColumnTypes = "backlog" | "todo" | "active" | "done";
-
-interface ColumnProps {
-  title: string;
-  headingColor: string;
-  column: ColumnTypes;
-  cards: CardProps[];
-  setCards: Dispatch<SetStateAction<CardProps[]>>;
-}
-
 const KanbanBoard = () => {
   return (
     <div className="h-screen w-full bg-neutral-100/0 text-neutral-900 overflow-scroll flex justify-items-center">
@@ -60,6 +50,21 @@ const Board = () => {
   );
 };
 
+type ColumnTypes = "backlog" | "todo" | "active" | "done";
+
+interface ColumnProps {
+  title: string;
+  headingColor: string;
+  column: ColumnTypes;
+  cards: CardProps[];
+  setCards: Dispatch<SetStateAction<CardProps[]>>;
+}
+
+type CardDragStart = (
+  event: React.DragEvent<HTMLDivElement>,
+  card: CardProps
+) => void;
+
 const Column = ({
   title,
   headingColor,
@@ -68,7 +73,15 @@ const Column = ({
   setCards
 }: ColumnProps) => {
   const [active, setActive] = useState<boolean>(false);
+
+  const cardDragStart: CardDragStart = (event, card) => {
+    //you can add any data you want into the data transfer object for a drag event
+    //hitch the id of the card being dragged onto the event so other handlers can get it
+    event.dataTransfer.setData("cardId", card.id);
+  };
+
   const filtered_cards = cards.filter((item) => item.column === column);
+
   return (
     <div className="w-56 shrink-0">
       <div className="mb-3 flex items-center justify-between">
@@ -89,6 +102,7 @@ const Column = ({
               title={item.title}
               id={item.id}
               column={item.column}
+              handleDragStart={cardDragStart}
             />
           );
         })}
@@ -103,14 +117,16 @@ interface CardProps {
   title: string;
   id: string;
   column: ColumnTypes;
+  handleDragStart?: CardDragStart;
 }
 
-const Card = ({ title, id, column }: CardProps) => {
+const Card = ({ title, id, column, handleDragStart }: CardProps) => {
   return (
     <>
       <DropIndicator beforeId={id} column={column} />
       <div
         draggable="true"
+        onDrag={(event) => handleDragStart(event, { title, id, column })}
         className="cursor-grab rounded border border-neutral-700 bg-neutral-400 p-3 active:cursor-grabbing"
       >
         <p className="text-sm text-neutral-900">{title}</p>
