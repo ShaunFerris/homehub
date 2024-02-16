@@ -3,6 +3,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { FaFire } from "react-icons/fa";
 import { FiTrash, FiPlus } from "react-icons/fi";
+import { v4 as uuidv4 } from "uuid";
 
 type ColumnTypes = "backlog" | "todo" | "active" | "done";
 
@@ -164,6 +165,23 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
 
   const handleAddCard = (event) => {
     event.preventDefault();
+
+    if (!text.trim().length) {
+      alert("Add text to your card and try again!");
+      return;
+    } else {
+      const newCard: CardProps = {
+        title: text.trim(),
+        id: uuidv4(), //put some thought into if it is actually worth using uuids vs incrementing int cast to string
+        column
+      };
+
+      setCards((prev) => [...prev, newCard]);
+
+      setAdding(false);
+
+      setText("");
+    }
   };
 
   return (
@@ -173,6 +191,7 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
           <textarea
             autoFocus
             placeholder="Enter a new task..."
+            onChange={(event) => setText(event.target.value)}
             className="w-full rounded border border-black bg-neutral-400/50 focus:outline-none placeholder-neutral-600 placeholder:text-sm text-sm p-3"
           />
           <div className="mt-1.5 flex items-center justify-end gap-1.5">
