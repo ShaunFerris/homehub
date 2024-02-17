@@ -13,6 +13,7 @@
     "cypress-dotenv-flow": "^1.2.2",
     "eslint": "8.40.0",
     "eslint-config-next": "^13.5.1",
+    "framer-motion": "^11.0.5",
     "mongodb": "^5.5.0",
     "mongoose": "^7.3.3",
     "next": "^13.5.1",
