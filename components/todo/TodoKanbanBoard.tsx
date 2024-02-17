@@ -167,10 +167,21 @@ const DeleteZone = ({
     setActive(false);
   };
 
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    const idToDelete = event.dataTransfer.getData("cardId");
+    console.log(idToDelete); //debugging
+
+    setCards((prev) => prev.filter((item) => item.id !== idToDelete));
+
+    setActive(false);
+  };
+
   return (
     <div
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
       className={`mt-10 grid h-36 w-36 shrink-0 place-content-center rounded border text-3xl ${
         active
           ? "border-red-800 bg-red-800/50 text-red-500"
