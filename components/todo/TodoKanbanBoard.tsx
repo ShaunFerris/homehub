@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { FaFire } from "react-icons/fa";
 import { FiTrash, FiPlus } from "react-icons/fi";
 import { v4 as uuidv4 } from "uuid";
+import { motion } from "framer-motion";
 
 const KanbanBoard = () => {
   return (
@@ -61,7 +62,11 @@ interface ColumnProps {
 }
 
 type CardDragStart = (
-  event: React.DragEvent<HTMLDivElement>,
+  event:
+    | React.DragEvent<HTMLDivElement>
+    | MouseEvent
+    | TouchEvent
+    | PointerEvent,
   card: CardProps
 ) => void;
 
@@ -74,7 +79,10 @@ const Column = ({
 }: ColumnProps) => {
   const [active, setActive] = useState<boolean>(false);
 
-  const cardDragStart: CardDragStart = (event, card) => {
+  const cardDragStart: CardDragStart = (
+    event: React.DragEvent<HTMLDivElement>,
+    card
+  ) => {
     //you can add any data you want into the data transfer object for a drag event
     //hitch the id of the card being dragged onto the event so other handlers can get it
     //you can only modify dataTransfer on dragStart handlers specifically
@@ -125,13 +133,15 @@ const Card = ({ title, id, column, handleDragStart }: CardProps) => {
   return (
     <>
       <DropIndicator beforeId={id} column={column} />
-      <div
+      <motion.div
+        layout
+        layoutId={id}
         draggable="true"
         onDragStart={(event) => handleDragStart(event, { title, id, column })}
         className="cursor-grab rounded border border-neutral-700 bg-neutral-400 p-3 active:cursor-grabbing"
       >
         <p className="text-sm text-neutral-900">{title}</p>
-      </div>
+      </motion.div>
     </>
   );
 };
@@ -233,7 +243,7 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
   return (
     <>
       {adding ? (
-        <form onSubmit={handleAddCard}>
+        <motion.form layout onSubmit={handleAddCard}>
           <textarea
             autoFocus
             placeholder="Enter a new task..."
@@ -257,15 +267,16 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
               <FiPlus />
             </button>
           </div>
-        </form>
+        </motion.form>
       ) : (
-        <button
+        <motion.button
+          layout
           onClick={() => setAdding(true)}
           className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-900 transition-colors hover:text-blue-400"
         >
           <span>Add Card</span>
           <FiPlus />
-        </button>
+        </motion.button>
       )}
     </>
   );
