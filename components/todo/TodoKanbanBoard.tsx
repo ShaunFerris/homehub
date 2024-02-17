@@ -202,7 +202,7 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
   const [text, setText] = useState<string>("");
   const [adding, setAdding] = useState<boolean>(false);
 
-  const handleAddCard = (event) => {
+  const handleAddCard = (event: React.FormEvent | React.KeyboardEvent) => {
     event.preventDefault();
 
     if (!text.trim().length) {
@@ -223,6 +223,13 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
     }
   };
 
+  const addOnEnter = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleAddCard(event);
+    }
+  };
+
   return (
     <>
       {adding ? (
@@ -231,10 +238,12 @@ const AddCard = ({ column, setCards }: AddCardProps) => {
             autoFocus
             placeholder="Enter a new task..."
             onChange={(event) => setText(event.target.value)}
+            onKeyDown={addOnEnter}
             className="w-full rounded border border-black bg-neutral-400/50 focus:outline-none placeholder-neutral-600 placeholder:text-sm text-sm p-3"
           />
           <div className="mt-1.5 flex items-center justify-end gap-1.5">
             <button
+              type="button"
               onClick={() => setAdding(false)}
               className="px-3 py-1.5 text-xs text-neutral-900 transition-colors hover:text-red-500"
             >
