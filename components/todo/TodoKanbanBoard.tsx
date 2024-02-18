@@ -89,6 +89,30 @@ const Column = ({
     event.dataTransfer.setData("cardId", card.id);
   };
 
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setActive(true);
+  };
+
+  const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setActive(false);
+  };
+
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+
+    const draggedCardId = event.dataTransfer.getData("cardId");
+
+    setCards((prev) => {
+      return prev.map((item) =>
+        item.id === draggedCardId ? { ...item, column: column } : item
+      );
+    });
+
+    setActive(false);
+  };
+
   const filtered_cards = cards.filter((item) => item.column === column);
 
   return (
@@ -100,6 +124,9 @@ const Column = ({
         </span>
       </div>
       <div
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
         className={`h-full w-full transition-colors ${
           active ? "bg-neutral-500/50" : "bg-neutral-500/0"
         }`}
