@@ -80,6 +80,7 @@ const Column = ({
   const [active, setActive] = useState<boolean>(false);
 
   const cardDragStart: CardDragStart = (
+    //this handler is passed to the card, then the card calls it with it's own {id, title, column} obj
     event: React.DragEvent<HTMLDivElement>,
     card
   ) => {
@@ -111,6 +112,15 @@ const Column = ({
     });
 
     setActive(false);
+  };
+
+  const getIndicators = () => {
+    return Array.from(document.querySelectorAll(`[data-column="${column}"]`));
+  };
+
+  const showIndicators = (event: React.DragEvent<HTMLDivElement>) => {
+    const indicators = getIndicators();
+    //toggle opacity of collected indicator elements
   };
 
   const filtered_cards = cards.filter((item) => item.column === column);
