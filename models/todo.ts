@@ -1,6 +1,6 @@
 import { Schema, Document, Model, model, models } from "mongoose";
 
-interface ITodo extends Document {
+export interface ITodo extends Document {
   creator: Schema.Types.ObjectId;
   name: string;
   complete: boolean;
