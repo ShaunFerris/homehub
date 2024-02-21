@@ -2,8 +2,13 @@ import { connectToDB } from "@/utils/database";
 import Budget from "@/models/budget";
 import { NextResponse } from "next/server";
 import { IBudgetDocument } from "@/types/models";
+import { getCurrentUser } from "@/utils/session";
 
 export const GET = async (req: Request) => {
+  const session = await getCurrentUser();
+  if (!session) {
+    return NextResponse.json("unauthorized", { status: 401 });
+  }
   try {
     await connectToDB();
     const budgets: IBudgetDocument[] | [] = await Budget.find({});
