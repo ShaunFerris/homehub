@@ -92,6 +92,7 @@ const Column = ({
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
+    showIndicator(event);
     setActive(true);
   };
 
@@ -115,13 +116,44 @@ const Column = ({
   };
 
   const getIndicators = () => {
-    return Array.from(document.querySelectorAll(`[data-column="${column}"]`));
+    return Array.from(
+      document.querySelectorAll<HTMLElement>(`[data-column="${column}"]`)
+    );
   };
 
-  const showIndicators = (event: React.DragEvent<HTMLDivElement>) => {
+  const showIndicator = (event: React.DragEvent<HTMLDivElement>) => {
     const indicators = getIndicators();
-    //toggle opacity of collected indicator elements
+    const indicatorToHighlight = getNearestIndicator(event, indicators);
+    indicatorToHighlight.element.style.opacity = "1";
   };
+
+  const getNearestIndicator = (
+    //get the list of indicator elements and determine the closest to the card being dragged over
+    event: React.DragEvent<HTMLDivElement>,
+    indicators: ReturnType<typeof getIndicators>
+  ) => {
+    const DISTANCE_OFFSET = 50;
+
+    const indicatorElement = indicators.reduce(
+      (prevIndicator, currIndicator) => {
+        const box = currIndicator.getBoundingClientRect();
+        const offset = event.clientY - (box.top + DISTANCE_OFFSET);
+
+        if (offset < 0 && offset > prevIndicator.offset) {
+          return { offset: offset, element: currIndicator };
+        } else {
+          return prevIndicator;
+        }
+      },
+      {
+        offset: Number.NEGATIVE_INFINITY,
+        element: indicators[indicators.length - 1]
+      }
+    );
+    return indicatorElement;
+  };
+
+  const hideIndicator = () => {}; //continue here
 
   const filtered_cards = cards.filter((item) => item.column === column);
 
@@ -193,7 +225,7 @@ const DropIndicator = ({ beforeId, column }: DropIndicatorProps) => {
     <div
       data-before={beforeId || "-1"}
       data-column={column}
-      className="my-0.5 h-0.5 w-full bg-blue-400 opacity-100" //change the opacity value on hover later
+      className="my-0.5 h-0.5 w-full bg-blue-400 opacity-0" //change the opacity value on hover later
     />
   );
 };
