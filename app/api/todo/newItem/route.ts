@@ -1,5 +1,6 @@
 import { connectToDB } from "@/utils/database";
-import Todo, { ITodo } from "@/models/todo";
+import Todo from "@/models/todo";
+import { ITodo } from "@/types/models";
 
 export const POST = async (req) => {
   const { task, complete, userID } = await req.json();
