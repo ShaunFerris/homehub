@@ -1,12 +1,5 @@
-import { Schema, Document, Model, model, models } from "mongoose";
-
-export interface ITodo extends Document {
-  creator: Schema.Types.ObjectId;
-  name: string;
-  complete: boolean;
-}
-
-export interface ITodoModel extends Model<ITodo> {}
+import { Schema, model, models } from "mongoose";
+import { ITodo, ITodoModel } from "@/types/models";
 
 const TodoSchema = new Schema<ITodo>({
   creator: {

@@ -29,11 +29,13 @@ export interface IUserModel extends Model<IUserDocument> {
 /**
  * Interfaces for the todo list data and db models
  */
-export interface ITodo {
+export interface ITodo extends Document {
   creator: Schema.Types.ObjectId;
   name: string;
   complete: boolean;
 }
+
+export interface ITodoModel extends Model<ITodo> {}
 
 export interface ITodoContext {
   todoTasks: ITodo[];
