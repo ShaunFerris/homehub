@@ -99,6 +99,7 @@ const Column = ({
   const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     setActive(false);
+    hideIndicators();
   };
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
@@ -113,6 +114,7 @@ const Column = ({
     });
 
     setActive(false);
+    hideIndicators();
   };
 
   const getIndicators = () => {
@@ -123,8 +125,14 @@ const Column = ({
 
   const showIndicator = (event: React.DragEvent<HTMLDivElement>) => {
     const indicators = getIndicators();
+    hideIndicators(indicators);
     const indicatorToHighlight = getNearestIndicator(event, indicators);
     indicatorToHighlight.element.style.opacity = "1";
+  };
+
+  const hideIndicators = (elements?: HTMLElement[]) => {
+    const indicators = elements || getIndicators();
+    indicators.forEach((i) => (i.style.opacity = "0"));
   };
 
   const getNearestIndicator = (
@@ -152,8 +160,6 @@ const Column = ({
     );
     return indicatorElement;
   };
-
-  const hideIndicator = () => {}; //continue here
 
   const filtered_cards = cards.filter((item) => item.column === column);
 
