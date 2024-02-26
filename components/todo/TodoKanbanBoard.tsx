@@ -104,17 +104,22 @@ const Column = ({
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
+    setActive(false);
+    hideIndicators();
 
     const draggedCardId = event.dataTransfer.getData("cardId");
 
-    setCards((prev) => {
-      return prev.map((item) =>
-        item.id === draggedCardId ? { ...item, column: column } : item
-      );
-    });
+    const indicators = getIndicators();
+    const { element } = getNearestIndicator(event, indicators);
 
-    setActive(false);
-    hideIndicators();
+    const before = element.dataset.before || "-1";
+
+    if (before !== draggedCardId) {
+      let copyCardsList = [...cards];
+      let cardsToTransfer = copyCardsList.find(
+        (card) => card.id === draggedCardId
+      );
+    }
   };
 
   const getIndicators = () => {
