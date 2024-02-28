@@ -116,9 +116,25 @@ const Column = ({
 
     if (before !== draggedCardId) {
       let copyCardsList = [...cards];
-      let cardsToTransfer = copyCardsList.find(
+      let cardToTransfer = copyCardsList.find(
         (card) => card.id === draggedCardId
       );
+
+      if (!cardToTransfer) return;
+      cardToTransfer = { ...cardToTransfer, column };
+      copyCardsList = copyCardsList.filter((card) => card.id !== draggedCardId);
+
+      const moveToBack = before === "-1";
+      if (moveToBack) {
+        copyCardsList.push(cardToTransfer);
+      } else {
+        const insertAtIndex = copyCardsList.findIndex(
+          (element) => element.id === before
+        );
+        if (insertAtIndex === undefined) return;
+        copyCardsList.splice(insertAtIndex, 0, cardToTransfer);
+      }
+      setCards(copyCardsList);
     }
   };
 
