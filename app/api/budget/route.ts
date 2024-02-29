@@ -1,14 +1,13 @@
-import { connectToDB } from "@/utils/database";
 import Budget from "@/models/budget";
+import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
 import { IBudgetDocument } from "@/types/models";
-import { getCurrentUser } from "@/utils/session";
+import { isUnauthorized } from "@/utils/session";
 
 export const GET = async (req: Request) => {
-  const session = await getCurrentUser();
-  if (!session) {
-    return NextResponse.json("unauthorized", { status: 401 });
-  }
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectToDB();
     const budgets: IBudgetDocument[] | [] = await Budget.find({});
@@ -21,6 +20,9 @@ export const GET = async (req: Request) => {
 };
 
 export const DELETE = async (req: Request) => {
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectToDB();
     await Budget.deleteMany({});

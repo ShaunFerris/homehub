@@ -1,9 +1,13 @@
+import Budget from "@/models/budget";
 import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
-import Budget from "@/models/budget";
 import { IBudgetDocument } from "@/types/models";
+import { isUnauthorized } from "@/utils/session";
 
 export const GET = async (req: Request, { params }) => {
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectToDB();
     const data: IBudgetDocument = await Budget.findById(params.id);
@@ -16,6 +20,9 @@ export const GET = async (req: Request, { params }) => {
 };
 
 export const PATCH = async (req: Request, { params }) => {
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   const { name, budget, expenses } = await req.json();
 
   try {
