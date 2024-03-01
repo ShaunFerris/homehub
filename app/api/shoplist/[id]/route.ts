@@ -1,8 +1,12 @@
-import { connectToDB } from "@/utils/database";
 import ShoplistItem from "@/models/shoplist";
+import { connectToDB } from "@/utils/database";
 import { NextResponse } from "next/server";
+import { isUnauthorized } from "@/utils/session";
 
 export const DELETE = async (req: Request, { params }) => {
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectToDB();
 
@@ -17,6 +21,9 @@ export const DELETE = async (req: Request, { params }) => {
 };
 
 export const PATCH = async (req: Request, { params }) => {
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   const { complete } = await req.json();
 
   try {

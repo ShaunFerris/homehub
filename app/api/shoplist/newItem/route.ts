@@ -1,7 +1,11 @@
-import { connectToDB } from "@/utils/database";
 import ShoplistItem from "@/models/shoplist";
+import { connectToDB } from "@/utils/database";
+import { isUnauthorized } from "@/utils/session";
 
 export const POST = async (req: Request) => {
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   const { item, complete, userID } = await req.json();
 
   try {

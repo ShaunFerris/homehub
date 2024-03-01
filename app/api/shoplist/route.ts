@@ -1,7 +1,11 @@
-import { connectToDB } from "@/utils/database";
 import ShoplistItem from "@/models/shoplist";
+import { connectToDB } from "@/utils/database";
+import { isUnauthorized } from "@/utils/session";
 
 export const GET = async () => {
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectToDB();
 
@@ -14,6 +18,9 @@ export const GET = async () => {
 };
 
 export const DELETE = async () => {
+  const unauthorized = await isUnauthorized();
+  if (unauthorized) return unauthorized;
+
   try {
     await connectToDB();
 
